@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "name": "mmmc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "pnpm run --filter desktop start",
+    "dev": "nodemon -w apps/desktop/src -e ts --exec \"pnpm esno scripts/dev.ts\"",
+    "dev:web": "pnpm run --filter web dev",
+    "dev:desktop": "pnpm run --filter desktop dev",
+    "build": "pnpm run build:desktop && pnpm run build:web",
+    "build:web": "pnpm run --filter web build",
+    "build:desktop": "pnpm run --filter desktop build",
+    "test:unit": "vitest --run",
+    "test:unit:watch": "vitest",
+    "test:unit:coverage": "vitest --coverage",
+    "test:cypress": "pnpm run --filter web cypress:ui",
+    "test:cypress:e2e": "pnpm run --filter web cypress:e2e",
+    "test:cypress:ct": "pnpm run --filter web cypress:ct",
+    "taze": "taze minor -r"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.36.0",
+    "dotenv": "^16.0.3",
+    "eslint": "^8.36.0",
+    "esno": "^0.16.3",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.6",
+    "taze": "^0.9.1",
+    "typescript": "^5.0.2",
+    "unbuild": "^1.1.2",
+    "vite": "^4.2.1",
+    "vitest": "^0.29.7"
+  },
+  "keywords": [
+    "react",
+    "tauri",
+    "unocss",
+    "vite",
+    "vitest",
+    "cypress"
+  ],
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT"
+}
