@@ -1,7 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
+
+import 'virtual:uno.css'
+import '@unocss/reset/tailwind-compat.css'
+import './assets/fonts/index.css'
 import './index.css'
+
+import App from './App.tsx'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

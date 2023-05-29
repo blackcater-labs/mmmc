@@ -3,7 +3,7 @@
 
 # editor
 .idea/
-.vscode/
+!.vscode/settings.json
 .fleet/
 
 # build
