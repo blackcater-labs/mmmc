@@ -17,4 +17,9 @@ export default defineConfig({
     minify: !IS_DEBUG,
     sourcemap: IS_DEBUG,
   },
+  resolve: {
+    alias: {
+      '@/': '/src/',
+    },
+  },
 })

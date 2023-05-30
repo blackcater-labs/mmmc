@@ -1,3 +1,7 @@
 {
-  "unocss.root": "apps/web"
+  "unocss.root": "apps/web",
+  "vitest.include": [
+    "**/*.{test,spec,e2e-test,e2e-spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"
+  ],
+  "references.preferredLocation": "peek"
 }

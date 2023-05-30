@@ -11,12 +11,17 @@
     "build:web": "pnpm run --filter web build",
     "build:desktop": "pnpm run --filter desktop build",
     "build:backend": "pnpm run --filter node build",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
     "taze": "taze minor -r",
     "taze:major": "taze major -r"
   },
   "devDependencies": {
     "@antfu/eslint-config-react": "^0.39.3",
     "@antfu/eslint-config-ts": "^0.39.3",
+    "@vitest/coverage-c8": "^0.31.1",
     "@vitest/ui": "^0.31.1",
     "eslint": "^8.41.0",
     "esno": "^0.16.3",

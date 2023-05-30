@@ -15,6 +15,9 @@ release/
 # node
 node_modules
 
+# test
+coverage/
+
 # cypress
 **/cypress/screenshots
 **/cypress/videos
