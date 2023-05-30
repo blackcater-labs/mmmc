@@ -7,21 +7,23 @@
   "scripts": {
     "dev:web": "pnpm run --filter web dev",
     "dev:desktop": "pnpm run --filter desktop dev",
-    "dev:backend": "pnpm run --filter backend dev",
+    "dev:backend": "pnpm run --filter node dev",
     "build:web": "pnpm run --filter web build",
     "build:desktop": "pnpm run --filter desktop build",
-    "build:backend": "pnpm run --filter backend build",
+    "build:backend": "pnpm run --filter node build",
     "taze": "taze minor -r",
     "taze:major": "taze major -r"
   },
   "devDependencies": {
     "@antfu/eslint-config-react": "^0.39.3",
     "@antfu/eslint-config-ts": "^0.39.3",
+    "@vitest/ui": "^0.31.1",
     "eslint": "^8.41.0",
     "esno": "^0.16.3",
     "prettier": "^2.8.8",
     "taze": "^0.10.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.1"
   },
   "keywords": [
     "react",

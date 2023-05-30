@@ -6,11 +6,10 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "start:prod": "node dist/main",
+    "dev": "nest start --debug --watch",
     "build": "nest build",
-    "start": "nest start",
-    "start:dev": "nest start --watch",
-    "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "test": "vitest run"
   },
   "dependencies": {
     "@nestjs/common": "^9.4.2",
