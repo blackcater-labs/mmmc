@@ -8,6 +8,7 @@
     "dev:web": "pnpm run --filter web dev",
     "dev:desktop": "pnpm run --filter desktop dev",
     "dev:backend": "pnpm run --filter node dev",
+    "build": "turbo build",
     "build:web": "pnpm run --filter web build",
     "build:desktop": "pnpm run --filter desktop build",
     "build:backend": "pnpm run --filter node build",
@@ -27,6 +28,7 @@
     "esno": "^0.16.3",
     "prettier": "^2.8.8",
     "taze": "^0.10.1",
+    "turbo": "^1.9.9",
     "typescript": "^5.0.4",
     "vitest": "^0.31.1"
   },

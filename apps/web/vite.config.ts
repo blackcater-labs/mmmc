@@ -3,7 +3,7 @@ import ReactSWC from '@vitejs/plugin-react-swc'
 import UnoCSS from 'unocss/vite'
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 5173
-const PLATFORM = process.env.TAURI_PLATFORM
+const PLATFORM = process.env.TAURI_PLATFORM?.toLowerCase()
 const IS_DEBUG = !!process.env.TAURI_DEBUG
 
 // https://vitejs.dev/config/
@@ -21,5 +21,8 @@ export default defineConfig({
     alias: {
       '@/': '/src/',
     },
+  },
+  define: {
+    __PLATFORM__: JSON.stringify(PLATFORM || 'browser'),
   },
 })
