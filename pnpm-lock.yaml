@@ -53,6 +53,9 @@ importers:
       '@nestjs/platform-express':
         specifier: ^9.4.2
         version: registry.npmmirror.com/@nestjs/platform-express@9.4.2(@nestjs/common@9.4.2)(@nestjs/core@9.4.2)
+      '@prisma/client':
+        specifier: ^4.15.0
+        version: registry.npmmirror.com/@prisma/client@4.15.0
       reflect-metadata:
         specifier: ^0.1.13
         version: registry.npmmirror.com/reflect-metadata@0.1.13
@@ -1165,6 +1168,27 @@ packages:
     name: '@polka/url'
     version: 1.0.0-next.21
     dev: true
+
+  registry.npmmirror.com/@prisma/client@4.15.0:
+    resolution: {integrity: sha512-xnROvyABcGiwqRNdrObHVZkD9EjkJYHOmVdlKy1yGgI+XOzvMzJ4tRg3dz1pUlsyhKxXGCnjIQjWW+2ur+YXuw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@prisma/client/-/client-4.15.0.tgz}
+    name: '@prisma/client'
+    version: 4.15.0
+    engines: {node: '>=14.17'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': registry.npmmirror.com/@prisma/engines-version@4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944
+    dev: false
+
+  registry.npmmirror.com/@prisma/engines-version@4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944:
+    resolution: {integrity: sha512-sVOig4tjGxxlYaFcXgE71f/rtFhzyYrfyfNFUsxCIEJyVKU9rdOWIlIwQ2NQ7PntvGnn+x0XuFo4OC1jvPJKzg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@prisma/engines-version/-/engines-version-4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944.tgz}
+    name: '@prisma/engines-version'
+    version: 4.15.0-28.8fbc245156db7124f997f4cecdd8d1219e360944
+    dev: false
 
   registry.npmmirror.com/@rollup/pluginutils@5.0.2:
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@rollup/pluginutils/-/pluginutils-5.0.2.tgz}

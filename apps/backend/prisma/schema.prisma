@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Opus
+model Opus {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title       String
+  cover       String
+  summary     String // HTML
+  authors     Author[]
+  actors      Actor[]
+  tags        Tag[]
+  genres      Genre[]
+  score       Score?    @relation(fields: [scoreId], references: [id])
+  scoreId     Int?
+  viewedTimes Int       @default(0)
+  likedTimes  Int       @default(0)
+  pageCount   Int       @default(0)
+  chapters    Chapter[]
+  releasedAt  DateTime  @default(now()) // First release date
+  modifiedAt  DateTime  @updatedAt // Last modified date
+}
+
+/// Author
+model Author {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus   Opus? @relation(fields: [opusId], references: [id])
+  opusId Int?
+}
+
+/// Actor
+model Actor {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus   Opus? @relation(fields: [opusId], references: [id])
+  opusId Int?
+}
+
+/// Tag
+model Tag {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus   Opus? @relation(fields: [opusId], references: [id])
+  opusId Int?
+}
+
+/// Genre
+model Genre {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus   Opus? @relation(fields: [opusId], references: [id])
+  opusId Int?
+}
+
+/// Chapter
+model Chapter {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus   Opus? @relation(fields: [opusId], references: [id])
+  opusId Int?
+}
+
+/// Score
+model Score {
+  id        Int      @id @default(autoincrement())
+  vd        String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Opus Opus[]
+}
