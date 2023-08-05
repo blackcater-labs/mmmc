@@ -21,3 +21,8 @@ coverage/
 # cypress
 **/cypress/screenshots
 **/cypress/videos
+
+# temp
+**/tmp
+**/temp
+**/cache

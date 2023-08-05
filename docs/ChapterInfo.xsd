@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="MmmcInfo" nillable="true" type="MmmcInfo"/>
+    <xs:element name="ChapterInfo" nillable="true" type="ChapterInfo"/>
 
     <!-- Root -->
-    <xs:complexType name="MmmcInfo">
+    <xs:complexType name="ChapterInfo">
         <xs:sequence>
           <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
           <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
