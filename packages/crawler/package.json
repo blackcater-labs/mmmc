@@ -14,7 +14,7 @@
     }
   },
   "bin": {
-    "mmmcrawler": "./dist/cli.js"
+    "mmmcrawler": "./dist/cli.mjs"
   },
   "scripts": {
     "dev": "esno src/cli.ts",

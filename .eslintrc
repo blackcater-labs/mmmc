@@ -2,11 +2,15 @@
   "extends": ["@antfu/eslint-config-react", "@antfu/eslint-config-ts"],
   "overrides": [
     {
-      "files": [
-        "apps/backend/**/*.{controller,service,module,spec,e2e-spec}.ts"
-      ],
+      "files": ["apps/backend/**/*.*.ts"],
       "rules": {
         "@typescript-eslint/consistent-type-imports": "off"
+      }
+    },
+    {
+      "files": ["apps/backend/**/*.ts"],
+      "rules": {
+        "n/prefer-global/process": "off"
       }
     }
   ]
