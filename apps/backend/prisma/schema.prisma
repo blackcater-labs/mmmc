@@ -53,8 +53,10 @@ model Comic {
   status         String
   releasedAt     DateTime  @default(now()) // First release date
 
-  UltComic   UltComic? @relation(fields: [ultComicId], references: [id])
-  ultComicId Int?
+  UltComic            UltComic?             @relation(fields: [ultComicId], references: [id])
+  ultComicId          Int?
+  UserCollectionComic UserCollectionComic[]
+  UserReadingProcess  UserReadingProcess[]
 }
 
 /// Author
@@ -103,7 +105,10 @@ model Tag {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name String
+  name           String
+  cover          String
+  landscapeCover String
+  i18n           String // JSON
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -117,6 +122,11 @@ model Genre {
   genreId   String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  name           String
+  cover          String
+  landscapeCover String
+  i18n           String // JSON
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -138,8 +148,9 @@ model Chapter {
   path      String
   pages     Page[]
 
-  Comic   Comic? @relation(fields: [comicId], references: [id])
-  comicId Int?
+  Comic              Comic?               @relation(fields: [comicId], references: [id])
+  comicId            Int?
+  UserReadingProcess UserReadingProcess[]
 }
 
 /// Page
@@ -172,25 +183,54 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  username           String           @unique
+  username           String               @unique
   password           String
-  email              String           @unique
+  email              String               @unique
   nickname           String
   avatar             String
   bio                String // HTML
-  role               String           @default("User") // Admin, User
-  readingProcessList ReadingProcess[]
+  role               String               @default("User") // Admin, User
+  readingProcessList UserReadingProcess[]
+  collections        UserCollection[]
 }
 
-model ReadingProcess {
+model UserReadingProcess {
   id        Int      @id @default(autoincrement())
   processId String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  comicId   String
-  chapterId String
+  comicId   Int
+  comic     Comic   @relation(fields: [comicId], references: [id])
+  chapterId Int
+  chapter   Chapter @relation(fields: [chapterId], references: [id])
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
+}
+
+model UserCollection {
+  id           Int      @id @default(autoincrement())
+  collectionId String   @unique @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  name  String
+  comic UserCollectionComic[]
+
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?
+}
+
+model UserCollectionComic {
+  id                    Int      @id @default(autoincrement())
+  userCollectionComicId String   @unique @default(cuid())
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  comicId Int
+  comic   Comic @relation(fields: [comicId], references: [id])
+
+  UserCollection   UserCollection? @relation(fields: [userCollectionId], references: [id])
+  userCollectionId Int?
 }
