@@ -1,8 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="MmmcInfo" nillable="true" type="MmmcInfo"/>
+
+    <!-- Root -->
     <xs:complexType name="MmmcInfo">
         <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Title" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="LandscapeCover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Summary" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="ReleaseDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Authors" type="Authors"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Actors" type="Actors"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Tags" type="Tags"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Genres" type="Genres"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Chapters" type="Chapters"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="Unknown" name="Language" type="Language" />
+            <xs:element minOccurs="0" maxOccurs="1" default="Unknown" name="Quality" type="Quality" />
+            <xs:element minOccurs="0" maxOccurs="1" name="ReadingMode" type="ReadingMode"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="AgeRating" type="AgeRating"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Version" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Status" type="Status"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Rating" type="Rating"/>
         </xs:sequence>
     </xs:complexType>
+
+    <!-- Language -->
+    <xs:simpleType name="Language">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="English"/>
+            <xs:enumeration value="Spanish"/>
+            <xs:enumeration value="French"/>
+            <xs:enumeration value="German"/>
+            <xs:enumeration value="Italian"/>
+            <xs:enumeration value="Portuguese"/>
+            <xs:enumeration value="Russian"/>
+            <xs:enumeration value="Chinese"/>
+            <xs:enumeration value="Japanese"/>
+            <xs:enumeration value="Korean"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Quality -->
+    <xs:simpleType name="Quality">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SD"/>
+            <xs:enumeration value="HD"/>
+            <xs:enumeration value="FHD"/>
+            <xs:enumeration value="4K"/>
+            <xs:enumeration value="8K"/>
+            <xs:enumeration value="Unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ReadingMode -->
+    <xs:simpleType name="ReadingMode">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Single"/>
+            <xs:enumeration value="Double"/>
+            <xs:enumeration value="Double-Right"/>
+            <xs:enumeration value="Vertical"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- AgeRating -->
+    <xs:simpleType name="AgeRating">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Adults"/>
+            <xs:enumeration value="Teenagers"/>
+            <xs:enumeration value="Children"/>
+            <xs:enumeration value="Everyone"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Status -->
+    <xs:simpleType name="Status">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Ongoing"/>
+            <xs:enumeration value="Finished"/>
+            <xs:enumeration value="Suspended"/>
+            <xs:enumeration value="Canceled"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Rating -->
+    <xs:complexType name="Rating">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Score" type="xs:double"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="LikeCount" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ViewCount" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Authors -->
+    <xs:complexType name="Authors">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Author" type="Author"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Author">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Role" type="AuthorRole"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+       </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="AuthorRole">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Writer"/>
+            <xs:enumeration value="Penciller"/>
+            <xs:enumeration value="Inker"/>
+            <xs:enumeration value="Colorist"/>
+            <xs:enumeration value="Letterer"/>
+            <xs:enumeration value="CoverArtist"/>
+            <xs:enumeration value="Editor"/>
+            <xs:enumeration value="Translator"/>
+            <xs:enumeration value="Publisher"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Actors -->
+    <xs:complexType name="Actors">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Actor" type="Actor"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Actor">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Bio" type="xs:string"/>
+       </xs:sequence>
+    </xs:complexType>
+
+    <!-- Tags -->
+    <xs:complexType name="Tags">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Tag" type="Tag"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tag">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="LandscapeCover" type="xs:string"/>
+       </xs:sequence>
+    </xs:complexType>
+
+    <!-- Genres -->
+    <xs:complexType name="Genres">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Genre" type="Genre"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Genre">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="LandscapeCover" type="xs:string"/>
+       </xs:sequence>
+    </xs:complexType>
+
+    <!-- Chapters -->
+    <xs:complexType name="Chapters">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Chapter" type="Chapter"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Chapter">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Name" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Cover" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Path" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Type" type="ChapterType"/>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="ReleaseDate" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Pages" type="Pages"/>
+       </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ChapterType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Preview"/>
+            <xs:enumeration value="Story"/>
+            <xs:enumeration value="SideStory"/>
+            <xs:enumeration value="Advertisement"/>
+            <xs:enumeration value="Announcement"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Pages -->
+    <xs:complexType name="Pages">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Page" type="Page"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Page">
+       <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" default="" name="Path" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Type" type="PageType"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ImageSize" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ImageWidth" type="xs:int"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ImageHeight" type="xs:int"/>
+       </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="PageType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FrontCover"/>
+            <xs:enumeration value="InnerCover"/>
+            <xs:enumeration value="BackCover"/>
+            <xs:enumeration value="Cover"/>
+            <xs:enumeration value="Advertisement"/>
+            <xs:enumeration value="Preview"/>
+            <xs:enumeration value="Roundup"/>
+            <xs:enumeration value="Story"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

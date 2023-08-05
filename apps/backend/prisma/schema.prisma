@@ -56,7 +56,7 @@ model Comic {
   UltComic            UltComic?             @relation(fields: [ultComicId], references: [id])
   ultComicId          Int?
   UserCollectionComic UserCollectionComic[]
-  UserReadingProcess  UserReadingProcess[]
+  UserReadingHistory  UserReadingHistory[]
 }
 
 /// Author
@@ -89,7 +89,6 @@ model Actor {
 
   name  String
   cover String
-  age   Int    @default(-1)
   bio   String // HTML
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
@@ -143,6 +142,8 @@ model Chapter {
 
   title     String
   no        Int
+  // Preview, Story, SideStory, Announcement, Advertisement
+  type      String
   cover     String
   pageCount Int
   path      String
@@ -150,7 +151,7 @@ model Chapter {
 
   Comic              Comic?               @relation(fields: [comicId], references: [id])
   comicId            Int?
-  UserReadingProcess UserReadingProcess[]
+  UserReadingHistory UserReadingHistory[]
 }
 
 /// Page
@@ -164,6 +165,10 @@ model Page {
 
   path        String
   no          Int
+  // Cover, Advertisement, Preview, Roundup, Story
+  type        String
+  // PNG, JPG, JPEG, WEBP, GIF
+  ext         String
   imageSize   Int
   imageWidth  Int
   imageHeight Int
@@ -183,18 +188,18 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  username           String               @unique
-  password           String
-  email              String               @unique
-  nickname           String
-  avatar             String
-  bio                String // HTML
-  role               String               @default("User") // Admin, User
-  readingProcessList UserReadingProcess[]
-  collections        UserCollection[]
+  username         String               @unique
+  password         String
+  email            String               @unique
+  nickname         String
+  avatar           String
+  bio              String // HTML
+  role             String               @default("User") // Admin, User
+  readingHistories UserReadingHistory[]
+  collections      UserCollection[]
 }
 
-model UserReadingProcess {
+model UserReadingHistory {
   id        Int      @id @default(autoincrement())
   processId String   @unique @default(cuid())
   createdAt DateTime @default(now())
