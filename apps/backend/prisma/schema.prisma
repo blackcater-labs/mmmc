@@ -10,91 +10,187 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// Opus
-model Opus {
+/// UltComic
+///
+/// 超集漫画：是同一漫画的多个版本的集合，比如不同语言的版本，不同翻译组的版本，不同画质的版本等等。
+model UltComic {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  ultId     String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  title       String
-  cover       String
-  summary     String // HTML
-  authors     Author[]
-  actors      Actor[]
-  tags        Tag[]
-  genres      Genre[]
-  score       Score?    @relation(fields: [scoreId], references: [id])
-  scoreId     Int?
-  viewedTimes Int       @default(0)
-  likedTimes  Int       @default(0)
-  pageCount   Int       @default(0)
-  chapters    Chapter[]
-  releasedAt  DateTime  @default(now()) // First release date
-  modifiedAt  DateTime  @updatedAt // Last modified date
+  comics Comic[]
+}
+
+/// Comic
+///
+/// 单个漫画作品：由一系列的章节组成
+model Comic {
+  id        Int      @id @default(autoincrement())
+  comicId   String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title          String
+  cover          String
+  landscapeCover String
+  summary        String // HTML
+  authors        Author[]
+  actors         Actor[]
+  tags           Tag[]
+  genres         Genre[]
+  chapters       Chapter[]
+  // zh-CN, en-US, ja-JP, ko-KR
+  langCode       String
+  // HD, SD, LD
+  qualityCode    String
+  versionName    String
+  // Single, Double, Double(Right-Left), LongStrip
+  readingMode    String
+  // Adults, Teenagers, Children, Everyone
+  ageRating      String
+  // Finished, Ongoing, Suspended, Canceled
+  status         String
+  releasedAt     DateTime  @default(now()) // First release date
+
+  UltComic   UltComic? @relation(fields: [ultComicId], references: [id])
+  ultComicId Int?
 }
 
 /// Author
+///
+/// 漫画各种参与方：比如画家、编剧、上色、翻译、出版社等等
 model Author {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  authorId  String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus   Opus? @relation(fields: [opusId], references: [id])
-  opusId Int?
+  // Writer, Penciller, Inker, Colorist, Letterer, CoverArtist, Editor, Translator, Publisher
+  role     String
+  name     String
+  nickname String
+  cover    String
+
+  Comic   Comic? @relation(fields: [comicId], references: [id])
+  comicId Int?
 }
 
 /// Actor
+///
+/// 漫画角色：主要角色信息
 model Actor {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  actorId   String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus   Opus? @relation(fields: [opusId], references: [id])
-  opusId Int?
+  name  String
+  cover String
+  age   Int    @default(-1)
+  bio   String // HTML
+
+  Comic   Comic? @relation(fields: [comicId], references: [id])
+  comicId Int?
 }
 
 /// Tag
+///
+/// 漫画标签：比如 NTR、GL、BL、全彩、黑白、完结、连载等等
 model Tag {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  tagId     String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus   Opus? @relation(fields: [opusId], references: [id])
-  opusId Int?
+  name String
+
+  Comic   Comic? @relation(fields: [comicId], references: [id])
+  comicId Int?
 }
 
 /// Genre
+///
+/// 漫画分类：比如恋爱、恐怖、科幻、搞笑、日常等等
 model Genre {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  genreId   String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus   Opus? @relation(fields: [opusId], references: [id])
-  opusId Int?
+  Comic   Comic? @relation(fields: [comicId], references: [id])
+  comicId Int?
 }
 
 /// Chapter
+///
+/// 漫画章节：由一系列的图片组成
 model Chapter {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  chapterId String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus   Opus? @relation(fields: [opusId], references: [id])
-  opusId Int?
+  title     String
+  no        Int
+  cover     String
+  pageCount Int
+  path      String
+  pages     Page[]
+
+  Comic   Comic? @relation(fields: [comicId], references: [id])
+  comicId Int?
 }
 
-/// Score
-model Score {
+/// Page
+///
+/// 漫画图片：一张图片
+model Page {
   id        Int      @id @default(autoincrement())
-  vd        String   @unique @default(cuid())
+  pageId    String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Opus Opus[]
+  path        String
+  no          Int
+  imageSize   Int
+  imageWidth  Int
+  imageHeight Int
+
+  Chapter   Chapter? @relation(fields: [chapterId], references: [id])
+  chapterId Int?
+}
+
+// --------------------------------------------------------------------------
+
+/// User
+///
+/// 用户：注册用户
+model User {
+  id        Int      @id @default(autoincrement())
+  userId    String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  username           String           @unique
+  password           String
+  email              String           @unique
+  nickname           String
+  avatar             String
+  bio                String // HTML
+  role               String           @default("User") // Admin, User
+  readingProcessList ReadingProcess[]
+}
+
+model ReadingProcess {
+  id        Int      @id @default(autoincrement())
+  processId String   @unique @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  comicId   String
+  chapterId String
+
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?
 }

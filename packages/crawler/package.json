@@ -22,9 +22,14 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "hookable": "5.5.3"
+    "adm-zip": "^0.5.10",
+    "commander": "^11.0.0",
+    "hookable": "5.5.3",
+    "node-unrar-js": "^2.0.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
+    "@types/adm-zip": "^0.5.0",
     "@types/node": "^18.17.2",
     "esno": "^0.17.0",
     "rimraf": "^5.0.1",
