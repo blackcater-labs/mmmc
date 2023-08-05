@@ -20,6 +20,8 @@ model UltComic {
   updatedAt DateTime @updatedAt
 
   comics Comic[]
+
+  @@map("ult_comic")
 }
 
 /// Comic
@@ -57,6 +59,8 @@ model Comic {
   ultComicId          Int?
   UserCollectionComic UserCollectionComic[]
   UserReadingHistory  UserReadingHistory[]
+
+  @@map("comic")
 }
 
 /// Author
@@ -76,6 +80,8 @@ model Author {
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
+
+  @@map("author")
 }
 
 /// Actor
@@ -93,6 +99,8 @@ model Actor {
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
+
+  @@map("actor")
 }
 
 /// Tag
@@ -111,6 +119,8 @@ model Tag {
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
+
+  @@map("tag")
 }
 
 /// Genre
@@ -129,6 +139,8 @@ model Genre {
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
+
+  @@map("genre")
 }
 
 /// Chapter
@@ -152,6 +164,8 @@ model Chapter {
   Comic              Comic?               @relation(fields: [comicId], references: [id])
   comicId            Int?
   UserReadingHistory UserReadingHistory[]
+
+  @@map("chapter")
 }
 
 /// Page
@@ -175,6 +189,8 @@ model Page {
 
   Chapter   Chapter? @relation(fields: [chapterId], references: [id])
   chapterId Int?
+
+  @@map("page")
 }
 
 // --------------------------------------------------------------------------
@@ -197,11 +213,13 @@ model User {
   role             String               @default("User") // Admin, User
   readingHistories UserReadingHistory[]
   collections      UserCollection[]
+
+  @@map("user")
 }
 
 model UserReadingHistory {
   id        Int      @id @default(autoincrement())
-  processId String   @unique @default(cuid())
+  historyId String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -212,6 +230,8 @@ model UserReadingHistory {
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
+
+  @@map("user_reading_history")
 }
 
 model UserCollection {
@@ -225,6 +245,8 @@ model UserCollection {
 
   User   User? @relation(fields: [userId], references: [id])
   userId Int?
+
+  @@map("user_collection")
 }
 
 model UserCollectionComic {
@@ -238,4 +260,6 @@ model UserCollectionComic {
 
   UserCollection   UserCollection? @relation(fields: [userCollectionId], references: [id])
   userCollectionId Int?
+
+  @@map("user_collection_comic")
 }
