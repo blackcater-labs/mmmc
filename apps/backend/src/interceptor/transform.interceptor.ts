@@ -1,13 +1,8 @@
-import {
-  Injectable,
-} from '@nestjs/common'
-import type {
-  CallHandler,
-  ExecutionContext,
-  NestInterceptor,
-} from '@nestjs/common'
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
 import { map } from 'rxjs/operators'
 import type { Observable } from 'rxjs'
+import { RespResult } from '@/utils/error'
+import { logger } from '@/utils/logger'
 
 interface Response<T> {
   data: T
@@ -23,15 +18,19 @@ implements NestInterceptor<T, Response<T>> {
     return next.handle().pipe(
       map((data) => {
         const ctx = context.switchToHttp()
-        const response = ctx.getResponse()
+        const resp = ctx.getResponse()
+        const req = ctx.getRequest()
 
-        const statusCode = response.statusCode
-        const res = {
+        const url = req.originalUrl
+        const statusCode = resp.statusCode
+        const res: RespResult = {
           statusCode,
           message: null,
           success: true,
           data,
         }
+
+        logger.log(`${url}: ${JSON.stringify(res)}`, 'Response', 'stack')
 
         return res
       }),

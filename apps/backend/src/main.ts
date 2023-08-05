@@ -2,27 +2,14 @@ import { NestFactory } from '@nestjs/core'
 import { rateLimit } from 'express-rate-limit'
 import * as compression from 'compression'
 import helmet from 'helmet'
-import { WinstonModule, utilities as winstonUtils } from 'nest-winston'
-import * as winston from 'winston'
 import { ConfigService } from '@nestjs/config'
-import { AppModule } from './app.module'
-import { HttpExceptionFilter } from './filter/http-exception.filter'
-import { TransformInterceptor } from './interceptor/transform.interceptor'
+import { AppModule } from '@/app.module'
+import { HttpExceptionFilter } from '@/filter/http-exception.filter'
+import { TransformInterceptor } from '@/interceptor/transform.interceptor'
+import { logger } from '@/utils/logger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger({
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.timestamp(),
-            winston.format.ms(),
-            winstonUtils.format.nestLike('Mmmc', { colors: true, prettyPrint: true }),
-          ),
-        }),
-      ],
-    }),
-  })
+  const app = await NestFactory.create(AppModule, { logger })
   const config = app.get(ConfigService)
 
   app.setGlobalPrefix(config.get<string>('app.apiPrefix'))

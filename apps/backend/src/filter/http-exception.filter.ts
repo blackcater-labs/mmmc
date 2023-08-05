@@ -1,6 +1,8 @@
 import { Catch, HttpException, HttpStatus } from '@nestjs/common'
-import type { Request, Response } from 'express'
 import type { ArgumentsHost, ExceptionFilter } from '@nestjs/common'
+import type { Request, Response } from 'express'
+import { logger } from '@/utils/logger'
+import { BizException, RespResult } from '@/utils/error'
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -12,15 +14,20 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const url = req.originalUrl
     const statusCode = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR
     const message = exception.message
-    const errorResponse = {
+    const errResp: RespResult = {
       statusCode,
       message,
       success: false,
       data: null,
     }
 
+    if (exception instanceof BizException)
+      errResp.bizCode = (exception as BizException).getBizCode()
+
     resp.status(statusCode)
     resp.header('Content-Type', 'application/json; charset=utf-8')
-    resp.send(errorResponse)
+    resp.send(errResp)
+
+    logger.error(`${url}: ${JSON.stringify(errResp)}`)
   }
 }
