@@ -1,5 +1,20 @@
 import { IsEmail, IsNotEmpty, IsOptional, IsString, IsUrl, Length } from 'class-validator'
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { Type } from 'class-transformer'
+import { UserDto } from '../user/user.dto'
+
+export class AuthDto {
+  constructor(partial: Partial<AuthDto>) {
+    Object.assign(this, partial)
+  }
+
+  @ApiProperty({ type: UserDto })
+  @Type(() => UserDto)
+  currentUser: UserDto
+
+  @ApiProperty()
+  accessToken: string
+}
 
 export class LoginDto {
   @ApiProperty()

@@ -3,8 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { UserService } from '../user/user.service'
-import { RegisterDto } from './auth.dto'
-import { PrismaService } from '@/service/prisma.service'
+import { AuthDto, RegisterDto } from './auth.dto'
 import { BizBadRequestException, BizUnauthorizedException } from '@/util/error'
 
 @Injectable()
@@ -13,7 +12,6 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
-    private readonly prisma: PrismaService,
   ) {}
 
   // Register a new user
@@ -57,11 +55,9 @@ export class AuthService {
 
     const payload = { userId: user.userId }
 
-    return {
+    return new AuthDto({
       currentUser: user,
       accessToken: await this.jwtService.signAsync(payload),
-    }
+    })
   }
-
-  async logout() {}
 }

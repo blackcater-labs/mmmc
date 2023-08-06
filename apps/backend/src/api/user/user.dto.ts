@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
 import { Exclude } from 'class-transformer'
 
@@ -28,13 +28,13 @@ export class UserDto {
   @ApiProperty()
   email: string
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   nickname: string
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   avatar: string
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   bio: string
 
   @ApiProperty({ enum: ['Admin', 'User'] })

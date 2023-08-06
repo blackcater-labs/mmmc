@@ -11,6 +11,7 @@ import { HttpExceptionFilter } from './filter/http-exception.filter'
 import { TransformInterceptor } from './interceptor/transform.interceptor'
 import { logger } from './util/logger'
 import { UserDto } from './api/user/user.dto'
+import { AuthDto } from './api/auth/auth.dto'
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -20,7 +21,7 @@ function setupSwagger(app: INestApplication) {
     .addBearerAuth()
     .build()
   const document = SwaggerModule.createDocument(app, config, {
-    extraModels: [UserDto],
+    extraModels: [AuthDto, UserDto],
   })
 
   SwaggerModule.setup('api', app, document)
