@@ -1,6 +1,6 @@
 export default {
   // Auth
-  1000001: 'Testing only',
+  1000001: 'Password is incorrect',
 
   // User
   2000001: '',

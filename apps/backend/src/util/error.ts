@@ -39,3 +39,36 @@ export class BizNormalException extends BizException {
     super(bizCode, response, HttpStatus.OK, options)
   }
 }
+
+export class BizBadRequestException extends BizException {
+  constructor(bizCode: number, options?: HttpExceptionOptions)
+  constructor(bizCode: number, response: any, options?: HttpExceptionOptions) {
+    if (typeof response === 'object') {
+      options = response
+      response = ''
+    }
+    super(bizCode, response, HttpStatus.BAD_REQUEST, options)
+  }
+}
+
+export class BizUnauthorizedException extends BizException {
+  constructor(bizCode: number, options?: HttpExceptionOptions)
+  constructor(bizCode: number, response: any, options?: HttpExceptionOptions) {
+    if (typeof response === 'object') {
+      options = response
+      response = ''
+    }
+    super(bizCode, response, HttpStatus.UNAUTHORIZED, options)
+  }
+}
+
+export class BizForbiddenException extends BizException {
+  constructor(bizCode: number, options?: HttpExceptionOptions)
+  constructor(bizCode: number, response: any, options?: HttpExceptionOptions) {
+    if (typeof response === 'object') {
+      options = response
+      response = ''
+    }
+    super(bizCode, response, HttpStatus.FORBIDDEN, options)
+  }
+}

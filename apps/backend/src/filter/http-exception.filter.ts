@@ -22,8 +22,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
       data: null,
     }
 
-    if (excepResp instanceof Object)
-      errResp.message = excepResp.message?.[0] || excepResp.message || errResp.message || ''
+    if (excepResp instanceof Object) {
+      if (Array.isArray(excepResp.message))
+        errResp.message = excepResp.message[0]
+      errResp.message = excepResp.message || errResp.message || ''
+    }
 
     if (exception instanceof BizException)
       errResp.bizCode = (exception as BizException).getBizCode()

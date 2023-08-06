@@ -1,18 +1,33 @@
 import { NestFactory } from '@nestjs/core'
+import type { INestApplication } from '@nestjs/common'
 import { ValidationPipe } from '@nestjs/common'
 import { rateLimit } from 'express-rate-limit'
 import * as compression from 'compression'
 import helmet from 'helmet'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { ConfigService } from '@nestjs/config'
 import { AppModule } from './app.module'
 import { HttpExceptionFilter } from './filter/http-exception.filter'
 import { TransformInterceptor } from './interceptor/transform.interceptor'
 import { logger } from './util/logger'
-import { config as appConfig } from './config/app.config'
+
+function setupSwagger(app: INestApplication) {
+  const config = new DocumentBuilder()
+    .setTitle('Mmmc OpenAPI')
+    .setDescription('Mmmc OpenAPI Document')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build()
+  const document = SwaggerModule.createDocument(app, config)
+
+  SwaggerModule.setup('api', app, document)
+}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger })
+  const configService = app.get(ConfigService)
 
-  app.setGlobalPrefix(appConfig.apiPrefix)
+  app.setGlobalPrefix(configService.get('app.apiPrefix'))
 
   app.enableCors()
   app.use(rateLimit({ windowMs: 60 * 1000, max: 1000 }))
@@ -25,7 +40,9 @@ async function bootstrap() {
 
   app.enableShutdownHooks()
 
-  await app.listen(appConfig.port)
+  setupSwagger(app)
+
+  await app.listen(configService.get('app.port'))
 }
 
 bootstrap()
