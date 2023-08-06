@@ -1,7 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { ApiResponse, ApiTags } from '@nestjs/swagger'
+import { ApiBadRequestResponse, ApiOkResponse, ApiTags, ApiUnauthorizedResponse, getSchemaPath } from '@nestjs/swagger'
 import { AuthService } from './auth.service'
 import { LoginDto, RegisterDto } from './auth.dto'
+import { respSchema } from '@/util/schema'
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -10,13 +11,21 @@ export class AuthController {
     private readonly authService: AuthService,
   ) {}
 
-  @ApiResponse({ status: 201, description: 'Success' })
-  @ApiResponse({ status: 400, description: 'Bad Request' })
+  @ApiOkResponse({
+    schema: respSchema({
+      $ref: getSchemaPath(RegisterDto),
+    }),
+  })
+  @ApiBadRequestResponse()
   @Post('register')
   async register(@Body() registerDto: RegisterDto) {
+    // TODO: Better structure of the response data
     return this.authService.register(registerDto)
   }
 
+  @ApiOkResponse()
+  @ApiBadRequestResponse()
+  @ApiUnauthorizedResponse()
   @Post('login')
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto.username, loginDto.password)

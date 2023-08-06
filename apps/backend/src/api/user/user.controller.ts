@@ -1,7 +1,8 @@
-import { Controller, Get, Request, UseGuards } from '@nestjs/common'
+import { Controller, Get, UseGuards } from '@nestjs/common'
 import { Logger } from 'winston'
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
+import { UserService } from './user.service'
 import { createContextLogger } from '@/util/logger'
 
 @ApiBearerAuth()
@@ -10,7 +11,7 @@ import { createContextLogger } from '@/util/logger'
 export class UserController {
   private readonly logger: Logger
 
-  constructor() {
+  constructor(private readonly userService: UserService) {
     this.logger = createContextLogger(UserController.name)
   }
 
@@ -21,7 +22,6 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async profile(@Request() req) {
-    return req.user
+  async profile() {
   }
 }

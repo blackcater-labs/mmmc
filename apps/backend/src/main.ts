@@ -10,6 +10,7 @@ import { AppModule } from './app.module'
 import { HttpExceptionFilter } from './filter/http-exception.filter'
 import { TransformInterceptor } from './interceptor/transform.interceptor'
 import { logger } from './util/logger'
+import { UserDto } from './api/user/user.dto'
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
@@ -18,7 +19,9 @@ function setupSwagger(app: INestApplication) {
     .setVersion('1.0')
     .addBearerAuth()
     .build()
-  const document = SwaggerModule.createDocument(app, config)
+  const document = SwaggerModule.createDocument(app, config, {
+    extraModels: [UserDto],
+  })
 
   SwaggerModule.setup('api', app, document)
 }
