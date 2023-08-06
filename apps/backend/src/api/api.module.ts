@@ -1,11 +1,11 @@
-import { Module, forwardRef } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { AuthModule } from './auth/auth.module'
 import { UserModule } from './user/user.module'
 
 @Module({
   imports: [
-    forwardRef(() => AuthModule),
-    forwardRef(() => UserModule),
+    AuthModule,
+    UserModule,
   ],
 })
 export class ApiModule {}

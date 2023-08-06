@@ -7,8 +7,8 @@ import { PrismaService } from '@/service/prisma.service'
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
+    private readonly prisma: PrismaService,
   ) {}
 
   async validateUser(username: string, password: string) {}

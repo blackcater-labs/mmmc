@@ -3,7 +3,7 @@ import * as winston from 'winston'
 import * as DailyRotateFile from 'winston-daily-rotate-file'
 import { config as appConfig } from '@/config/app.config'
 
-export const logger = WinstonModule.createLogger({
+const winstonLogger = winston.createLogger({
   transports: [
     new winston.transports.Console({
       format: winston.format.combine(
@@ -26,3 +26,9 @@ export const logger = WinstonModule.createLogger({
     }),
   ],
 })
+
+export function createContextLogger(context: string) {
+  return winstonLogger.child({ context })
+}
+
+export const logger = WinstonModule.createLogger({ instance: winstonLogger })

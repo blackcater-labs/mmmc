@@ -1,4 +1,4 @@
-import { Module, forwardRef } from '@nestjs/common'
+import { Module } from '@nestjs/common'
 import { PassportModule } from '@nestjs/passport'
 import { JwtModule } from '@nestjs/jwt'
 import { UserModule } from '../user/user.module'
@@ -9,7 +9,7 @@ import { config as jwtConfig } from '@/config/jwt.config'
 
 @Module({
   imports: [
-    forwardRef(() => UserModule),
+    UserModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConfig.secret,
