@@ -1,9 +1,12 @@
-import { Controller, Get, UseGuards } from '@nestjs/common'
+import { ClassSerializerInterceptor, Controller, Get, UseGuards, UseInterceptors } from '@nestjs/common'
 import { Logger } from 'winston'
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags, ApiUnauthorizedResponse, getSchemaPath } from '@nestjs/swagger'
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
+import { User } from '../auth/auth.decorator'
 import { UserService } from './user.service'
+import { UserDto } from './user.dto'
 import { createContextLogger } from '@/util/logger'
+import { respSchema } from '@/util/schema'
 
 @ApiBearerAuth()
 @ApiTags('User')
@@ -15,13 +18,13 @@ export class UserController {
     this.logger = createContextLogger(UserController.name)
   }
 
-  @Get()
-  async findAll(): Promise<[]> {
-    return []
-  }
-
+  @ApiOperation({ summary: 'Get current user profile' })
+  @ApiOkResponse({ schema: respSchema({ $ref: getSchemaPath(UserDto) }) })
+  @ApiUnauthorizedResponse()
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async profile() {
+  async profile(@User() user: UserDto) {
+    return user
   }
 }

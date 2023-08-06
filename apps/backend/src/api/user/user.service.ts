@@ -18,6 +18,13 @@ export class UserService {
     }))
   }
 
+  // Find user by userId
+  async findOneByUserId(userId: string) {
+    return new UserDto(await this.prisma.user.findUnique({
+      where: { userId },
+    }))
+  }
+
   // Add user
   async create(data: CreateUserDto) {
     return new UserDto(await this.prisma.user.create({ data }))
