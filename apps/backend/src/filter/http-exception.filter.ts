@@ -1,8 +1,8 @@
 import { Catch, HttpException, HttpStatus } from '@nestjs/common'
 import type { ArgumentsHost, ExceptionFilter } from '@nestjs/common'
 import type { Request, Response } from 'express'
-import { logger } from '@/utils/logger'
-import { BizException, RespResult } from '@/utils/error'
+import { logger } from '@/util/logger'
+import { BizException, RespResult } from '@/util/error'
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -23,10 +23,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     if (excepResp instanceof Object)
-      errResp.message = excepResp.message?.[0] || excepResp.message || errResp.message
+      errResp.message = excepResp.message?.[0] || excepResp.message || errResp.message || ''
 
     if (exception instanceof BizException)
       errResp.bizCode = (exception as BizException).getBizCode()
+      // errResp.message = errResp.message || BizCodeConstants[errResp.bizCode] || ''
 
     resp.status(statusCode)
     resp.header('Content-Type', 'application/json; charset=utf-8')

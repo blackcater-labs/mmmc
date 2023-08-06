@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common'
 import { Logger } from 'winston'
-import { createContextLogger } from '@/utils/logger'
+import { createContextLogger } from '@/util/logger'
 
 @Controller('user')
 export class UserController {
@@ -12,8 +12,6 @@ export class UserController {
 
   @Get()
   async findAll(): Promise<[]> {
-    this.logger.info('findAll()', { a: 1, b: 2 })
-
     return []
   }
 }

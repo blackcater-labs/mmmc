@@ -1,8 +1,8 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common'
 import { map } from 'rxjs/operators'
 import type { Observable } from 'rxjs'
-import { RespResult } from '@/utils/error'
-import { logger } from '@/utils/logger'
+import { RespResult } from '@/util/error'
+import { logger } from '@/util/logger'
 
 interface Response<T> {
   data: T

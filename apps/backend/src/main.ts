@@ -6,7 +6,7 @@ import helmet from 'helmet'
 import { AppModule } from './app.module'
 import { HttpExceptionFilter } from './filter/http-exception.filter'
 import { TransformInterceptor } from './interceptor/transform.interceptor'
-import { logger } from './utils/logger'
+import { logger } from './util/logger'
 import { config as appConfig } from './config/app.config'
 
 async function bootstrap() {

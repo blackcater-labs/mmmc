@@ -13,7 +13,13 @@ export class AuthService {
 
   async validateUser(username: string, password: string) {}
 
-  async login(username: string, password: string) {}
+  async login(username: string, password: string) {
+    const user = await this.userService.findOneByUsername(username)
+
+    if (user?.password !== password) {
+
+    }
+  }
 
   async logout() {}
 }
