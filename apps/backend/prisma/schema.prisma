@@ -34,26 +34,26 @@ model Comic {
   updatedAt DateTime @updatedAt
 
   title          String
-  cover          String
-  landscapeCover String
-  summary        String // HTML
+  cover          String?
+  landscapeCover String?
+  summary        String? // HTML
   authors        Author[]
   actors         Actor[]
   tags           Tag[]
   genres         Genre[]
   chapters       Chapter[]
   // zh-CN, en-US, ja-JP, ko-KR
-  langCode       String
+  langCode       String?
   // HD, SD, LD
-  qualityCode    String
-  versionName    String
+  qualityCode    String?
+  versionName    String?
   // Single, Double, Double(Right-Left), LongStrip
-  readingMode    String
+  readingMode    String?
   // Adults, Teenagers, Children, Everyone
-  ageRating      String
+  ageRating      String?
   // Finished, Ongoing, Suspended, Canceled
-  status         String
-  releasedAt     DateTime  @default(now()) // First release date
+  status         String?
+  releasedAt     DateTime? @default(now()) // First release date
 
   UltComic            UltComic?             @relation(fields: [ultComicId], references: [id])
   ultComicId          Int?
@@ -72,11 +72,11 @@ model Author {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Writer, Penciller, Inker, Colorist, Letterer, CoverArtist, Editor, Translator, Publisher
-  role     String
   name     String
-  nickname String
-  cover    String
+  realName String?
+  cover    String?
+  // Writer, Penciller, Inker, Colorist, Letterer, CoverArtist, Editor, Translator, Publisher
+  role     String?
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -94,8 +94,8 @@ model Actor {
   updatedAt DateTime @updatedAt
 
   name  String
-  cover String
-  bio   String // HTML
+  cover String?
+  bio   String? // HTML
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -113,9 +113,9 @@ model Tag {
   updatedAt DateTime @updatedAt
 
   name           String
-  cover          String
-  landscapeCover String
-  i18n           String // JSON
+  cover          String?
+  landscapeCover String?
+  i18n           String? @default("{}") // JSON
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -133,9 +133,9 @@ model Genre {
   updatedAt DateTime @updatedAt
 
   name           String
-  cover          String
-  landscapeCover String
-  i18n           String // JSON
+  cover          String?
+  landscapeCover String?
+  i18n           String? @default("{}") // JSON
 
   Comic   Comic? @relation(fields: [comicId], references: [id])
   comicId Int?
@@ -152,13 +152,13 @@ model Chapter {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  title     String
-  no        Int
+  title     String?
+  no        Int?
   // Preview, Story, SideStory, Announcement, Advertisement
-  type      String
-  cover     String
-  pageCount Int
-  path      String
+  type      String?
+  cover     String?
+  pageCount Int?
+  path      String?
   pages     Page[]
 
   Comic              Comic?               @relation(fields: [comicId], references: [id])
@@ -178,14 +178,14 @@ model Page {
   updatedAt DateTime @updatedAt
 
   path        String
-  no          Int
+  no          Int?
   // Cover, Advertisement, Preview, Roundup, Story
-  type        String
+  type        String?
   // PNG, JPG, JPEG, WEBP, GIF
-  ext         String
-  imageSize   Int
-  imageWidth  Int
-  imageHeight Int
+  ext         String?
+  imageSize   Int?
+  imageWidth  Int?
+  imageHeight Int?
 
   Chapter   Chapter? @relation(fields: [chapterId], references: [id])
   chapterId Int?
@@ -207,10 +207,10 @@ model User {
   username         String               @unique
   password         String
   email            String               @unique
-  nickname         String
-  avatar           String
-  bio              String // HTML
-  role             String               @default("User") // Admin, User
+  nickname         String?
+  avatar           String?
+  bio              String? // HTML
+  role             String?              @default("User") // Admin, User
   readingHistories UserReadingHistory[]
   collections      UserCollection[]
 

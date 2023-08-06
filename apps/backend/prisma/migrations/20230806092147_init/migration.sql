@@ -13,16 +13,16 @@ CREATE TABLE "comic" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "title" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
-    "landscapeCover" TEXT NOT NULL,
-    "summary" TEXT NOT NULL,
-    "langCode" TEXT NOT NULL,
-    "qualityCode" TEXT NOT NULL,
-    "versionName" TEXT NOT NULL,
-    "readingMode" TEXT NOT NULL,
-    "ageRating" TEXT NOT NULL,
-    "status" TEXT NOT NULL,
-    "releasedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "cover" TEXT,
+    "landscapeCover" TEXT,
+    "summary" TEXT,
+    "langCode" TEXT,
+    "qualityCode" TEXT,
+    "versionName" TEXT,
+    "readingMode" TEXT,
+    "ageRating" TEXT,
+    "status" TEXT,
+    "releasedAt" DATETIME DEFAULT CURRENT_TIMESTAMP,
     "ultComicId" INTEGER,
     CONSTRAINT "comic_ultComicId_fkey" FOREIGN KEY ("ultComicId") REFERENCES "ult_comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -33,10 +33,10 @@ CREATE TABLE "author" (
     "authorId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    "role" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "nickname" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
+    "realName" TEXT,
+    "cover" TEXT,
+    "role" TEXT,
     "comicId" INTEGER,
     CONSTRAINT "author_comicId_fkey" FOREIGN KEY ("comicId") REFERENCES "comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -48,8 +48,8 @@ CREATE TABLE "actor" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "name" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
-    "bio" TEXT NOT NULL,
+    "cover" TEXT,
+    "bio" TEXT,
     "comicId" INTEGER,
     CONSTRAINT "actor_comicId_fkey" FOREIGN KEY ("comicId") REFERENCES "comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -61,9 +61,9 @@ CREATE TABLE "tag" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "name" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
-    "landscapeCover" TEXT NOT NULL,
-    "i18n" TEXT NOT NULL,
+    "cover" TEXT,
+    "landscapeCover" TEXT,
+    "i18n" TEXT DEFAULT '{}',
     "comicId" INTEGER,
     CONSTRAINT "tag_comicId_fkey" FOREIGN KEY ("comicId") REFERENCES "comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -75,9 +75,9 @@ CREATE TABLE "genre" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "name" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
-    "landscapeCover" TEXT NOT NULL,
-    "i18n" TEXT NOT NULL,
+    "cover" TEXT,
+    "landscapeCover" TEXT,
+    "i18n" TEXT DEFAULT '{}',
     "comicId" INTEGER,
     CONSTRAINT "genre_comicId_fkey" FOREIGN KEY ("comicId") REFERENCES "comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -88,12 +88,12 @@ CREATE TABLE "chapter" (
     "chapterId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    "title" TEXT NOT NULL,
-    "no" INTEGER NOT NULL,
-    "type" TEXT NOT NULL,
-    "cover" TEXT NOT NULL,
-    "pageCount" INTEGER NOT NULL,
-    "path" TEXT NOT NULL,
+    "title" TEXT,
+    "no" INTEGER,
+    "type" TEXT,
+    "cover" TEXT,
+    "pageCount" INTEGER,
+    "path" TEXT,
     "comicId" INTEGER,
     CONSTRAINT "chapter_comicId_fkey" FOREIGN KEY ("comicId") REFERENCES "comic" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -105,12 +105,12 @@ CREATE TABLE "page" (
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
     "path" TEXT NOT NULL,
-    "no" INTEGER NOT NULL,
-    "type" TEXT NOT NULL,
-    "ext" TEXT NOT NULL,
-    "imageSize" INTEGER NOT NULL,
-    "imageWidth" INTEGER NOT NULL,
-    "imageHeight" INTEGER NOT NULL,
+    "no" INTEGER,
+    "type" TEXT,
+    "ext" TEXT,
+    "imageSize" INTEGER,
+    "imageWidth" INTEGER,
+    "imageHeight" INTEGER,
     "chapterId" INTEGER,
     CONSTRAINT "page_chapterId_fkey" FOREIGN KEY ("chapterId") REFERENCES "chapter" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -124,10 +124,10 @@ CREATE TABLE "user" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "nickname" TEXT NOT NULL,
-    "avatar" TEXT NOT NULL,
-    "bio" TEXT NOT NULL,
-    "role" TEXT NOT NULL DEFAULT 'User'
+    "nickname" TEXT,
+    "avatar" TEXT,
+    "bio" TEXT,
+    "role" TEXT DEFAULT 'User'
 );
 
 -- CreateTable
