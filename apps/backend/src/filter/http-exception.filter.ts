@@ -14,12 +14,16 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const url = req.originalUrl
     const statusCode = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR
     const message = exception.message
+    const excepResp: any = exception.getResponse()
     const errResp: RespResult = {
       statusCode,
       message,
       success: false,
       data: null,
     }
+
+    if (excepResp instanceof Object)
+      errResp.message = excepResp.message?.[0] || excepResp.message || errResp.message
 
     if (exception instanceof BizException)
       errResp.bizCode = (exception as BizException).getBizCode()
