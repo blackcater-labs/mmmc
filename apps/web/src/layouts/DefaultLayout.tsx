@@ -6,9 +6,11 @@ export function Component() {
   return (
     <>
       <NavBar />
-      <main className="w-full h-full pl-20">
+      <main className="relative flow-root h-full ml-20">
         <Header />
-        <Outlet />
+        <section className="mt-20 h[calc(100%-5rem)] overflow-auto">
+          <Outlet />
+        </section>
       </main>
     </>
   )

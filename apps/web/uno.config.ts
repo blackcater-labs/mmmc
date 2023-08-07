@@ -39,6 +39,6 @@ export default defineConfig({
   },
   rules: [
     ['font-sans', { 'font-family': '"HarmonyOS Sans SC", -apple-system, system-ui, ui-sans-serif' }],
-    ['font-serif', { 'font-family': '"Noto Serif", "HarmonyOS Sans SC" serif' }],
+    ['font-serif', { 'font-family': '"Noto Serif", "HarmonyOS Sans SC", serif' }],
   ],
 })
