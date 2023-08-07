@@ -10,7 +10,30 @@ html {
   --uno: font-sans font-400;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+html:not(.dark) {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
 body {
-  --uno: text-black bg-gray-100;
-  --uno: "dark:text-white dark:bg-gray-900";
+  --uno: text-black bg-truegray-100;
+  --uno: 'dark:text-white dark:bg-black';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  --uno: font-serif;
 }

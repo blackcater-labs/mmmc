@@ -1,5 +1,5 @@
 {
-  "extends": ["@antfu/eslint-config-react", "@antfu/eslint-config-ts"],
+  "extends": ["@antfu/eslint-config-react"],
   "overrides": [
     {
       "files": ["apps/backend/**/*.*.ts"],
@@ -8,7 +8,7 @@
       }
     },
     {
-      "files": ["apps/backend/**/*.ts"],
+      "files": ["apps/backend/**/*.ts", "**/vite.config.ts"],
       "rules": {
         "n/prefer-global/process": "off"
       }
