@@ -22,16 +22,16 @@
     "taze:major": "taze major -r"
   },
   "devDependencies": {
-    "@antfu/eslint-config-react": "^0.40.0",
+    "@antfu/eslint-config-react": "^0.40.2",
     "@vitest/coverage-c8": "^0.33.0",
-    "@vitest/ui": "^0.34.1",
-    "eslint": "^8.46.0",
+    "@vitest/ui": "^0.34.2",
+    "eslint": "^8.47.0",
     "esno": "^0.17.0",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.2",
     "taze": "^0.11.2",
     "turbo": "^1.10.12",
     "typescript": "^5.1.6",
-    "vitest": "^0.34.1"
+    "vitest": "^0.34.2"
   },
   "keywords": [
     "react",

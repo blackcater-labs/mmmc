@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.0",
-    "@types/node": "^18.17.3",
+    "@types/node": "^20.5.1",
     "esno": "^0.17.0",
     "rimraf": "^5.0.1",
     "unbuild": "^1.2.1"
