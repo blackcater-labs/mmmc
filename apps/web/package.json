@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.3",
-    "@tanstack/react-query": "^4.33.0",
+    "@tanstack/react-query": "^4.35.0",
     "clsx": "^2.0.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
@@ -26,14 +26,14 @@
   "devDependencies": {
     "@iconify-json/uil": "^1.1.5",
     "@iconify/utils": "^2.1.9",
-    "@types/node": "^20.5.1",
-    "@types/react": "^18.2.20",
+    "@types/node": "^20.6.0",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "@unocss/reset": "^0.55.2",
+    "@unocss/reset": "^0.55.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
-    "cypress": "^12.17.4",
-    "typescript": "^5.1.6",
-    "unocss": "^0.55.2",
+    "cypress": "^13.1.0",
+    "typescript": "^5.2.2",
+    "unocss": "^0.55.7",
     "vite": "^4.4.9",
     "vite-plugin-inspect": "^0.7.38"
   }
