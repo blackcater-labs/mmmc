@@ -1,6 +1,6 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.png">
-  <img alt="mdx-rs Banner" src="./assets/banner-light.png">
+  <img alt="Mmmc Banner" src="./assets/banner-light.png">
 </picture>
 
 <h2 align="center">Manhua + Manga + Manhwa + Comic = Mmmc</h2>

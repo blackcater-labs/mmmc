@@ -1,13 +1,5 @@
 {
-  "unocss.root": "apps/web",
-
   "vitest.include": [
-    "**/*.{test,spec,e2e-test,e2e-spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"
-  ],
-
-  // FIX: prettier-eslint cannot support prettier@3, use prettier only now.
-  "editor.formatOnSave": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "apps/**/*.{test,spec,e2e-test,e2e-spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"
+  ]
 }

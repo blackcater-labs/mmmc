@@ -1,0 +1,52 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mmmc Documentation",
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/blackcater-labs/mmmc/tree/main/docs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackcater-labs/mmmc.git",
+    "directory": "docs"
+  },
+  "bugs": {
+    "url": "https://github.com/blackcater-labs/mmmc/issues"
+  },
+  "keywords": [
+    "mmmc",
+    "vitepress",
+    "docs",
+    "website"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "clean": "rimraf .dist"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.1.24",
+    "@iconify-json/logos": "^1.1.40",
+    "@iconify-json/mdi": "^1.1.60",
+    "@iconify-json/ph": "^1.1.8",
+    "@iconify-json/twemoji": "^1.1.14",
+    "@iconify-json/vscode-icons": "^1.1.31",
+    "rimraf": "^5.0.5",
+    "unocss": "^0.58.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vite": "^5.0.6",
+    "vitepress": "1.0.0-rc.31"
+  }
+}

@@ -1,11 +1,15 @@
 # @mmmc/web
 
-This is the ui for website and desktop.
+## Getting Started
 
-## How to use
+First, run the development server:
 
 ```bash
-pnpm dev # start website's ui
-
-pnpm build # build website's ui
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```

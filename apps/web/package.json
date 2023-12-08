@@ -1,40 +1,55 @@
 {
-  "name": "@mmmc/web",
+  "name": "web",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "description": "Mmmc Website",
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/blackcater-labs/mmmc/tree/main/apps/web#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackcater-labs/mmmc.git",
+    "directory": "apps/web"
+  },
+  "bugs": {
+    "url": "https://github.com/blackcater-labs/mmmc/issues"
+  },
+  "keywords": [
+    "mmmc",
+    "nestjs"
+  ],
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "pnpm test:unit",
-    "test:unit": "cypress run --component",
-    "test:e2e": "cypress run --e2e",
-    "test:ui": "cypress open"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "clean": "rimraf .next dist"
   },
   "dependencies": {
-    "@radix-ui/react-avatar": "^1.0.3",
-    "@tanstack/react-query": "^4.35.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "next-themes": "^0.2.1",
+    "lucide-react": "^0.294.0",
+    "next": "^14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
-    "react-use": "^17.4.0",
-    "zustand": "^4.4.1"
+    "tailwind-merge": "^2.1.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@iconify-json/uil": "^1.1.5",
-    "@iconify/utils": "^2.1.9",
-    "@types/node": "^20.6.0",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "@unocss/reset": "^0.55.7",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "cypress": "^13.1.0",
-    "typescript": "^5.2.2",
-    "unocss": "^0.55.7",
-    "vite": "^4.4.9",
-    "vite-plugin-inspect": "^0.7.38"
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "rimraf": "^5.0.5",
+    "shadcn-ui": "^0.4.1",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5.3.3"
   }
 }

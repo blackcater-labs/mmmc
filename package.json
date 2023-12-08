@@ -1,19 +1,29 @@
 {
-  "private": true,
   "name": "mmmc",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "Mmmc is an open-source software for organizing your comics.",
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "nextjs",
+    "nestjs"
+  ],
   "main": "index.js",
   "scripts": {
     "dev:web": "pnpm run --filter web dev",
-    "dev:desktop": "pnpm run --filter desktop dev",
-    "dev:backend": "pnpm run --filter node dev",
-    "dev:crawler": "pnpm run --filter crawler dev",
+    "dev:server": "pnpm run --filter server dev",
+    "dev:docs": "pnpm run --filter docs dev",
     "build": "turbo build",
     "build:web": "pnpm run --filter web build",
-    "build:desktop": "pnpm run --filter desktop build",
-    "build:backend": "pnpm run --filter node build",
-    "build:crawler": "pnpm run --filter crawler build",
+    "build:server": "pnpm run --filter server build",
+    "build:docs": "pnpm run --filter docs build",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
@@ -22,26 +32,23 @@
     "taze:major": "taze major -r"
   },
   "devDependencies": {
-    "@antfu/eslint-config-react": "^0.41.0",
-    "@vitest/coverage-c8": "^0.33.0",
-    "@vitest/ui": "^0.34.4",
-    "eslint": "^8.49.0",
-    "esno": "^0.17.0",
-    "prettier": "^3.0.3",
-    "taze": "^0.11.2",
-    "turbo": "^1.10.13",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.4"
-  },
-  "keywords": [
-    "react",
-    "tauri",
-    "unocss"
-  ],
-  "author": {
-    "name": "blackcater <Elon Tang>",
-    "email": "i@blackcater.dev",
-    "url": "https://www.blackcater.com"
-  },
-  "license": "MIT"
+    "@antfu/eslint-config": "^2.4.3",
+    "@eslint/eslintrc": "^2.1.4",
+    "@types/node": "^20.10.4",
+    "@types/supertest": "^2.0.16",
+    "@vitest/coverage-istanbul": "^1.0.2",
+    "@vitest/ui": "^1.0.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "esno": "^4.0.0",
+    "prettier": "^3.1.0",
+    "taze": "^0.13.0",
+    "turbo": "^1.11.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.2"
+  }
 }
