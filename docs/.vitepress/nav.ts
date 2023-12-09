@@ -1,60 +1,53 @@
 import type { DefaultTheme } from 'vitepress/types'
 
-export const Guides: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Getting Started', link: '/guide/' },
+type NavItemList = DefaultTheme.NavItemWithChildren['items']
+
+export const Guides: NavItemList = [
   { text: 'Why Mmmc?', link: '/guide/why' },
+  { text: 'Getting Started', link: '/guide/' },
 ]
 
-export const Configs: DefaultTheme.NavItemWithLink[] = [
-  { text: 'Overview', link: '/config/' },
+export const Deploys: NavItemList = [
+  { text: 'Overview', link: '/deploy/' },
+  {
+    text: 'NAS',
+    items: [
+      { text: 'Synology', link: '/deploy/synology' },
+    ],
+  },
+  { text: 'Use Docker', link: '/deploy/docker' },
+  { text: 'From Source', link: '/deploy/local' },
 ]
 
-export const Plugins: DefaultTheme.NavItemWithLink[] = [
-  { text: 'IMDB', link: '/plugins/imdb' },
-  { text: 'Douban', link: '/plugins/douban' },
+export const Tools: NavItemList = [
+  { text: 'Overview', link: '/tools/' },
+  {
+    text: 'Metadata',
+    items: [
+      { text: 'Metaorg', link: '/tools/metaorg' },
+    ],
+  },
 ]
 
 export const Nav: DefaultTheme.NavItem[] = [
   {
     text: 'Guide',
-    items: [
-      {
-        text: 'Guide',
-        items: Guides,
-      },
-    ],
+    items: Guides,
     activeMatch: '^/guide/',
   },
   {
-    text: 'Config',
-    items: [
-      {
-        text: 'Config File',
-        link: '/guide/config-file',
-      },
-      {
-        text: 'Concepts',
-        items: Configs,
-      },
-    ],
-    activeMatch: '^/config/',
+    text: 'Deploy',
+    items: Deploys,
+    activeMatch: '^/deploy/',
   },
   {
-    text: 'Plugins',
-    items: [
-      {
-        text: 'Overview',
-        link: '/plugins/',
-      },
-      {
-        text: 'Community Presets',
-        link: '/plugins/community',
-      },
-      {
-        text: 'Plugins',
-        items: Plugins,
-      },
-    ],
-    activeMatch: '^/plugins/',
+    text: 'Tools',
+    items: Tools,
+    activeMatch: '^/tools/',
+  },
+  {
+    text: 'OpenAPI',
+    link: '/openapi/',
+    activeMatch: '^/openapi/',
   },
 ]

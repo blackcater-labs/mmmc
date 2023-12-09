@@ -184,6 +184,9 @@ importers:
       '@iconify-json/ph':
         specifier: ^1.1.8
         version: 1.1.8
+      '@iconify-json/simple-icons':
+        specifier: ^1.1.82
+        version: 1.1.82
       '@iconify-json/twemoji':
         specifier: ^1.1.14
         version: 1.1.14
@@ -1360,6 +1363,12 @@ packages:
 
   /@iconify-json/ph@1.1.8:
     resolution: {integrity: sha512-LtUWsiO/R2Gx4ZqHGJbJYG4XaAFkQ1+rHPQmmQ7NVTaqg7EZibB3ky1aXX12sJ2F+6z8QIpthsw3wRjReEnTig==, tarball: https://registry.npmmirror.com/@iconify-json/ph/-/ph-1.1.8.tgz}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/simple-icons@1.1.82:
+    resolution: {integrity: sha512-kaBn6XjUn+v5WzoejOKjQFDnqtUSHawMwp4+aOL1C3N//cKjAG4RzNGDahBzgSJBUqCrHvQA1ow/RGQpKe3E2A==, tarball: https://registry.npmmirror.com/@iconify-json/simple-icons/-/simple-icons-1.1.82.tgz}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

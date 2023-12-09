@@ -4,8 +4,4 @@ import './vars.css'
 import './overrides.css'
 import 'uno.css'
 
-export default {
-  ...Theme,
-
-  enhanceApp() {},
-} satisfies typeof Theme
+export default Theme

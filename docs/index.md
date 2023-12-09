@@ -7,7 +7,7 @@ hero:
     alt: Mmmc
   name: "Mmmc"
   text: "Software for organizing your comics"
-  tagline: Archive · Manage · Read
+  tagline: Beautiful · Powerful · Open-Source
   actions:
     - theme: brand
       text: Getting Started
@@ -18,9 +18,18 @@ hero:
       target: _black
 
 features:
-  - icon: <span class="i-mdi:language-typescript"></span>
-    title: TypeScript
-    details: Built in TypeScript to improve the development experience
+  - icon: <span class="i-mdi:cloud-off-outline"></span>
+    title: Save Local
+    details: All your resources are saved locally, no need to worry about privacy.
+  - icon: <span class="i-mdi:web-check"></span>
+    title: Read Online
+    details: You can read your comics everywhere, even on your phone.
+  - icon: <span class="i-mdi:folder-search"></span>
+    title: Explore & Search
+    details: Explore your comics and search for the one you want to read.
+  - icon: <span class="i-mdi:api"></span>
+    title: OpenAPI
+    details: You can use OpenAPI to develop your own client.
 ---
 
 <script setup lang="ts">

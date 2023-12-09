@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { Nav } from './nav'
-import { SidebarGuide } from './sidebar'
+import { SidebarOne, SidebarOpenAPI } from './sidebar'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -33,7 +33,10 @@ export default defineConfig({
   themeConfig: {
     nav: Nav,
     sidebar: {
-      '/guide/': SidebarGuide,
+      '/guide/': SidebarOne,
+      '/deploy/': SidebarOne,
+      '/tools/': SidebarOne,
+      '/openapi/': SidebarOpenAPI,
     },
 
     logo: '/logo.png',
