@@ -3,11 +3,17 @@
     "incremental": true,
     "target": "es5",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "bundler",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
@@ -22,6 +28,14 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "dist/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
