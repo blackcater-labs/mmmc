@@ -9,11 +9,8 @@ interface ThemeToggleProps {
   className?: string
 }
 
-function ThemeToggle({ className }: ThemeToggleProps) {
+export function ThemeToggle({ className }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme()
-
-  if (!resolvedTheme)
-    return null
 
   if (resolvedTheme === 'dark') {
     return (
@@ -31,5 +28,3 @@ function ThemeToggle({ className }: ThemeToggleProps) {
     )
   }
 }
-
-export default ThemeToggle

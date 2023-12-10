@@ -6,13 +6,10 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import ThemeToggle from '@/components/ThemeToggle'
+import { LngToggle } from '@/components/LngToggle'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
-interface LoginPageProps {
-  redirect?: string
-}
-
-export default function LoginPage({ redirect: _redirect }: LoginPageProps) {
+export default function LoginPage() {
   return (
     <main className="relative flex h-screen w-screen items-center justify-center">
       <Tabs defaultValue="signin" className="sm:w-[400px]">
@@ -45,7 +42,7 @@ export default function LoginPage({ redirect: _redirect }: LoginPageProps) {
               </div>
               <Button className="w-full">Login</Button>
               <div className="mt-4 flex w-full items-center justify-evenly">
-                <ThemeToggle />
+                <LngToggle />
                 <ThemeToggle />
               </div>
             </CardFooter>

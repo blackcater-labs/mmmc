@@ -36,8 +36,8 @@
     "@eslint/eslintrc": "^2.1.4",
     "@types/node": "^20.10.4",
     "@types/supertest": "^2.0.16",
-    "@vitest/coverage-istanbul": "^1.0.2",
-    "@vitest/ui": "^1.0.2",
+    "@vitest/coverage-istanbul": "^1.0.3",
+    "@vitest/ui": "^1.0.3",
     "eslint": "^8.55.0",
     "eslint-plugin-format": "^0.1.0",
     "eslint-plugin-react": "^7.33.2",
@@ -49,6 +49,6 @@
     "taze": "^0.13.0",
     "turbo": "^1.11.1",
     "typescript": "^5.3.3",
-    "vitest": "^1.0.2"
+    "vitest": "^1.0.3"
   }
 }

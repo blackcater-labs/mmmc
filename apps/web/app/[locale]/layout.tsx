@@ -1,8 +1,11 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+
 import { Providers } from './providers'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { locales } from '@/i18n/config'
 
 import './globals.css'
-import { ScrollArea } from '@/components/ui/scroll-area'
 
 export const metadata: Metadata = {
   title: {
@@ -14,11 +17,15 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode
+  params: { locale: string }
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+  if (!locales.includes(locale))
+    notFound()
+
   return (
-    <html lang="en" className="dark">
+    <html lang={locale} className="dark">
       <body>
         <Providers>
           <ScrollArea className="h-screen w-screen">
