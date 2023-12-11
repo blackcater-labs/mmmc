@@ -6,6 +6,7 @@ import next from 'next'
 const app = next({
   dev: process.env.NODE_ENV !== 'production',
   dir: resolve(__dirname, '../../../web'),
+  customServer: true,
 })
 const handler = app.getRequestHandler() // FIX: a little hacky
 let prepared: boolean = false

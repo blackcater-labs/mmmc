@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
 import { AppController } from './app.controller'
@@ -19,6 +19,7 @@ import configuration from './config/configuration'
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(NextMiddleware).exclude('/api').forRoutes('/')
+    consumer.apply(NextMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL })
   }
 }

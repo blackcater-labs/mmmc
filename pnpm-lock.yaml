@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.4.3
-        version: 2.4.3(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.5)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.3)
+        specifier: ^2.4.4
+        version: 2.4.4(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.5)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4)
       '@eslint/eslintrc':
         specifier: ^2.1.4
         version: 2.1.4
@@ -21,11 +21,11 @@ importers:
         specifier: ^2.0.16
         version: 2.0.16
       '@vitest/coverage-istanbul':
-        specifier: ^1.0.3
-        version: 1.0.3(vitest@1.0.3)
+        specifier: ^1.0.4
+        version: 1.0.4(vitest@1.0.4)
       '@vitest/ui':
-        specifier: ^1.0.3
-        version: 1.0.3(vitest@1.0.3)
+        specifier: ^1.0.4
+        version: 1.0.4(vitest@1.0.4)
       eslint:
         specifier: ^8.55.0
         version: 8.55.0
@@ -48,8 +48,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       prettier:
-        specifier: ^3.1.0
-        version: 3.1.0
+        specifier: ^3.1.1
+        version: 3.1.1
       taze:
         specifier: ^0.13.0
         version: 0.13.0
@@ -60,8 +60,8 @@ importers:
         specifier: ^5.3.3
         version: 5.3.3
       vitest:
-        specifier: ^1.0.3
-        version: 1.0.3(@types/node@20.10.4)(@vitest/ui@1.0.3)
+        specifier: ^1.0.4
+        version: 1.0.4(@types/node@20.10.4)(@vitest/ui@1.0.4)
 
   apps/server:
     dependencies:
@@ -108,15 +108,9 @@ importers:
       '@types/node':
         specifier: ^20.10.4
         version: 20.10.4
-      autoprefixer:
-        specifier: ^10.4.16
-        version: 10.4.16(postcss@8.4.32)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
-      postcss:
-        specifier: ^8.4.32
-        version: 8.4.32
       prisma:
         specifier: ^5.7.0
         version: 5.7.0
@@ -126,9 +120,6 @@ importers:
       supertest:
         specifier: ^6.3.3
         version: 6.3.3
-      tailwindcss:
-        specifier: ^3.3.6
-        version: 3.3.6
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -140,7 +131,19 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^3.3.2
-        version: 3.3.2(react-hook-form@7.48.2)
+        version: 3.3.2(react-hook-form@7.49.0)
+      '@nestjs/common':
+        specifier: ^10.2.10
+        version: 10.2.10(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/config':
+        specifier: ^3.1.1
+        version: 3.1.1(@nestjs/common@10.2.10)(reflect-metadata@0.1.14)
+      '@nestjs/core':
+        specifier: ^10.2.10
+        version: 10.2.10(@nestjs/common@10.2.10)(@nestjs/platform-express@10.2.10)(reflect-metadata@0.1.14)(rxjs@7.8.1)
+      '@nestjs/platform-express':
+        specifier: ^10.2.10
+        version: 10.2.10(@nestjs/common@10.2.10)(@nestjs/core@10.2.10)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.17)(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
@@ -198,6 +201,9 @@ importers:
       cmdk:
         specifier: ^0.2.0
         version: 0.2.0(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
+      dotenv:
+        specifier: ^16.3.1
+        version: 16.3.1
       lucide-react:
         specifier: ^0.294.0
         version: 0.294.0(react@18.2.0)
@@ -217,8 +223,14 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
       react-hook-form:
-        specifier: ^7.48.2
-        version: 7.48.2(react@18.2.0)
+        specifier: ^7.49.0
+        version: 7.49.0(react@18.2.0)
+      reflect-metadata:
+        specifier: ^0.1.14
+        version: 0.1.14
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
       tailwind-merge:
         specifier: ^2.1.0
         version: 2.1.0
@@ -241,9 +253,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.32)
-      express:
-        specifier: ^4.18.2
-        version: 4.18.2
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       postcss:
         specifier: ^8.4.32
         version: 8.4.32
@@ -275,8 +287,8 @@ importers:
         specifier: ^1.1.8
         version: 1.1.8
       '@iconify-json/simple-icons':
-        specifier: ^1.1.82
-        version: 1.1.82
+        specifier: ^1.1.83
+        version: 1.1.83
       '@iconify-json/twemoji':
         specifier: ^1.1.14
         version: 1.1.14
@@ -497,8 +509,8 @@ packages:
       - chokidar
     dev: true
 
-  /@antfu/eslint-config@2.4.3(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.5)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.3):
-    resolution: {integrity: sha512-DUMNwxPHxC0To63h7Z3bII41HqBUd+5iL0woubgjhhxJlZ0YRevOLHiSVGOifuivknwPW2nweF//8+BfoQCLjg==, tarball: https://registry.npmmirror.com/@antfu/eslint-config/-/eslint-config-2.4.3.tgz}
+  /@antfu/eslint-config@2.4.4(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react-refresh@0.4.5)(eslint-plugin-react@7.33.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4):
+    resolution: {integrity: sha512-TGiS9STAwiwBWHkqnnRHVLgjw1ogbqr1d+2U3NNpnoaedMWaDpfTYthuxgr0FNuWntABd3jhG4zRDa+kLZYu8A==, tarball: https://registry.npmmirror.com/@antfu/eslint-config/-/eslint-config-2.4.4.tgz}
     hasBin: true
     peerDependencies:
       '@unocss/eslint-plugin': '>=0.50.0'
@@ -546,11 +558,11 @@ packages:
       eslint-plugin-react-refresh: 0.4.5(eslint@8.55.0)
       eslint-plugin-unicorn: 49.0.0(eslint@8.55.0)
       eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)
-      eslint-plugin-vitest: 0.3.10(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.3)
+      eslint-plugin-vitest: 0.3.15(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4)
       eslint-plugin-vue: 9.19.2(eslint@8.55.0)
       eslint-plugin-yml: 1.10.0(eslint@8.55.0)
       eslint-processor-vue-blocks: 0.1.1(@vue/compiler-sfc@3.3.11)(eslint@8.55.0)
-      globals: 13.23.0
+      globals: 13.24.0
       jsonc-eslint-parser: 2.4.0
       local-pkg: 0.5.0
       parse-gitignore: 2.0.0
@@ -1494,12 +1506,12 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@hookform/resolvers@3.3.2(react-hook-form@7.48.2):
+  /@hookform/resolvers@3.3.2(react-hook-form@7.49.0):
     resolution: {integrity: sha512-Tw+GGPnBp+5DOsSg4ek3LCPgkBOuOgS5DsDV7qsWNH9LZc433kgsWICjlsh2J9p04H2K66hsXPPb9qn9ILdUtA==, tarball: https://registry.npmmirror.com/@hookform/resolvers/-/resolvers-3.3.2.tgz}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.48.2(react@18.2.0)
+      react-hook-form: 7.49.0(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -1546,8 +1558,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/simple-icons@1.1.82:
-    resolution: {integrity: sha512-kaBn6XjUn+v5WzoejOKjQFDnqtUSHawMwp4+aOL1C3N//cKjAG4RzNGDahBzgSJBUqCrHvQA1ow/RGQpKe3E2A==, tarball: https://registry.npmmirror.com/@iconify-json/simple-icons/-/simple-icons-1.1.82.tgz}
+  /@iconify-json/simple-icons@1.1.83:
+    resolution: {integrity: sha512-7BeKVFCgHjXIdrFqUeuLDBsf+h5cxqwKyFjOtlZGYnXDAccliVZjv5eMNdcWxM6Lolxlt8bfAFzx47gc2h7Nuw==, tarball: https://registry.npmmirror.com/@iconify-json/simple-icons/-/simple-icons-1.1.83.tgz}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -3632,7 +3644,7 @@ packages:
   /@types/mdast@3.0.11:
     resolution: {integrity: sha512-Y/uImid8aAwrEA24/1tcRZwpxX3pIFTSilcNDKSPn+Y2iDywSEachzRuvgAYYLR3wpGXAsMbv5lvKLDZLeYPAw==, tarball: https://registry.npmmirror.com/@types/mdast/-/mdast-3.0.11.tgz}
     dependencies:
-      '@types/unist': 2.0.6
+      '@types/unist': 3.0.2
     dev: true
 
   /@types/mdast@4.0.3:
@@ -4093,8 +4105,8 @@ packages:
       vue: 3.3.11(typescript@5.3.3)
     dev: true
 
-  /@vitest/coverage-istanbul@1.0.3(vitest@1.0.3):
-    resolution: {integrity: sha512-nwXQDKv1jKSUWzJNMEhaUeRL7Hr/3mvB93npIGQBzIDOFuPG9CXyxW2q8z95JFI/jHxIr1KOBgQt8TQzoJUY/w==, tarball: https://registry.npmmirror.com/@vitest/coverage-istanbul/-/coverage-istanbul-1.0.3.tgz}
+  /@vitest/coverage-istanbul@1.0.4(vitest@1.0.4):
+    resolution: {integrity: sha512-6qoSzTR+sanwY/dREqu6OFJupo/mHzCcboh03rLwqH2V2B39505lDr9FpqaLwU1vQgeUKNA+CdHPkpNpusxkDw==, tarball: https://registry.npmmirror.com/@vitest/coverage-istanbul/-/coverage-istanbul-1.0.4.tgz}
     peerDependencies:
       vitest: ^1.0.0
     dependencies:
@@ -4107,58 +4119,58 @@ packages:
       magicast: 0.3.2
       picocolors: 1.0.0
       test-exclude: 6.0.0
-      vitest: 1.0.3(@types/node@20.10.4)(@vitest/ui@1.0.3)
+      vitest: 1.0.4(@types/node@20.10.4)(@vitest/ui@1.0.4)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitest/expect@1.0.3:
-    resolution: {integrity: sha512-J+JzGw/uvlWI3D3g8s0ewQo7C32nieF5VqEJpmIgAr8CAK36GvIQrV90lChEgQy79iwK3zyQx4UhfMeIF4572g==, tarball: https://registry.npmmirror.com/@vitest/expect/-/expect-1.0.3.tgz}
+  /@vitest/expect@1.0.4:
+    resolution: {integrity: sha512-/NRN9N88qjg3dkhmFcCBwhn/Ie4h064pY3iv7WLRsDJW7dXnEgeoa8W9zy7gIPluhz6CkgqiB3HmpIXgmEY5dQ==, tarball: https://registry.npmmirror.com/@vitest/expect/-/expect-1.0.4.tgz}
     dependencies:
-      '@vitest/spy': 1.0.3
-      '@vitest/utils': 1.0.3
+      '@vitest/spy': 1.0.4
+      '@vitest/utils': 1.0.4
       chai: 4.3.10
     dev: true
 
-  /@vitest/runner@1.0.3:
-    resolution: {integrity: sha512-fCqShW4F8VJ78USVRoc5e1OD5jh1x1quZu4Mgp/lIhZS6PZPtI3wdCfRChWO9ZMJ2Ya7WI3sZTJZD69FR/AosA==, tarball: https://registry.npmmirror.com/@vitest/runner/-/runner-1.0.3.tgz}
+  /@vitest/runner@1.0.4:
+    resolution: {integrity: sha512-rhOQ9FZTEkV41JWXozFM8YgOqaG9zA7QXbhg5gy6mFOVqh4PcupirIJ+wN7QjeJt8S8nJRYuZH1OjJjsbxAXTQ==, tarball: https://registry.npmmirror.com/@vitest/runner/-/runner-1.0.4.tgz}
     dependencies:
-      '@vitest/utils': 1.0.3
+      '@vitest/utils': 1.0.4
       p-limit: 5.0.0
       pathe: 1.1.1
     dev: true
 
-  /@vitest/snapshot@1.0.3:
-    resolution: {integrity: sha512-2EQwVEuHusEXr0SKuFiI1JVlysSrUceejtusr6vK254tusAz/g4//QrAiD1b7PMdcUKM8QmdgWvqCMaYDsWyNA==, tarball: https://registry.npmmirror.com/@vitest/snapshot/-/snapshot-1.0.3.tgz}
+  /@vitest/snapshot@1.0.4:
+    resolution: {integrity: sha512-vkfXUrNyNRA/Gzsp2lpyJxh94vU2OHT1amoD6WuvUAA12n32xeVZQ0KjjQIf8F6u7bcq2A2k969fMVxEsxeKYA==, tarball: https://registry.npmmirror.com/@vitest/snapshot/-/snapshot-1.0.4.tgz}
     dependencies:
       magic-string: 0.30.5
       pathe: 1.1.1
       pretty-format: 29.7.0
     dev: true
 
-  /@vitest/spy@1.0.3:
-    resolution: {integrity: sha512-aMd7kvqJuZ/h27Q5XqNOh9fRX7cQJ9fcaPX8q/lk5h2MkAqvq/HuqZ7n1xjm2SDOlDqg3xMaEqP/4inNlNG62A==, tarball: https://registry.npmmirror.com/@vitest/spy/-/spy-1.0.3.tgz}
+  /@vitest/spy@1.0.4:
+    resolution: {integrity: sha512-9ojTFRL1AJVh0hvfzAQpm0QS6xIS+1HFIw94kl/1ucTfGCaj1LV/iuJU4Y6cdR03EzPDygxTHwE1JOm+5RCcvA==, tarball: https://registry.npmmirror.com/@vitest/spy/-/spy-1.0.4.tgz}
     dependencies:
       tinyspy: 2.2.0
     dev: true
 
-  /@vitest/ui@1.0.3(vitest@1.0.3):
-    resolution: {integrity: sha512-0K4i75iD1z9MOob3g0S+DBOSyOsrZtn5czvhROYNNzfYTx1FhDMRtRkx393Iim0bixPxN4jf3dwMIkhaDKhf7A==, tarball: https://registry.npmmirror.com/@vitest/ui/-/ui-1.0.3.tgz}
+  /@vitest/ui@1.0.4(vitest@1.0.4):
+    resolution: {integrity: sha512-gd4p6e7pjukSe4joWS5wpnm/JcEfzCZUYkYWQOORqJK1mDJ0MOaXa/9BbPOEVO5TcvdnKvFJUdJpFHnqoyYwZA==, tarball: https://registry.npmmirror.com/@vitest/ui/-/ui-1.0.4.tgz}
     peerDependencies:
       vitest: ^1.0.0
     dependencies:
-      '@vitest/utils': 1.0.3
+      '@vitest/utils': 1.0.4
       fast-glob: 3.3.2
       fflate: 0.8.1
       flatted: 3.2.9
       pathe: 1.1.1
       picocolors: 1.0.0
       sirv: 2.0.3
-      vitest: 1.0.3(@types/node@20.10.4)(@vitest/ui@1.0.3)
+      vitest: 1.0.4(@types/node@20.10.4)(@vitest/ui@1.0.4)
     dev: true
 
-  /@vitest/utils@1.0.3:
-    resolution: {integrity: sha512-ddGKC6CVjxwjA+ourSlMD6Emc+PhIH6+d25ISGBOQjryXi2NtKpsBSOt1yDT793c2Tqij8g8BBxe87jam3B95w==, tarball: https://registry.npmmirror.com/@vitest/utils/-/utils-1.0.3.tgz}
+  /@vitest/utils@1.0.4:
+    resolution: {integrity: sha512-gsswWDXxtt0QvtK/y/LWukN7sGMYmnCcv1qv05CsY6cU/Y1zpGX1QuvLs+GO1inczpE6Owixeel3ShkjhYtGfA==, tarball: https://registry.npmmirror.com/@vitest/utils/-/utils-1.0.4.tgz}
     dependencies:
       diff-sequences: 29.6.3
       loupe: 2.3.7
@@ -5901,7 +5913,7 @@ packages:
       eslint: 8.55.0
       eslint-formatting-reporter: 0.0.0(eslint@8.55.0)
       eslint-parser-plain: 0.1.0
-      prettier: 3.1.0
+      prettier: 3.1.1
       synckit: 0.8.6
     dev: true
 
@@ -5919,7 +5931,7 @@ packages:
       get-tsconfig: 4.7.2
       is-glob: 4.0.3
       minimatch: 3.1.2
-      resolve: 1.22.3
+      resolve: 1.22.8
       semver: 7.5.4
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
@@ -5986,9 +5998,9 @@ packages:
       get-tsconfig: 4.7.2
       ignore: 5.2.4
       is-builtin-module: 3.2.1
-      is-core-module: 2.12.1
+      is-core-module: 2.13.1
       minimatch: 3.1.2
-      resolve: 1.22.3
+      resolve: 1.22.8
       semver: 7.5.4
     dev: true
 
@@ -6116,9 +6128,9 @@ packages:
       eslint-rule-composer: 0.3.0
     dev: true
 
-  /eslint-plugin-vitest@0.3.10(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.3):
-    resolution: {integrity: sha512-08lj4rdhZHYyHk+Py2nJ7SlE6arP8GNfGXl9jVqhe9s5JoZIGiBpIkLGX+VNBiB6vXTn56H6Ant7Koc6XzRjtQ==, tarball: https://registry.npmmirror.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.3.10.tgz}
-    engines: {node: 14.x || >= 16}
+  /eslint-plugin-vitest@0.3.15(@typescript-eslint/eslint-plugin@6.13.2)(eslint@8.55.0)(typescript@5.3.3)(vitest@1.0.4):
+    resolution: {integrity: sha512-ZUUd9ARKR3p0W7zoWg0irmQW9aM+SlJYZOoFOBemmgwQIHLxtdRLodQGP48nYf8jLdCGFDQqPyaltQQKsa9UMw==, tarball: https://registry.npmmirror.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.3.15.tgz}
+    engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
       eslint: '>=8.0.0'
@@ -6132,7 +6144,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 6.13.2(@typescript-eslint/parser@6.13.2)(eslint@8.55.0)(typescript@5.3.3)
       '@typescript-eslint/utils': 6.13.2(eslint@8.55.0)(typescript@5.3.3)
       eslint: 8.55.0
-      vitest: 1.0.3(@types/node@20.10.4)(@vitest/ui@1.0.3)
+      vitest: 1.0.4(@types/node@20.10.4)(@vitest/ui@1.0.4)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6823,6 +6835,13 @@ packages:
       type-fest: 0.20.2
     dev: true
 
+  /globals@13.24.0:
+    resolution: {integrity: sha512-AhO5QUcj8llrbG09iWhPU2B204J1xnPeL8kQmVorSsy+Sjj1sk8gIyh6cUocGmH4L0UuhAJy+hJMRA4mgA4mFQ==, tarball: https://registry.npmmirror.com/globals/-/globals-13.24.0.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      type-fest: 0.20.2
+    dev: true
+
   /globalthis@1.0.3:
     resolution: {integrity: sha512-sFdI5LyBiNTHjRd7cGPWapiHWMOXKyuBNX/cWJ3NfzrZQVa8GI/8cofCl74AOVqq9W5kNmguTIzJ/1s2gyI9wA==, tarball: https://registry.npmmirror.com/globalthis/-/globalthis-1.0.3.tgz}
     engines: {node: '>= 0.4'}
@@ -7291,12 +7310,6 @@ packages:
   /is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==, tarball: https://registry.npmmirror.com/is-callable/-/is-callable-1.2.7.tgz}
     engines: {node: '>= 0.4'}
-    dev: true
-
-  /is-core-module@2.12.1:
-    resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==, tarball: https://registry.npmmirror.com/is-core-module/-/is-core-module-2.12.1.tgz}
-    dependencies:
-      has: 1.0.3
     dev: true
 
   /is-core-module@2.13.1:
@@ -8920,8 +8933,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier@3.1.0:
-    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==, tarball: https://registry.npmmirror.com/prettier/-/prettier-3.1.0.tgz}
+  /prettier@3.1.1:
+    resolution: {integrity: sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw==, tarball: https://registry.npmmirror.com/prettier/-/prettier-3.1.1.tgz}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -9055,9 +9068,9 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-hook-form@7.48.2(react@18.2.0):
-    resolution: {integrity: sha512-H0T2InFQb1hX7qKtDIZmvpU1Xfn/bdahWBN1fH19gSe4bBEqTfmlr7H3XWTaVtiK4/tpPaI1F3355GPMZYge+A==, tarball: https://registry.npmmirror.com/react-hook-form/-/react-hook-form-7.48.2.tgz}
-    engines: {node: '>=12.22.0'}
+  /react-hook-form@7.49.0(react@18.2.0):
+    resolution: {integrity: sha512-gf4qyY4WiqK2hP/E45UUT6wt3Khl49pleEVcIzxhLBrD6m+GMWtLRk0vMrRv45D1ZH8PnpXFwRPv0Pewske2jw==, tarball: https://registry.npmmirror.com/react-hook-form/-/react-hook-form-7.49.0.tgz}
+    engines: {node: '>=18', pnpm: '8'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
@@ -9298,15 +9311,6 @@ packages:
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==, tarball: https://registry.npmmirror.com/resolve-pkg-maps/-/resolve-pkg-maps-1.0.0.tgz}
-    dev: true
-
-  /resolve@1.22.3:
-    resolution: {integrity: sha512-P8ur/gp/AmbEzjr729bZnLjXK5Z+4P0zhIJgBgzqRih7hL7BOukHGtSTA3ACMY467GRFz3duQsi0bDZdR7DKdw==, tarball: https://registry.npmmirror.com/resolve/-/resolve-1.22.3.tgz}
-    hasBin: true
-    dependencies:
-      is-core-module: 2.12.1
-      path-parse: 1.0.7
-      supports-preserve-symlinks-flag: 1.0.0
     dev: true
 
   /resolve@1.22.8:
@@ -10698,8 +10702,8 @@ packages:
       vfile-message: 4.0.2
     dev: true
 
-  /vite-node@1.0.3(@types/node@20.10.4):
-    resolution: {integrity: sha512-7AH08/UgJQm4gWFyXB6xQ1AvI+iMioM2duPmptytxEbkHamVrOhoha4REt9xvOgyiw91G9OykRlixN4zIsQOQg==, tarball: https://registry.npmmirror.com/vite-node/-/vite-node-1.0.3.tgz}
+  /vite-node@1.0.4(@types/node@20.10.4):
+    resolution: {integrity: sha512-9xQQtHdsz5Qn8hqbV7UKqkm8YkJhzT/zr41Dmt5N7AlD8hJXw/Z7y0QiD5I8lnTthV9Rvcvi0QW7PI0Fq83ZPg==, tarball: https://registry.npmmirror.com/vite-node/-/vite-node-1.0.4.tgz}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
@@ -10811,8 +10815,8 @@ packages:
       - universal-cookie
     dev: true
 
-  /vitest@1.0.3(@types/node@20.10.4)(@vitest/ui@1.0.3):
-    resolution: {integrity: sha512-zbMmAdRjTki6mYXEjCXMVH8Vb0FX0rAfCSTrbbn3Dqd8Zz6FzImBavkKYsOF+iXd4+k5RoOqi6RyTSoroRS0mw==, tarball: https://registry.npmmirror.com/vitest/-/vitest-1.0.3.tgz}
+  /vitest@1.0.4(@types/node@20.10.4)(@vitest/ui@1.0.4):
+    resolution: {integrity: sha512-s1GQHp/UOeWEo4+aXDOeFBJwFzL6mjycbQwwKWX2QcYfh/7tIerS59hWQ20mxzupTJluA2SdwiBuWwQHH67ckg==, tarball: https://registry.npmmirror.com/vitest/-/vitest-1.0.4.tgz}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     peerDependencies:
@@ -10837,12 +10841,12 @@ packages:
         optional: true
     dependencies:
       '@types/node': 20.10.4
-      '@vitest/expect': 1.0.3
-      '@vitest/runner': 1.0.3
-      '@vitest/snapshot': 1.0.3
-      '@vitest/spy': 1.0.3
-      '@vitest/ui': 1.0.3(vitest@1.0.3)
-      '@vitest/utils': 1.0.3
+      '@vitest/expect': 1.0.4
+      '@vitest/runner': 1.0.4
+      '@vitest/snapshot': 1.0.4
+      '@vitest/spy': 1.0.4
+      '@vitest/ui': 1.0.4(vitest@1.0.4)
+      '@vitest/utils': 1.0.4
       acorn-walk: 8.3.1
       cac: 6.7.14
       chai: 4.3.10
@@ -10857,7 +10861,7 @@ packages:
       tinybench: 2.5.1
       tinypool: 0.8.1
       vite: 5.0.7(@types/node@20.10.4)
-      vite-node: 1.0.3(@types/node@20.10.4)
+      vite-node: 1.0.4(@types/node@20.10.4)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -11144,12 +11148,7 @@ packages:
     dependencies:
       eslint-visitor-keys: 3.4.3
       lodash: 4.17.21
-      yaml: 2.3.1
-    dev: true
-
-  /yaml@2.3.1:
-    resolution: {integrity: sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==, tarball: https://registry.npmmirror.com/yaml/-/yaml-2.3.1.tgz}
-    engines: {node: '>= 14'}
+      yaml: 2.3.4
     dev: true
 
   /yaml@2.3.4:
