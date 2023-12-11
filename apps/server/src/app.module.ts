@@ -1,10 +1,10 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common'
+import { join } from 'node:path'
+import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { ServeStaticModule } from '@nestjs/serve-static'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { NextMiddleware } from './middleware/next.middleware'
 import configuration from './config/configuration'
+import { isProd } from './lib'
 
 @Module({
   imports: [
@@ -13,13 +13,12 @@ import configuration from './config/configuration'
       ignoreEnvFile: true,
       load: [configuration],
     }),
+    ServeStaticModule.forRoot({
+      rootPath: isProd ? join(__dirname, '../dist/client') : join(__dirname, '../../web/dist'),
+      exclude: ['/api/(.*)'],
+    }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(NextMiddleware)
-      .forRoutes({ path: '*', method: RequestMethod.ALL })
-  }
-}
+export class AppModule {}
