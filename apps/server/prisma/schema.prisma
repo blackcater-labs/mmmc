@@ -8,12 +8,12 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
   password  String
-  role      Int      @default(2) // 1: admin, 2: user
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role      Int?      @default(2) // 1: admin, 2: user
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
 
   @@map("users")
 }

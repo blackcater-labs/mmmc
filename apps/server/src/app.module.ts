@@ -3,8 +3,10 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
 
-import configuration from './config/configuration'
-import { isProd } from './lib'
+import { PrismaModule } from '@/prisma/prisma.module'
+import { ApiModule } from '@/api.module'
+import configuration from '@/config/configuration'
+import { isProd } from '@/lib'
 
 @Module({
   imports: [
@@ -17,6 +19,8 @@ import { isProd } from './lib'
       rootPath: isProd ? join(__dirname, '../dist/client') : join(__dirname, '../../web/dist'),
       exclude: ['/api/(.*)'],
     }),
+    ApiModule,
+    PrismaModule,
   ],
   controllers: [],
   providers: [],

@@ -1,7 +1,11 @@
-import * as dotenv from 'dotenv'
+import { config } from 'dotenv'
 
-dotenv.config()
+config()
 
 export default () => ({
-  port: Number.parseInt(process.env.PORT, 10) || 3000,
+  PORT: Number.parseInt(process.env.PORT, 10) || 3000,
+
+  SALT_PWD: process.env.SALT_PWD || 'Mmmc',
+
+  SECRET_JWT: process.env.SECRET_JWT || 'Mmmc',
 })
