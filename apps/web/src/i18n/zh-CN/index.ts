@@ -1,3 +1,4 @@
-import Index from './Index.json'
+import translation from './translation.json'
+import auth from './auth.json'
 
-export { Index }
+export { translation, auth }
