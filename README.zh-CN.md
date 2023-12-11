@@ -1,4 +1,11 @@
 <picture>
+  <img alt="WIP" src="./assets/WIP.png">
+</picture>
+
+<br/>
+<br/>
+
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.png">
   <img alt="Mmmc Banner" src="./assets/banner-light.png">
 </picture>
