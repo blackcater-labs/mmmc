@@ -1,49 +1,106 @@
 import { useTranslation } from 'react-i18next'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'sonner'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { LngToggle } from '@/components/LngToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 interface LoginFormProps {
   onCreateAccount?: () => void
 }
 
+export const loginFormSchema = z.object({
+  username: z.string().min(2),
+  password: z.string().min(4),
+  rememberMe: z.boolean().default(true),
+})
+
+export type LoginFormSchema = z.infer<typeof loginFormSchema>
+
 export function LoginForm({ onCreateAccount }: LoginFormProps) {
   const { t } = useTranslation('auth')
+  const form = useForm<LoginFormSchema>({
+    resolver: zodResolver(loginFormSchema),
+    defaultValues: window.localStorage.getItem('loginForm') ? JSON.parse(window.localStorage.getItem('loginForm')!) : { rememberMe: true },
+  })
+
+  function onSubmit(data: LoginFormSchema) {
+    toast(`Success: ${JSON.stringify(data)}`)
+  }
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>{t('login')}</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-2">
-        <div className="space-y-2">
-          <Label htmlFor="username">{t('username')}</Label>
-          <Input id="username" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">{t('password')}</Label>
-          <Input id="password" type="password" />
-        </div>
-      </CardContent>
-      <CardFooter className="flex flex-col">
-        <div className="mb-2 flex w-full items-center justify-between">
-          <Label htmlFor="remember" className="flex items-center">
-            <Checkbox id="remember" />
-            <span className="ml-2">{t('remember-me')}</span>
-          </Label>
-          <Button variant="link" onClick={onCreateAccount}>{t('create-account')}</Button>
-        </div>
-        <Button className="h-12 w-full">{t('login')}</Button>
-        <div className="mt-4 flex w-full items-center justify-evenly">
-          <LngToggle />
-          <ThemeToggle />
-        </div>
-      </CardFooter>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <CardContent className="space-y-2">
+            <div className="space-y-2">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('username')}</FormLabel>
+                    <FormControl>
+                      <Input placeholder={t('username')} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="space-y-2">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('password')}</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder={t('password')} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col">
+            <div className="mb-2 flex w-full items-center justify-between">
+              <FormField
+                control={form.control}
+                name="rememberMe"
+                render={({ field }) => (
+                  <FormItem>
+                    <div className="flex items-center">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                      </FormControl>
+                      <FormLabel className="ml-2">{t('remember-me')}</FormLabel>
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button variant="link" onClick={onCreateAccount}>{t('create-account')}</Button>
+            </div>
+            <Button className="h-12 w-full" type="submit">{t('login')}</Button>
+            <div className="mt-4 flex w-full items-center justify-evenly">
+              <LngToggle />
+              <ThemeToggle />
+            </div>
+          </CardFooter>
+        </form>
+      </Form>
     </Card>
   )
 }
