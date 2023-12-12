@@ -1,6 +1,7 @@
+import { Suspense } from 'react'
 import { AtomIcon, BracesIcon, BugIcon, CableIcon, DatabaseIcon, Loader2Icon, PackageIcon, PlayIcon, PowerIcon, TerminalSquareIcon } from 'lucide-react'
-
 import { Outlet } from '@tanstack/react-router'
+
 import { Header } from './_components/Header'
 import { Button } from '@/components/ui/button'
 
@@ -59,7 +60,9 @@ export default function $DashboardLayout() {
           <CableIcon className="mr-2 h-4 w-4" />
           Progress
         </Button>
-        <Outlet />
+        <Suspense fallback="loading">
+          <Outlet />
+        </Suspense>
       </main>
     </>
   )

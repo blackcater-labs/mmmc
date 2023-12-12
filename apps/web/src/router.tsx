@@ -1,9 +1,6 @@
-import { RootRoute, Route, Router } from '@tanstack/react-router'
+import { RootRoute, Route, Router, lazyRouteComponent } from '@tanstack/react-router'
 
 import RootLayout from './app/layout'
-import $AuthLoginPage from './app/(auth)/login/page'
-import $DashboardLayout from './app/(dashboard)/layout'
-import $DashboardIndexPage from './app/(dashboard)/page'
 
 export const rootLayoutRoute = new RootRoute({
   component: RootLayout,
@@ -12,19 +9,19 @@ export const rootLayoutRoute = new RootRoute({
 export const $authLoginPageRoute = new Route({
   getParentRoute: () => rootLayoutRoute,
   path: '/login',
-  component: $AuthLoginPage,
+  component: lazyRouteComponent(() => import('./app/(auth)/login/page')),
 })
 
 export const $dashboardLayoutRoute = new Route({
   id: '$dashboard',
   getParentRoute: () => rootLayoutRoute,
-  component: $DashboardLayout,
+  component: lazyRouteComponent(() => import('./app/(dashboard)/layout')),
 })
 
 export const $dashboardIndexPageRoute = new Route({
   getParentRoute: () => $dashboardLayoutRoute,
   path: '/',
-  component: $DashboardIndexPage,
+  component: lazyRouteComponent(() => import('./app/(dashboard)/page')),
 })
 
 export const router = new Router({
