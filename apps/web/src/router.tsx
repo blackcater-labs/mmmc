@@ -1,6 +1,9 @@
-import { RootRoute, Route, Router, lazyRouteComponent } from '@tanstack/react-router'
+import { NotFoundRoute, RootRoute, Route, Router } from '@tanstack/react-router'
+import loadable from '@loadable/component'
 
 import RootLayout from './app/layout'
+import NotFound from './not-found'
+import Loading from './loading'
 
 export const rootLayoutRoute = new RootRoute({
   component: RootLayout,
@@ -9,19 +12,23 @@ export const rootLayoutRoute = new RootRoute({
 export const $authLoginPageRoute = new Route({
   getParentRoute: () => rootLayoutRoute,
   path: '/login',
-  component: lazyRouteComponent(() => import('./app/(auth)/login/page')),
+  component: loadable(() => import('./app/(auth)/login/page'), {
+    fallback: <Loading />,
+  }) as any,
 })
 
 export const $dashboardLayoutRoute = new Route({
   id: '$dashboard',
   getParentRoute: () => rootLayoutRoute,
-  component: lazyRouteComponent(() => import('./app/(dashboard)/layout')),
+  component: loadable(() => import('./app/(dashboard)/layout'), {
+    fallback: <Loading />,
+  }) as any,
 })
 
 export const $dashboardIndexPageRoute = new Route({
   getParentRoute: () => $dashboardLayoutRoute,
   path: '/',
-  component: lazyRouteComponent(() => import('./app/(dashboard)/page')),
+  component: loadable(() => import('./app/(dashboard)/page')) as any,
 })
 
 export const router = new Router({
@@ -31,5 +38,8 @@ export const router = new Router({
       $dashboardIndexPageRoute, // /dashboard/
     ]),
   ]),
-  // notFoundRoute
+  notFoundRoute: new NotFoundRoute({
+    getParentRoute: () => rootLayoutRoute,
+    component: NotFound,
+  }),
 })

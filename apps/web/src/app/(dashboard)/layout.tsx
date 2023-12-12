@@ -60,9 +60,9 @@ export default function $DashboardLayout() {
           <CableIcon className="mr-2 h-4 w-4" />
           Progress
         </Button>
-        <Suspense fallback="loading">
-          <Outlet />
-        </Suspense>
+        {/* <Suspense fallback="loading"> */}
+        <Outlet />
+        {/* </Suspense> */}
       </main>
     </>
   )
