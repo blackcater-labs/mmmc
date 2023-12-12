@@ -7,7 +7,7 @@ export enum UserRole {
   User = 2,
 }
 
-export class UserDO implements User {
+export class UserEntity implements User {
   @ApiProperty({ description: 'User ID' })
   id: number
 
@@ -25,4 +25,8 @@ export class UserDO implements User {
 
   @Exclude()
   updatedAt: Date
+
+  constructor(partial: Partial<UserEntity>) {
+    Object.assign(this, partial)
+  }
 }

@@ -2,7 +2,7 @@
 
 import { PrismaClient } from '@prisma/client'
 import { config } from 'dotenv'
-import { md5Hash } from '@/lib'
+import { md5Hash } from '@/utils'
 
 config()
 

@@ -5,9 +5,9 @@ import { ConfigService } from '@nestjs/config'
 import { User } from '@prisma/client'
 import { LoginRespDTO } from './dto/login-resp.dto'
 import { RegisterRespDTO } from './dto/register-resp.dto'
-import { UserService } from '@/user/user.service'
-import { PrismaService } from '@/prisma/prisma.service'
-import { md5Hash } from '@/lib'
+import { UserService } from '@/modules/user/user.service'
+import { PrismaService } from '@/modules/prisma/prisma.service'
+import { md5Hash } from '@/utils'
 
 @Injectable()
 export class AuthService {

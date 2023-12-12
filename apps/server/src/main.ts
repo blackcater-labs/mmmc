@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { ValidationPipe } from '@nestjs/common'
 
-import { isProd } from '@/lib'
-import { AppModule } from '@/app.module'
+import { isProd } from '@/utils'
+import { AppModule } from '@/modules/app.module'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)

@@ -10,7 +10,7 @@ import { Request } from 'express'
 import { ConfigService } from '@nestjs/config'
 import { Reflector } from '@nestjs/core'
 
-import { UserService } from '@/user/user.service'
+import { UserService } from '@/modules/user/user.service'
 
 export const IS_PUBLIC_KEY = 'isPublic'
 export const Public = () => SetMetadata(IS_PUBLIC_KEY, true)
