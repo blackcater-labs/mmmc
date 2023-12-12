@@ -1,7 +1,8 @@
 import { join } from 'node:path'
-import { Module } from '@nestjs/common'
+import { ClassSerializerInterceptor, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import { APP_INTERCEPTOR } from '@nestjs/core'
 
 import { PrismaModule } from '@/prisma/prisma.module'
 import { ApiModule } from '@/api.module'
@@ -23,6 +24,11 @@ import { isProd } from '@/lib'
     PrismaModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ClassSerializerInterceptor,
+    },
+  ],
 })
 export class AppModule {}

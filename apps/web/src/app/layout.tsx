@@ -1,5 +1,5 @@
-import { Suspense } from 'react'
 import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Outlet } from '@tanstack/react-router'
 import { Toaster } from 'sonner'
 
@@ -12,7 +12,8 @@ export default function RootLayout() {
         <Outlet />
       </ScrollArea>
       <Toaster position="bottom-center" />
-      {import.meta.env.DEV && <TanStackRouterDevtools position="bottom-right" />}
+      {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
     </>
   )
 }

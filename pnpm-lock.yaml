@@ -153,6 +153,9 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.3.2
         version: 3.3.2(react-hook-form@7.49.0)
+      '@loadable/component':
+        specifier: ^5.15.3
+        version: 5.15.3(react@18.2.0)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.0.5
         version: 1.0.5(@types/react-dom@18.2.17)(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
@@ -210,6 +213,9 @@ importers:
       '@tanstack/react-router':
         specifier: 0.0.1-beta.248
         version: 0.0.1-beta.248(react-dom@18.2.0)(react@18.2.0)
+      axios:
+        specifier: ^1.6.2
+        version: 1.6.2
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -274,9 +280,15 @@ importers:
         specifier: ^4.4.7
         version: 4.4.7(@types/react@18.2.43)(react@18.2.0)
     devDependencies:
+      '@tanstack/react-query-devtools':
+        specifier: ^5.13.5
+        version: 5.13.5(@tanstack/react-query@5.13.4)(react@18.2.0)
       '@tanstack/router-devtools':
         specifier: 0.0.1-beta.248
         version: 0.0.1-beta.248(react-dom@18.2.0)(react@18.2.0)
+      '@types/loadable__component':
+        specifier: ^5.13.8
+        version: 5.13.8
       '@types/node':
         specifier: ^20.10.4
         version: 20.10.4
@@ -1657,6 +1669,18 @@ packages:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
+  /@loadable/component@5.15.3(react@18.2.0):
+    resolution: {integrity: sha512-VOgYgCABn6+/7aGIpg7m0Ruj34tGetaJzt4bQ345FwEovDQZ+dua+NWLmuJKv8rWZyxOUSfoJkmGnzyDXH2BAQ==, tarball: https://registry.npmmirror.com/@loadable/component/-/component-5.15.3.tgz}
+    engines: {node: '>=8'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.23.5
+      hoist-non-react-statics: 3.3.2
+      react: 18.2.0
+      react-is: 16.13.1
+    dev: false
+
   /@lukeed/csprng@1.1.0:
     resolution: {integrity: sha512-Z7C/xXCiGWsg0KuKsHTKJxbWhpI3Vs5GwLfOean7MGyVFGqdRgBbAjOCh6u4bbjPc/8MJ2pZmK/0DLdCbivLDA==, tarball: https://registry.npmmirror.com/@lukeed/csprng/-/csprng-1.1.0.tgz}
     engines: {node: '>=8'}
@@ -2190,7 +2214,7 @@ packages:
   /@radix-ui/primitive@1.0.0:
     resolution: {integrity: sha512-3e7rn8FDMin4CgeL7Z/49smCA3rFYY3Ha2rUQ7HRWFadS5iCRw08ZgVT1LaNTCNqgvrUiyczLflrVrF0SRQtNA==, tarball: https://registry.npmmirror.com/@radix-ui/primitive/-/primitive-1.0.0.tgz}
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
     dev: false
 
   /@radix-ui/primitive@1.0.1:
@@ -2238,7 +2262,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-primitive': registry.npmmirror.com/@radix-ui/react-primitive@1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.43
       '@types/react-dom': 18.2.17
@@ -2376,7 +2400,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -2399,7 +2423,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -2498,7 +2522,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/primitive': registry.npmmirror.com/@radix-ui/primitive@1.0.0
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.0(react@18.2.0)
       '@radix-ui/react-primitive': registry.npmmirror.com/@radix-ui/react-primitive@1.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -2565,7 +2589,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -2589,7 +2613,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.0(react@18.2.0)
       '@radix-ui/react-primitive': registry.npmmirror.com/@radix-ui/react-primitive@1.0.0(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-use-callback-ref': registry.npmmirror.com/@radix-ui/react-use-callback-ref@1.0.0(react@18.2.0)
@@ -2633,7 +2657,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-use-layout-effect': registry.npmmirror.com/@radix-ui/react-use-layout-effect@1.0.0(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -2783,7 +2807,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-primitive': registry.npmmirror.com/@radix-ui/react-primitive@1.0.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -2816,7 +2840,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.0(react@18.2.0)
       '@radix-ui/react-use-layout-effect': registry.npmmirror.com/@radix-ui/react-use-layout-effect@1.0.0(react@18.2.0)
       react: 18.2.0
@@ -2851,7 +2875,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-slot': registry.npmmirror.com/@radix-ui/react-slot@1.0.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -2891,7 +2915,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/primitive': registry.npmmirror.com/@radix-ui/primitive@1.0.1
       '@radix-ui/react-collection': registry.npmmirror.com/@radix-ui/react-collection@1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.43)(react@18.2.0)
@@ -3034,7 +3058,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.0(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -3100,7 +3124,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-use-callback-ref': registry.npmmirror.com/@radix-ui/react-use-callback-ref@1.0.0(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -3125,7 +3149,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-use-callback-ref': registry.npmmirror.com/@radix-ui/react-use-callback-ref@1.0.0(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -3139,7 +3163,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-use-callback-ref': registry.npmmirror.com/@radix-ui/react-use-callback-ref@1.0.1(@types/react@18.2.43)(react@18.2.0)
       '@types/react': 18.2.43
       react: 18.2.0
@@ -3182,7 +3206,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/rect': 1.0.1
       '@types/react': 18.2.43
       react: 18.2.0
@@ -3227,7 +3251,7 @@ packages:
   /@radix-ui/rect@1.0.1:
     resolution: {integrity: sha512-fyrgCaedtvMg9NK3en0pnOYJdtfwxUcNolezkNPUsoX57X8oQk+NkqcvzHXD2uKNij6GXmWU9NDru2IWjrO4BQ==, tarball: https://registry.npmmirror.com/@radix-ui/rect/-/rect-1.0.1.tgz}
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
     dev: false
 
   /@rollup/pluginutils@5.1.0:
@@ -3587,7 +3611,21 @@ packages:
 
   /@tanstack/query-core@5.13.4:
     resolution: {integrity: sha512-8+rJucXvC/xlr4OrxHhEIob/cTlbT4fgmz1VsvB0D12FRStKaXeLORNGcOhSAynRd2NL74SV/Qq0IIb4DedLcA==, tarball: https://registry.npmmirror.com/@tanstack/query-core/-/query-core-5.13.4.tgz}
-    dev: false
+
+  /@tanstack/query-devtools@5.13.5:
+    resolution: {integrity: sha512-effSYz9AWcZ6sNd+c8LCBYFIuDZApoCTXEpRlEYChBZpMz9QUUVMLToThwCyUY49+T5pANL3XxgZf3HV7hwJlg==, tarball: https://registry.npmmirror.com/@tanstack/query-devtools/-/query-devtools-5.13.5.tgz}
+    dev: true
+
+  /@tanstack/react-query-devtools@5.13.5(@tanstack/react-query@5.13.4)(react@18.2.0):
+    resolution: {integrity: sha512-FB17B/yPtwnqg+DAdosAM+rFj3t8Pl121MPLiUGgl6jvG0A+U9XN3n39zVbhurbdSFO5jCMkPBlloW4NH5ojrA==, tarball: https://registry.npmmirror.com/@tanstack/react-query-devtools/-/react-query-devtools-5.13.5.tgz}
+    peerDependencies:
+      '@tanstack/react-query': ^5.13.4
+      react: ^18.0.0
+    dependencies:
+      '@tanstack/query-devtools': 5.13.5
+      '@tanstack/react-query': 5.13.4(react@18.2.0)
+      react: 18.2.0
+    dev: true
 
   /@tanstack/react-query@5.13.4(react@18.2.0):
     resolution: {integrity: sha512-3HjvkFFriEQwffUXtKHPiwkfFXUGbs46YATTzzyK1+Pw6Ekd3kwzS50e45qdamWuEXmXxyo5S1zp534LdFG0Rw==, tarball: https://registry.npmmirror.com/@tanstack/react-query/-/react-query-5.13.4.tgz}
@@ -3596,7 +3634,6 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.13.4
       react: 18.2.0
-    dev: false
 
   /@tanstack/react-router@0.0.1-beta.248(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-znMn2wNfJevYMJkjo0I5AXWbbZNjziK43h6Df9uxTBo/Oynsu9Iv8ODRTypHEY/E405bLUZYObtbDb7ZRx0iQQ==, tarball: https://registry.npmmirror.com/@tanstack/react-router/-/react-router-0.0.1-beta.248.tgz}
@@ -3768,6 +3805,12 @@ packages:
 
   /@types/linkify-it@3.0.5:
     resolution: {integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==, tarball: https://registry.npmmirror.com/@types/linkify-it/-/linkify-it-3.0.5.tgz}
+    dev: true
+
+  /@types/loadable__component@5.13.8:
+    resolution: {integrity: sha512-0FF/WihuPkR5IFOHiBzC95bSACvgQNUQCuNy1WF8F/lCBBHgS2SxarIk4CTjWM10A72ovpmXZDRcuAXZNS+/kQ==, tarball: https://registry.npmmirror.com/@types/loadable__component/-/loadable__component-5.13.8.tgz}
+    dependencies:
+      '@types/react': 18.2.43
     dev: true
 
   /@types/markdown-it@13.0.7:
@@ -4906,7 +4949,6 @@ packages:
 
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==, tarball: https://registry.npmmirror.com/asynckit/-/asynckit-0.4.0.tgz}
-    dev: true
 
   /autoprefixer@10.4.16(postcss@8.4.32):
     resolution: {integrity: sha512-7vd3UC6xKp0HLfua5IjZlcXvGAGy7cBAXTg2lyQ/8WpNhd6SiZ8Be+xm3FyBSYJx5GKcpRCzBh7RH4/0dnY+uQ==, tarball: https://registry.npmmirror.com/autoprefixer/-/autoprefixer-10.4.16.tgz}
@@ -4928,6 +4970,16 @@ packages:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==, tarball: https://registry.npmmirror.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /axios@1.6.2:
+    resolution: {integrity: sha512-7i24Ri4pmDRfJTR7LDBhsOTtcm+9kjX5WiY1X3wIisx6G9So3pfMkEiU7emUBe46oceVImccTEM3k6C5dbVW8A==, tarball: https://registry.npmmirror.com/axios/-/axios-1.6.2.tgz}
+    dependencies:
+      follow-redirects: 1.15.3
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==, tarball: https://registry.npmmirror.com/balanced-match/-/balanced-match-1.0.2.tgz}
@@ -5372,7 +5424,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
-    dev: true
 
   /comma-separated-tokens@2.0.3:
     resolution: {integrity: sha512-Fu4hJdvzeylCfQPp9SGWidpzrMs7tTrlu6Vb8XGaRGck8QSNZJJp538Wrb60Lax4fPwR64ViY468OIUTbRlGZg==, tarball: https://registry.npmmirror.com/comma-separated-tokens/-/comma-separated-tokens-2.0.3.tgz}
@@ -5646,7 +5697,6 @@ packages:
   /delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==, tarball: https://registry.npmmirror.com/delayed-stream/-/delayed-stream-1.0.0.tgz}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /depd@2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==, tarball: https://registry.npmmirror.com/depd/-/depd-2.0.0.tgz}
@@ -6739,6 +6789,16 @@ packages:
       tabbable: 6.2.0
     dev: true
 
+  /follow-redirects@1.15.3:
+    resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==, tarball: https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.3.tgz}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==, tarball: https://registry.npmmirror.com/for-each/-/for-each-0.3.3.tgz}
     dependencies:
@@ -6783,7 +6843,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: true
 
   /formdata-polyfill@4.0.10:
     resolution: {integrity: sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==, tarball: https://registry.npmmirror.com/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz}
@@ -7199,6 +7258,12 @@ packages:
     resolution: {integrity: sha512-QFLV0taWQOZtvIRIAdBChesmogZrtuXvVWsFHZTk2SU+anspqZ2vMnoLg7IE1+Uk16N19APic1BuF8bC8c2m5g==, tarball: https://registry.npmmirror.com/hexoid/-/hexoid-1.0.0.tgz}
     engines: {node: '>=8'}
     dev: true
+
+  /hoist-non-react-statics@3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==, tarball: https://registry.npmmirror.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
 
   /hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==, tarball: https://registry.npmmirror.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz}
@@ -9251,6 +9316,10 @@ packages:
       forwarded: 0.2.0
       ipaddr.js: 1.9.1
 
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==, tarball: https://registry.npmmirror.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz}
+    dev: false
+
   /pump@3.0.0:
     resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==, tarball: https://registry.npmmirror.com/pump/-/pump-3.0.0.tgz}
     dependencies:
@@ -9360,7 +9429,6 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==, tarball: https://registry.npmmirror.com/react-is/-/react-is-16.13.1.tgz}
-    dev: true
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==, tarball: https://registry.npmmirror.com/react-is/-/react-is-18.2.0.tgz}
@@ -11591,7 +11659,7 @@ packages:
     name: '@radix-ui/primitive'
     version: 1.0.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
     dev: false
 
   registry.npmmirror.com/@radix-ui/primitive@1.0.1:
@@ -11618,7 +11686,7 @@ packages:
       '@types/react-dom':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.43)(react@18.2.0)
       '@radix-ui/react-context': registry.npmmirror.com/@radix-ui/react-context@1.0.1(@types/react@18.2.43)(react@18.2.0)
       '@radix-ui/react-primitive': registry.npmmirror.com/@radix-ui/react-primitive@1.0.3(@types/react-dom@18.2.17)(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
@@ -11637,7 +11705,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -11653,7 +11721,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@types/react': 18.2.43
       react: 18.2.0
     dev: false
@@ -11744,7 +11812,7 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
       react-dom: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-slot': registry.npmmirror.com/@radix-ui/react-slot@1.0.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -11814,7 +11882,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.0(react@18.2.0)
       react: 18.2.0
     dev: false
@@ -11831,7 +11899,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@radix-ui/react-compose-refs': registry.npmmirror.com/@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.43)(react@18.2.0)
       '@types/react': 18.2.43
       react: 18.2.0
@@ -11876,7 +11944,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -11892,7 +11960,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@types/react': 18.2.43
       react: 18.2.0
     dev: false
@@ -11923,7 +11991,7 @@ packages:
     peerDependencies:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       react: 18.2.0
     dev: false
 
@@ -11939,7 +12007,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime@7.23.5
+      '@babel/runtime': 7.23.5
       '@types/react': 18.2.43
       react: 18.2.0
     dev: false

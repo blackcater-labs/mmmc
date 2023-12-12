@@ -55,6 +55,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@tanstack/react-query": "^5.13.4",
     "@tanstack/react-router": "0.0.1-beta.248",
+    "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
@@ -78,6 +79,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.13.5",
     "@tanstack/router-devtools": "0.0.1-beta.248",
     "@types/loadable__component": "^5.13.8",
     "@types/node": "^20.10.4",

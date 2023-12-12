@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core'
+import { NestFactory, Reflector } from '@nestjs/core'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { ValidationPipe } from '@nestjs/common'
@@ -19,7 +19,6 @@ async function bootstrap() {
       .setTitle('Mmmc API')
       .setDescription('Mmmc is a software for organizing your comics')
       .setVersion('1.0')
-      .setBasePath('api')
       .addBearerAuth()
       .build(),
   ))

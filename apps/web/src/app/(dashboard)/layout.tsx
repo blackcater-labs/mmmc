@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { AtomIcon, BracesIcon, BugIcon, CableIcon, DatabaseIcon, Loader2Icon, PackageIcon, PlayIcon, PowerIcon, TerminalSquareIcon } from 'lucide-react'
 import { Outlet } from '@tanstack/react-router'
 

@@ -11,6 +11,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { LngToggle } from '@/components/LngToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { login } from '@/api/auth/login'
+import { getLoginState, setAccessToken, setLoginState } from '@/lib/localStorage'
 
 interface LoginFormProps {
   onCreateAccount?: () => void
@@ -28,11 +30,16 @@ export function LoginForm({ onCreateAccount }: LoginFormProps) {
   const { t } = useTranslation('auth')
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
-    defaultValues: window.localStorage.getItem('loginForm') ? JSON.parse(window.localStorage.getItem('loginForm')!) : { rememberMe: true },
+    defaultValues: getLoginState() || { rememberMe: true },
   })
 
-  function onSubmit(data: LoginFormSchema) {
-    toast(`Success: ${JSON.stringify(data)}`)
+  function onSubmit(formData: LoginFormSchema) {
+    login(formData).then((data: any) => {
+      if (formData.rememberMe) {
+        setLoginState(formData)
+        setAccessToken(data.access_token! as string)
+      }
+    })
   }
 
   return (

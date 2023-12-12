@@ -1,9 +1,10 @@
-import { NotFoundRoute, RootRoute, Route, Router } from '@tanstack/react-router'
+import { NotFoundRoute, RootRoute, Route, Router, redirect } from '@tanstack/react-router'
 import loadable from '@loadable/component'
 
-import RootLayout from './app/layout'
-import NotFound from './not-found'
-import Loading from './loading'
+import RootLayout from '@/app/layout'
+import NotFound from '@/not-found'
+import Loading from '@/loading'
+import { getAccessToken } from '@/lib/localStorage'
 
 export const rootLayoutRoute = new RootRoute({
   component: RootLayout,
@@ -20,6 +21,10 @@ export const $authLoginPageRoute = new Route({
 export const $dashboardLayoutRoute = new Route({
   id: '$dashboard',
   getParentRoute: () => rootLayoutRoute,
+  beforeLoad: ({ location }) => {
+    if (!getAccessToken())
+      throw redirect({ to: '/login', search: { redirect: location.href } })
+  },
   component: loadable(() => import('./app/(dashboard)/layout'), {
     fallback: <Loading />,
   }) as any,
