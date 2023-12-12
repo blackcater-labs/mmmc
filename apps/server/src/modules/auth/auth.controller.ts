@@ -1,12 +1,13 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger'
+import { ApiTags } from '@nestjs/swagger'
 
+import { UserEntity } from '../user/entity/user.entity'
 import { LoginDTO } from './dto/login.dto'
 import { RegisterDTO } from './dto/register.dto'
 import { AuthService } from './auth.service'
-import { LoginRespDTO } from './dto/login-resp.dto'
-import { RegisterRespDTO } from './dto/register-resp.dto'
+import { TokenRespDTO } from './dto/token-resp.dto'
 import { Public } from './auth.guard'
+import { ApiOkResponeCustom } from '@/decorator/swagger.decorator'
 
 @Controller('/auth')
 @ApiTags('Authentication')
@@ -15,19 +16,30 @@ export class AuthController {
 
   @Public()
   @Post('/login')
-  @ApiCreatedResponse({ type: LoginRespDTO })
-  async login(@Body() loginDto: LoginDTO): Promise<LoginRespDTO> {
-    return this.authService.signIn(loginDto.username, loginDto.password)
+  @ApiOkResponeCustom(TokenRespDTO)
+  async login(@Body() loginDto: LoginDTO): Promise<TokenRespDTO> {
+    const { access_token, user } = await this.authService.signIn(loginDto.username, loginDto.password)
+
+    return {
+      access_token,
+      user: new UserEntity(user),
+    }
   }
 
   @Public()
   @Post('/register')
-  async register(@Body() registerDTO: RegisterDTO): Promise<RegisterRespDTO> {
+  @ApiOkResponeCustom(TokenRespDTO)
+  async register(@Body() registerDTO: RegisterDTO): Promise<TokenRespDTO> {
     const { username, password, passwordConfirm, ...rest } = registerDTO
 
     if (password !== passwordConfirm)
       throw new BadRequestException('Passwords do not match')
 
-    return this.authService.signUp(username, password, rest)
+    const { access_token, user } = await this.authService.signUp(username, password, rest)
+
+    return {
+      access_token,
+      user: new UserEntity(user),
+    }
   }
 }
