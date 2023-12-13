@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { ClassSerializerInterceptor, Module } from '@nestjs/common'
+import { ClassSerializerInterceptor, Logger, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { APP_INTERCEPTOR } from '@nestjs/core'
@@ -7,6 +7,7 @@ import { AcceptLanguageResolver, I18nModule } from 'nestjs-i18n'
 
 import { ApiModule } from './modules/api.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
+import { LoggerModule } from './modules/logger/logger.module'
 import defaultConfig from './config/default'
 import { isProd } from './utils'
 import { BizInterceptor } from './interceptors/biz.interceptor'
@@ -18,10 +19,6 @@ import { BizInterceptor } from './interceptors/biz.interceptor'
       ignoreEnvFile: true,
       load: [defaultConfig],
     }),
-    ServeStaticModule.forRoot({
-      rootPath: isProd ? join(__dirname, './client') : join(__dirname, '../../web/dist'),
-      exclude: ['/api/(.*)'],
-    }),
     I18nModule.forRoot({
       fallbackLanguage: 'en',
       loaderOptions: {
@@ -31,7 +28,12 @@ import { BizInterceptor } from './interceptors/biz.interceptor'
       resolvers: [AcceptLanguageResolver],
       typesOutputPath: join(__dirname, '../src/generated/i18n.generated.ts'),
     }),
+    ServeStaticModule.forRoot({
+      rootPath: isProd ? join(__dirname, './client') : join(__dirname, '../../web/dist'),
+      exclude: ['/api/(.*)'],
+    }),
     PrismaModule,
+    LoggerModule,
     ApiModule,
   ],
   controllers: [],

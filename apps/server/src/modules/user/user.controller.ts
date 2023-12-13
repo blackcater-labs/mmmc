@@ -1,11 +1,10 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Logger, Req } from '@nestjs/common'
 import { ApiBearerAuth, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger'
 
 import { UserService } from './user.service'
 import { UserEntity } from './entity/user.entity'
 import { User } from '@/decorator/user.decorator'
 import { ApiOkResponeCustom } from '@/decorator/swagger.decorator'
-import { BizException } from '@/utils/biz-error'
 
 @Controller('user')
 @ApiTags('User')
