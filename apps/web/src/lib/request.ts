@@ -3,6 +3,7 @@ import { toast } from 'sonner'
 
 import { router } from '@/router'
 import { store, tokenAtom, userAtom } from '@/store'
+import { i18n } from '@/i18n'
 
 const instance = axios.create({
   baseURL: '/api',
@@ -14,6 +15,10 @@ instance.interceptors.request.use((config) => {
     const token = store.get(tokenAtom)
     config.headers.Authorization = `Bearer ${token}`
   }
+
+  if (i18n.language)
+    config.headers['Accept-Language'] = i18n.language
+
   return config
 })
 
@@ -28,7 +33,7 @@ instance.interceptors.response.use((resp) => {
   if (err?.response?.data) {
     const data = err.response.data
     if (data.statusCode && data.statusCode >= 400)
-      toast.error(data.message[0], { position: 'top-right' })
+      toast.error(data.message, { position: 'top-right' })
   }
 
   if (err?.response?.status === 401) {

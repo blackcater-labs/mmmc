@@ -12,7 +12,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { LngToggle } from '@/components/LngToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { login } from '@/api/auth/login'
+import { login } from '@/api/auth'
 import { store, tokenAtom, userAtom } from '@/store'
 import { $authLoginPageRoute } from '@/router'
 import { getLocalData } from '@/lib/localStorage'
@@ -71,7 +71,7 @@ export function LoginForm({ onCreateAccount }: LoginFormProps) {
                   <FormItem>
                     <FormLabel>{t('username')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={t('username')} {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -86,7 +86,7 @@ export function LoginForm({ onCreateAccount }: LoginFormProps) {
                   <FormItem>
                     <FormLabel>{t('password')}</FormLabel>
                     <FormControl>
-                      <Input type="password" placeholder={t('password')} {...field} />
+                      <Input type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

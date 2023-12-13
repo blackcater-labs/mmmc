@@ -13,7 +13,7 @@ export default function LoginPage() {
 
   return (
     <main className="relative flex h-screen w-screen items-center justify-center">
-      <Tabs value={currentTab} defaultValue="signin" className="sm:w-[400px]">
+      <Tabs value={currentTab} defaultValue="signin" className="w-full px-4 sm:w-[400px]">
         <TabsList className="hidden" aria-hidden="true">
           <TabsTrigger value="signin">{t('login')}</TabsTrigger>
           <TabsTrigger value="signup">{t('register')}</TabsTrigger>
