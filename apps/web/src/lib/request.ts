@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { toast } from 'sonner'
 
-import { clearAccessToken, getAccessToken } from './localStorage'
 import { router } from '@/router'
+import { store, tokenAtom, userAtom } from '@/store'
 
 const instance = axios.create({
   baseURL: '/api',
@@ -11,13 +11,20 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   if (!config.url?.startsWith('/auth')) {
-    const token = getAccessToken()
+    const token = store.get(tokenAtom)
     config.headers.Authorization = `Bearer ${token}`
   }
   return config
 })
 
-instance.interceptors.response.use(resp => resp.data, (err) => {
+instance.interceptors.response.use((resp) => {
+  if (resp.data?.success) { return resp.data?.data }
+  else {
+    if (resp.data?.message)
+      toast.error(resp.data?.message, { position: 'top-right' })
+    throw resp.data
+  }
+}, (err) => {
   if (err?.response?.data) {
     const data = err.response.data
     if (data.statusCode && data.statusCode >= 400)
@@ -26,7 +33,8 @@ instance.interceptors.response.use(resp => resp.data, (err) => {
 
   if (err?.response?.status === 401) {
     // Unauthorized
-    clearAccessToken()
+    store.set(tokenAtom, null)
+    store.set(userAtom, null)
     router.navigate({ to: '/login', search: { redirectUrl: window.location.href } })
   }
 

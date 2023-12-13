@@ -1,13 +1,15 @@
 import { Controller, Get } from '@nestjs/common'
-import { ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger'
+import { ApiBearerAuth, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger'
 
 import { UserService } from './user.service'
 import { UserEntity } from './entity/user.entity'
 import { User } from '@/decorator/user.decorator'
 import { ApiOkResponeCustom } from '@/decorator/swagger.decorator'
+import { BizException } from '@/utils/biz-error'
 
 @Controller('user')
 @ApiTags('User')
+@ApiBearerAuth()
 export class UserController {
   constructor(private userService: UserService) {}
 

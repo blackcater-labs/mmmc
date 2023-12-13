@@ -3,6 +3,7 @@ import { Outlet } from '@tanstack/react-router'
 
 import { Header } from './_components/Header'
 import { Button } from '@/components/ui/button'
+import { getUserProfile } from '@/api/user'
 
 export default function $DashboardLayout() {
   return (
@@ -10,7 +11,15 @@ export default function $DashboardLayout() {
       <Header />
       <main className="container mt-[54px]">
         {/* Play */}
-        <Button className="" variant="ghost">
+        <Button
+          className=""
+          variant="ghost"
+          onClick={() => {
+            getUserProfile().catch((err) => {
+              console.log(err)
+            })
+          }}
+        >
           <PlayIcon className="mr-2 h-4 w-4" />
           Start
         </Button>

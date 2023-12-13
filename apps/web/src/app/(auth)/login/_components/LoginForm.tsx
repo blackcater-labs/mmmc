@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { toast } from 'sonner'
+import { atomWithStorage } from 'jotai/utils'
 
+import { useNavigate, useSearch } from '@tanstack/react-router'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -12,7 +13,9 @@ import { LngToggle } from '@/components/LngToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { login } from '@/api/auth/login'
-import { getLoginState, setAccessToken, setLoginState } from '@/lib/localStorage'
+import { store, tokenAtom, userAtom } from '@/store'
+import { $authLoginPageRoute } from '@/router'
+import { getLocalData } from '@/lib/localStorage'
 
 interface LoginFormProps {
   onCreateAccount?: () => void
@@ -26,19 +29,29 @@ export const loginFormSchema = z.object({
 
 export type LoginFormSchema = z.infer<typeof loginFormSchema>
 
+const loginStateAtom = atomWithStorage<LoginFormSchema | null>('mmmc-login_state', getLocalData('mmmc-login_state'))
+
 export function LoginForm({ onCreateAccount }: LoginFormProps) {
+  const { redirect } = useSearch({ from: $authLoginPageRoute.id })
+  const navigate = useNavigate()
   const { t } = useTranslation('auth')
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginFormSchema),
-    defaultValues: getLoginState() || { rememberMe: true },
+    defaultValues: store.get(loginStateAtom) || { rememberMe: true },
   })
 
   function onSubmit(formData: LoginFormSchema) {
     login(formData).then((data: any) => {
-      if (formData.rememberMe) {
-        setLoginState(formData)
-        setAccessToken(data.access_token! as string)
-      }
+      if (formData.rememberMe)
+        store.set(loginStateAtom, formData)
+
+      store.set(tokenAtom, data.access_token)
+      store.set(userAtom, data.user)
+
+      if (redirect && !redirect.includes('/login'))
+        navigate({ to: redirect })
+      else
+        navigate({ to: '/' })
     })
   }
 
