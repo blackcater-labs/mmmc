@@ -132,6 +132,7 @@ model Item {
   contentRating    String?
   contentRatingAge Int?
   country          String?
+  readingDirection Int? // 1. vertical, 2. one-page-ltr, 3. one-page-rtl, 4. two-page-ltr, 5. two-page-rtl
   extra            String?
   status           Int? // 1. ongoing, 2. completed, 3. dropped, 4. paused
   createdAt        DateTime? @default(now())
@@ -202,6 +203,7 @@ model Chapter {
   itemId       Int
   name         String
   dir          String?
+  thumb_url    String?
   offset       Int?
   release_year Int?
   release_date DateTime?
