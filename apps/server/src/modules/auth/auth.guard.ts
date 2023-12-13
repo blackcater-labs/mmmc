@@ -6,9 +6,9 @@ import {
   UnauthorizedException,
 } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
-import { Request } from 'express'
 import { ConfigService } from '@nestjs/config'
 import { Reflector } from '@nestjs/core'
+import { Request } from 'express'
 
 import { UserService } from '../user/user.service'
 

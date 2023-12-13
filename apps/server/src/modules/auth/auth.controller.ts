@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common'
 import { ApiTags } from '@nestjs/swagger'
+import { I18n, I18nContext } from 'nestjs-i18n'
 
 import { UserEntity } from '../user/entity/user.entity'
 import { LoginDTO } from './dto/login.dto'
@@ -8,6 +9,7 @@ import { AuthService } from './auth.service'
 import { TokenRespDTO } from './dto/token-resp.dto'
 import { Public } from './auth.guard'
 import { ApiOkResponeCustom } from '@/decorator/swagger.decorator'
+import { I18nTranslations } from '@/generated/i18n.generated'
 
 @Controller('/auth')
 @ApiTags('Authentication')
@@ -29,11 +31,11 @@ export class AuthController {
   @Public()
   @Post('/register')
   @ApiOkResponeCustom(TokenRespDTO)
-  async register(@Body() registerDTO: RegisterDTO): Promise<TokenRespDTO> {
+  async register(@Body() registerDTO: RegisterDTO, @I18n() i18n: I18nContext<I18nTranslations>): Promise<TokenRespDTO> {
     const { username, password, passwordConfirm, ...rest } = registerDTO
 
     if (password !== passwordConfirm)
-      throw new BadRequestException('Passwords do not match')
+      throw new BadRequestException(i18n.t('auth.password-unsame'))
 
     const { access_token, user } = await this.authService.signUp(username, password, rest)
 

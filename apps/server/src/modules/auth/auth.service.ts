@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { User } from '@prisma/client'
+import { I18nContext, I18nService } from 'nestjs-i18n'
 
 import { PrismaService } from '../prisma/prisma.service'
 import { UserService } from '../user/user.service'
@@ -14,6 +15,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ConfigService,
     private prismaService: PrismaService,
+    private i18nService: I18nService,
   ) {}
 
   async signIn(username: string, password: string) {
@@ -42,7 +44,7 @@ export class AuthService {
     const user = await this.userService.findOneByUsername(username)
 
     if (user)
-      throw new BadRequestException('User already exists')
+      throw new BadRequestException(this.i18nService.t('auth.user-exist', { lang: I18nContext.current().lang }))
 
     const newUser = await this.prismaService.user.create({
       data: {
