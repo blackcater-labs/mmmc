@@ -1,11 +1,9 @@
 import { ThemeProvider } from 'next-themes'
 import { RouterProvider } from '@tanstack/react-router'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { Provider as StoreProvider } from 'jotai'
 
-import { router } from './router'
-
-const queryClient = new QueryClient()
+import { queryClient, router } from './router'
 
 export function Providers() {
   return (

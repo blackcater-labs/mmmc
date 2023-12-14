@@ -35,7 +35,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
-    "@loadable/component": "^5.15.3",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -81,7 +80,6 @@
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.13.5",
     "@tanstack/router-devtools": "0.0.1-beta.248",
-    "@types/loadable__component": "^5.13.8",
     "@types/node": "^20.10.4",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",

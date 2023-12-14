@@ -1,5 +1,8 @@
-import type { RouteOptions } from '@tanstack/react-router'
+import type { QueryClient } from '@tanstack/react-query'
+import { rootRouteWithContext } from '@tanstack/react-router'
 
-export const layoutOptions: Partial<RouteOptions> = {}
+import RootLayout from './layout'
 
-export const pageOptions: Partial<RouteOptions> = {}
+export const rootRoute = rootRouteWithContext<{
+  queryClient: QueryClient
+}>()({ component: RootLayout })

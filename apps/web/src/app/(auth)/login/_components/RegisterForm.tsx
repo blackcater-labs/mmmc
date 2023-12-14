@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useNavigate, useSearch } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -12,7 +12,7 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { register } from '@/api/auth'
 import { store, tokenAtom, userAtom } from '@/store'
-import { $authLoginPageRoute } from '@/router'
+import { loginRoute } from '@/router'
 
 const registerFormSchema = z.object({
   username: z.string().min(2),
@@ -33,7 +33,7 @@ interface RegisterFormProps {
 }
 
 export function RegisterForm({ onGoToLogin }: RegisterFormProps) {
-  const { redirect } = useSearch({ from: $authLoginPageRoute.id })
+  const { redirect } = loginRoute.useSearch()
   const navigate = useNavigate()
   const { t } = useTranslation('auth')
   const form = useForm<RegisterFormSchema>({

@@ -2,8 +2,8 @@ import { useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 
 import { AspectRatio } from './components/ui/aspect-ratio'
-import { Button } from '@/components/ui/button'
-import emptyImg from '@/assets/png/empty.png'
+import { Button } from './components/ui/button'
+import emptyImg from './assets/png/empty.png'
 
 export default function NotFound() {
   const navigate = useNavigate()

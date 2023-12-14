@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { atomWithStorage } from 'jotai/utils'
 
-import { useNavigate, useSearch } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -14,7 +14,7 @@ import { ThemeToggle } from '@/components/ThemeToggle'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { login } from '@/api/auth'
 import { store, tokenAtom, userAtom } from '@/store'
-import { $authLoginPageRoute } from '@/router'
+import { loginRoute } from '@/router'
 import { getLocalData } from '@/lib/localStorage'
 
 interface LoginFormProps {
@@ -32,7 +32,7 @@ export type LoginFormSchema = z.infer<typeof loginFormSchema>
 const loginStateAtom = atomWithStorage<LoginFormSchema | null>('mmmc-login_state', getLocalData('mmmc-login_state'))
 
 export function LoginForm({ onCreateAccount }: LoginFormProps) {
-  const { redirect } = useSearch({ from: $authLoginPageRoute.id })
+  const { redirect } = loginRoute.useSearch()
   const navigate = useNavigate()
   const { t } = useTranslation('auth')
   const form = useForm<LoginFormSchema>({
