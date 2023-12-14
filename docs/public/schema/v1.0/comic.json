@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Comic",
+  "definitions": {
+    "Comic": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "title",
+        "releaseDate"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
