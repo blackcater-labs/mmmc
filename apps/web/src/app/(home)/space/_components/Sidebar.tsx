@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 
 export function Sidebar() {
   return (
-    <aside className="flex h-full w-[266px] flex-col border-r py-4">
+    <aside className="flex w-[266px] shrink-0 flex-col border-r bg-background py-4">
       <div className="p-3">
         <div className="mb-2">
           <Popover>

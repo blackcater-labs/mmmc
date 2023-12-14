@@ -5,7 +5,7 @@ import { Separator } from '@/components/ui/separator'
 
 export function Header() {
   return (
-    <header className="absolute inset-x-0 top-0  h-[54px] border-b">
+    <header className="h-[54px] shrink-0 border-b bg-background">
       <div className="flex h-full items-center justify-between px-6">
         <div>
           {/* Search */}

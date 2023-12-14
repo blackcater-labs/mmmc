@@ -4,8 +4,8 @@ import { rootRoute } from '@/router'
 import { store, userAtom } from '@/store'
 import Loading from '@/loading'
 
-export const dashboardLayoutRoute = new Route({
-  id: '$dashboard',
+export const homeLayoutRoute = new Route({
+  id: '$home',
   getParentRoute: () => rootRoute,
   beforeLoad: ({ location }) => {
     if (!store.get(userAtom)) {
@@ -17,8 +17,8 @@ export const dashboardLayoutRoute = new Route({
   pendingComponent: Loading,
 })
 
-export const dashboardRoute = new Route({
-  getParentRoute: () => dashboardLayoutRoute,
+export const homeRoute = new Route({
   path: '/',
+  getParentRoute: () => homeLayoutRoute,
   component: lazyRouteComponent(() => import('./page')),
 })

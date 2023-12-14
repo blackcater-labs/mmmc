@@ -32,7 +32,7 @@ export type LoginFormSchema = z.infer<typeof loginFormSchema>
 const loginStateAtom = atomWithStorage<LoginFormSchema | null>('mmmc-login_state', getLocalData('mmmc-login_state'))
 
 export function LoginForm({ onCreateAccount }: LoginFormProps) {
-  const { redirect } = loginRoute.useSearch()
+  const { redirect } = loginRoute.useSearch<{ redirect?: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation('auth')
   const form = useForm<LoginFormSchema>({
@@ -49,7 +49,7 @@ export function LoginForm({ onCreateAccount }: LoginFormProps) {
       store.set(userAtom, data.user)
 
       if (redirect && !redirect.includes('/login'))
-        navigate({ to: redirect })
+        navigate({ to: redirect as any })
       else
         navigate({ to: '/' })
     })

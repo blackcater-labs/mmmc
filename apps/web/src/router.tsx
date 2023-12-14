@@ -1,25 +1,35 @@
 import { NotFoundRoute, Router } from '@tanstack/react-router'
 import { QueryClient } from '@tanstack/react-query'
 
+import NotFound from './not-found'
 import { rootRoute } from './app/route'
 import { loginRoute } from './app/(auth)/login/route'
-import { dashboardLayoutRoute, dashboardRoute } from './app/(dashboard)/route'
-import NotFound from './not-found'
+import { homeLayoutRoute, homeRoute } from './app/(home)/route'
+import { spaceLayoutRoute } from './app/(home)/space/route'
+import { spaceRoute } from './app/(home)/space/$spaceId/route'
+import { settingsRoute } from './app/(home)/settings/route'
 
 export const queryClient = new QueryClient()
 
 export {
   rootRoute,
   loginRoute,
-  dashboardLayoutRoute,
-  dashboardRoute,
+  homeLayoutRoute,
+  homeRoute,
+  spaceLayoutRoute,
+  spaceRoute,
+  settingsRoute,
 }
 
 export const router = new Router({
   routeTree: rootRoute.addChildren([
     loginRoute, // /login
-    dashboardLayoutRoute.addChildren([ // /
-      dashboardRoute, // /
+    homeLayoutRoute.addChildren([
+      homeRoute, // /
+      spaceLayoutRoute.addChildren([
+        spaceRoute, // /space/:spaceId
+      ]), // /space
+      settingsRoute, // /settings
     ]),
   ]),
   notFoundRoute: new NotFoundRoute({

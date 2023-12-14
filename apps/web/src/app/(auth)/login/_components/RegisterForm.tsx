@@ -33,7 +33,7 @@ interface RegisterFormProps {
 }
 
 export function RegisterForm({ onGoToLogin }: RegisterFormProps) {
-  const { redirect } = loginRoute.useSearch()
+  const { redirect } = loginRoute.useSearch<{ redirect?: string }>()
   const navigate = useNavigate()
   const { t } = useTranslation('auth')
   const form = useForm<RegisterFormSchema>({
@@ -46,7 +46,7 @@ export function RegisterForm({ onGoToLogin }: RegisterFormProps) {
       store.set(userAtom, data.user)
 
       if (redirect && !redirect.includes('/login'))
-        navigate({ to: redirect })
+        navigate({ to: redirect as any })
       else
         navigate({ to: '/' })
     })
