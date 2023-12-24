@@ -6,7 +6,7 @@ import Loading from '@/loading'
 
 export const loginRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/login',
+  path: 'login',
   beforeLoad: ({ location }) => {
     if (store.get(userAtom) && location.href.startsWith('/login'))
       throw redirect({ to: '/' })
