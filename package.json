@@ -32,10 +32,10 @@
     "taze:major": "taze major -r"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.4.6",
-    "@eslint/eslintrc": "^2.1.4",
-    "@types/node": "^20.10.5",
-    "@types/supertest": "^6.0.1",
+    "@antfu/eslint-config": "^2.6.1",
+    "@eslint/eslintrc": "^3.0.0",
+    "@types/node": "^20.10.6",
+    "@types/supertest": "^6.0.2",
     "@vitest/coverage-istanbul": "^1.1.0",
     "@vitest/ui": "^1.1.0",
     "eslint": "^8.56.0",
@@ -43,10 +43,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "eslint-plugin-tailwindcss": "^3.13.0",
+    "eslint-plugin-tailwindcss": "^3.13.1",
     "esno": "^4.0.0",
     "prettier": "^3.1.1",
-    "taze": "^0.13.0",
+    "taze": "^0.13.1",
     "turbo": "^1.11.2",
     "typescript": "^5.3.3",
     "vitest": "^1.1.0"
