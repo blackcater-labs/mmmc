@@ -13,6 +13,10 @@ export interface MmmcOptions {
     level: string
     color: boolean
   }
+
+  jwt: {
+    secret: string
+  }
 }
 
 export interface DBOptions {

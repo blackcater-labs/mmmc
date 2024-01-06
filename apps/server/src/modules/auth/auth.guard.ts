@@ -10,8 +10,6 @@ import { ConfigService } from '@nestjs/config'
 import { Reflector } from '@nestjs/core'
 import { Request } from 'express'
 
-import { UserService } from '../user/user.service'
-
 export const IS_PUBLIC_KEY = 'isPublic'
 export const Public = () => SetMetadata(IS_PUBLIC_KEY, true)
 
@@ -21,7 +19,6 @@ export class AuthGuard implements CanActivate {
     private reflector: Reflector,
     private jwtService: JwtService,
     private configService: ConfigService,
-    private userService: UserService,
   ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -40,7 +37,7 @@ export class AuthGuard implements CanActivate {
     try {
       const payload = await this.jwtService.verifyAsync(
         token,
-        { secret: this.configService.get<string>('SECRET_JWT') },
+        { secret: this.configService.get<string>('mmmc.jwt.secret') },
       )
       request.user = {
         id: payload.sub,

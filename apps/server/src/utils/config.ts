@@ -7,7 +7,7 @@ import { z } from 'zod'
 
 import { paths } from '@/utils/path'
 import { AppConfig, ArgsConfig, DBOptions, EnvConfig, MmmcConfig } from '@/types'
-import { APP_DEFAULT_CONFIG_FILE, APP_DEFAULT_DB_FILE } from '@/constants/app'
+import { APP_DEFAULT_CONFIG_FILE, APP_DEFAULT_DB_FILE, APP_DEFAULT_JWT_SECRET } from '@/constants/app'
 
 import 'dotenv/config'
 
@@ -116,6 +116,9 @@ export function load(): AppConfig {
       log: {
         level: args.logLevel || config.mmmc?.log?.level || envs.logLevel || 'info',
         color: args.color || config.mmmc?.log?.color || envs.color || true,
+      },
+      jwt: {
+        secret: config.mmmc?.jwt?.secret || APP_DEFAULT_JWT_SECRET,
       },
     },
     db: {

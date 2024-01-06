@@ -8,7 +8,9 @@
 #   log:
 #     level: info
 #     color: true
+#   jwt:
+#     secret: 'L9XTKcqzK+3pofRRwfKEK0gGjHB8a66ITQFCELvNrjA='
 
-# # # SQLite configuration
+# # SQLite configuration
 # db:
 #   file: ./db/mmmc.db

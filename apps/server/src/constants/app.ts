@@ -9,3 +9,5 @@ export const APP_DEFAULT_CONFIG_DIR = 'configs'
 export const APP_DEFAULT_CONFIG_FILE = 'mmmc.yaml'
 export const APP_DEFAULT_LOG_FILE = 'mmmc.log'
 export const APP_DEFAULT_DB_FILE = 'mmmc.db'
+
+export const APP_DEFAULT_JWT_SECRET = 'mmmc'

@@ -9,7 +9,7 @@ import { AuthService } from './auth.service'
 import { TokenRespDTO } from './dto/token-resp.dto'
 import { Public } from './auth.guard'
 import { ApiOkResponeCustom } from '@/common/decorators/swagger.decorator'
-import { I18nTranslations } from '@/generated/i18n.generated'
+import { I18nTranslations } from '@/types'
 
 @Controller('/auth')
 @ApiTags('Authentication')
