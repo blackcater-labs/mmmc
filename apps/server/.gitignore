@@ -37,3 +37,7 @@ lerna-debug.log*
 # nestjs
 data/
 log/
+
+# env
+.env
+.env*.local

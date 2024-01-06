@@ -1,0 +1,14 @@
+# Mmmc Configuration
+
+# # Server configuration
+# mmmc:
+#   port: 3000
+#   cluster:
+#     workersCount: 4
+#   log:
+#     level: info
+#     color: true
+
+# # # SQLite configuration
+# db:
+#   file: ./db/mmmc.db

@@ -1,8 +1,6 @@
 import axios from 'axios'
 import { toast } from 'sonner'
 
-import { router } from '@/router'
-import { store, tokenAtom, userAtom } from '@/store'
 import { i18n } from '@/i18n'
 
 const instance = axios.create({

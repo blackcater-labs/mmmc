@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {}
+
+  .dark {}
+}
+
+.layout {
+  display: grid;
+  grid-template-areas: 
+    "logo header header"
+    "nav main main"
+    "nav main main";
+  grid-template-columns: minmax(0, 250px) 1fr 1fr;
+  grid-template-rows: minmax(0, 60px) 1fr 60px;
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.header {
+  grid-area: header;
+}
+
+.nav {
+  grid-area: nav;
+}
+
+.main {
+  grid-area: main;
+}

@@ -8,7 +8,7 @@ import { RegisterDTO } from './dto/register.dto'
 import { AuthService } from './auth.service'
 import { TokenRespDTO } from './dto/token-resp.dto'
 import { Public } from './auth.guard'
-import { ApiOkResponeCustom } from '@/decorator/swagger.decorator'
+import { ApiOkResponeCustom } from '@/common/decorators/swagger.decorator'
 import { I18nTranslations } from '@/generated/i18n.generated'
 
 @Controller('/auth')

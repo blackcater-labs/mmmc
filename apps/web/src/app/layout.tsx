@@ -1,15 +1,26 @@
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { Outlet } from '@tanstack/react-router'
-import { Toaster } from 'sonner'
+import type { Metadata } from 'next'
 
-export default function RootLayout() {
+import { Providers } from './Providers'
+import { Toaster } from '@/components/Toaster'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'Krawl',
+}
+
+interface RootLayoutProps {
+  children: React.ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <>
-      <Outlet />
-      <Toaster position="bottom-center" />
-      {import.meta.env.DEV && <TanStackRouterDevtools initialIsOpen={false} />}
-      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
-    </>
+    <html lang="en">
+      <body className="bg-background text-foreground">
+        <Providers>
+          {children}
+        </Providers>
+        <Toaster />
+      </body>
+    </html>
   )
 }

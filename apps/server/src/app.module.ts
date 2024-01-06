@@ -10,7 +10,7 @@ import { PrismaModule } from './modules/prisma/prisma.module'
 import { LoggerModule } from './modules/logger/logger.module'
 import defaultConfig from './config/default'
 import { isProd } from './utils'
-import { BizInterceptor } from './interceptors/biz.interceptor'
+import { BizInterceptor } from './common/interceptors/biz.interceptor'
 
 @Module({
   imports: [

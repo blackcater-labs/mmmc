@@ -39,7 +39,7 @@
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.27",
     "@iconify-json/logos": "^1.1.42",
-    "@iconify-json/mdi": "^1.1.63",
+    "@iconify-json/mdi": "^1.1.64",
     "@iconify-json/ph": "^1.1.9",
     "@iconify-json/simple-icons": "^1.1.86",
     "@iconify-json/twemoji": "^1.1.15",
@@ -49,9 +49,9 @@
     "fs-extra": "^11.2.0",
     "rimraf": "^5.0.5",
     "ts-json-schema-generator": "^1.5.0",
-    "unocss": "^0.58.2",
+    "unocss": "^0.58.3",
     "unplugin-vue-components": "^0.26.0",
-    "vite": "^5.0.10",
+    "vite": "^5.0.11",
     "vitepress": "1.0.0-rc.31"
   }
 }
