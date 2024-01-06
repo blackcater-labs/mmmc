@@ -2,18 +2,20 @@ import { NestFactory } from '@nestjs/core'
 import { ConfigService } from '@nestjs/config'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { ValidationPipe } from '@nestjs/common'
-import { WinstonModule } from 'nest-winston'
+import { Logger } from 'nestjs-pino'
 
-import { isProd } from './utils'
 import { AppModule } from './app.module'
-import { createLoggerInstance } from './modules/logger/logger'
+import { isProd } from '@/utils/env'
 
 async function bootstrap() {
-  const winstonInstance = createLoggerInstance()
   const app = await NestFactory.create(AppModule, {
-    logger: WinstonModule.createLogger({ instance: winstonInstance }),
+    bufferLogs: true,
   })
-  const configService = app.get(ConfigService)
+  const config = app.get(ConfigService)
+  const logger = app.get(Logger)
+
+  app.useLogger(logger)
+  app.flushLogs()
 
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe({ disableErrorMessages: isProd }))
@@ -28,7 +30,9 @@ async function bootstrap() {
       .build(),
   ))
 
-  await app.listen(configService.get<string>('PORT'))
+  logger.log(`Mmmc is running on port ${config.get('mmmc.port')}`)
+
+  await app.listen(config.get('mmmc.port'))
 }
 
 bootstrap()

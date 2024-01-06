@@ -28,7 +28,9 @@ export interface EnvConfig {
   clusterWorkers?: number // CLUSTER_WORKERS
 
   // db, DB_FILE
-  dbFile?: string
+  db?: {
+    file?: string
+  }
 }
 
 export interface ArgsConfig extends EnvConfig {

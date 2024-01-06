@@ -5,6 +5,7 @@ import fs from 'node:fs'
 
 import { isDev } from '@/utils/env'
 import { Paths } from '@/types'
+import { APP_DEFAULT_BACKUP_DIR, APP_DEFAULT_CONFIG_DIR, APP_DEFAULT_DATA_DIR, APP_DEFAULT_DB_DIR, APP_DEFAULT_LOG_DIR } from '@/constants/app'
 
 function _paths(): Paths {
   const homedir = os.homedir()
@@ -16,19 +17,19 @@ function _paths(): Paths {
     temp: tmpdir,
     data: isDev
       ? tryExists(cwd, 'data')
-      : tryExists(homedir, '.mmmc'),
+      : tryExists(homedir, APP_DEFAULT_DATA_DIR),
     configs: isDev
       ? tryExists(cwd, 'config')
-      : tryExists(homedir, '.mmmc/configs'),
+      : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_CONFIG_DIR}`),
     logs: isDev
-      ? tryExists(cwd, 'data/logs')
-      : tryExists(homedir, '.mmmc/logs'),
+      ? tryExists(cwd, `data/${APP_DEFAULT_LOG_DIR}`)
+      : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_LOG_DIR}`),
     db: isDev
-      ? tryExists(cwd, 'data/db')
-      : tryExists(homedir, '.mmmc/db'),
+      ? tryExists(cwd, `data/${APP_DEFAULT_DB_DIR}`)
+      : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_DB_DIR}`),
     backups: isDev
-      ? tryExists(cwd, 'data/backups')
-      : tryExists(homedir, '.mmmc/backups'),
+      ? tryExists(cwd, `ata/${APP_DEFAULT_BACKUP_DIR}`)
+      : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_BACKUP_DIR}`),
   }
 }
 
