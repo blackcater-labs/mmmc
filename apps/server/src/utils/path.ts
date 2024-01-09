@@ -28,7 +28,7 @@ function _paths(): Paths {
       ? tryExists(cwd, `data/${APP_DEFAULT_DB_DIR}`)
       : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_DB_DIR}`),
     backups: isDev
-      ? tryExists(cwd, `ata/${APP_DEFAULT_BACKUP_DIR}`)
+      ? tryExists(cwd, `data/${APP_DEFAULT_BACKUP_DIR}`)
       : tryExists(homedir, `${APP_DEFAULT_DATA_DIR}/${APP_DEFAULT_BACKUP_DIR}`),
   }
 }

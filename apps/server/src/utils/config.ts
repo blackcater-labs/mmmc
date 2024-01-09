@@ -106,7 +106,7 @@ export function load(): AppConfig {
 
   _config = {
     mmmc: {
-      port: args.port || config.mmmc?.port || envs.port || 3000,
+      port: args.port || config.mmmc?.port || envs.port || 8000,
       timeZone: args.timeZone || config.mmmc?.timeZone || envs.timeZone || 'Asia/Shanghai',
       cluster: cluster
         ? {
