@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2018",
-    "jsx": "preserve",
+    "target": "ESNext",
+    "jsx": "react-jsx",
     "lib": ["ESNext"],
+    "moduleDetection": "force",
     "module": "ESNext",
-    "moduleResolution": "node",
-    "paths": {},
-    "resolveJsonModule": true,
-    "types": ["node"],
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
     "strict": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+
+    /* Linting */
     "skipLibCheck": true
-  },
-  "exclude": ["**/node_modules/**"]
+  }
 }

@@ -1,36 +1,15 @@
-# @mmmc/server
+# server
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+To install dependencies:
 
 ```bash
-$ pnpm install
+bun install
 ```
 
-## Running the app
+To run:
 
 ```bash
-# watch mode
-$ pnpm run dev
-
-# production mode
-$ pnpm run start
+bun run src/index.ts
 ```
 
-## Test
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+This project was created using `bun init` in bun v1.0.25. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

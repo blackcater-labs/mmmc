@@ -19,19 +19,10 @@ export default antfu(
     rules: {
       'tailwindcss/no-custom-classname': 'off',
     },
+    settings: {
+      tailwindcss: {
+        callees: ['classnames', 'clsx', 'ctl', 'cn', 'tv', 'tm'],
+      },
+    },
   }),
-  {
-    files: ['apps/web/**/*.{ts,tsx}'],
-    rules: {
-      'react-refresh/only-export-components': 'off',
-      'node/prefer-global/process': 'off',
-    },
-  },
-  {
-    files: ['apps/server/**/*.ts'],
-    rules: {
-      'ts/consistent-type-imports': 'off',
-      'node/prefer-global/process': 'off',
-    },
-  },
 )
