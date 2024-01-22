@@ -1,0 +1,27 @@
+{
+  "name": "@mmmc/ui-theme",
+  "version": "0.0.1",
+  "private": true,
+  "description": "TailwindCSS Plugin for UI theme",
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/blackcater-labs/mmmc/tree/main/packages/theme#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackcater-labs/mmmc.git",
+    "directory": "packages/theme"
+  },
+  "bugs": {
+    "url": "https://github.com/blackcater-labs/mmmc/issues"
+  },
+  "keywords": [
+    "tailwindcss"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
