@@ -1,18 +1,24 @@
 // Drizzle Schema for Sqlite Database
 
 import { randomUUID } from 'node:crypto'
-import { index, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
+import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
+import { sql } from 'drizzle-orm'
+
+import type { Grade } from '@/types'
 
 export const users = sqliteTable(
   'users',
   {
     id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
+    name: text('name').notNull(),
     email: text('email').notNull(),
     password: text('password').notNull(),
     role: text('role', { enum: ['admin', 'user'] }).default('user'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    uniqIdxEmail: unique('uniq_idx_email').on(t.id),
+    uniqIdxEmail: unique('users_uniq_idx_email').on(t.id),
   }),
 )
 
@@ -23,10 +29,12 @@ export const libraries = sqliteTable(
     userId: text('user_id').notNull().references(() => users.id),
     name: text('name').notNull(),
     path: text('path').notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    uniqIdxUserName: unique('uniq_idx_user_name').on(t.userId, t.name),
-    idxUserId: index('idx_user_id').on(t.userId),
+    uniqIdxUserName: unique('libraries_uniq_idx_user_name').on(t.userId, t.name),
+    idxUserId: index('libraries_idx_user_id').on(t.userId),
   }),
 )
 
@@ -35,9 +43,19 @@ export const items = sqliteTable(
   {
     id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
     libraryId: text('library_id').notNull().references(() => libraries.id),
+    title: text('title').notNull(),
+    description: text('description'),
+    cover: text('cover'),
+    isbn: text('isbn'), // book
+    pageCount: integer('page_count'), // book
+    wordCount: integer('word_count'), // novel
+    grade: text('grade', { mode: 'json' }).$type<Grade>(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    publishedAt: integer('published_at', { mode: 'timestamp' }),
   },
   t => ({
-    idxLibraryId: index('idx_library_id').on(t.libraryId),
+    idxLibraryId: index('items_idx_library_id').on(t.libraryId),
   }),
 )
 
@@ -47,28 +65,60 @@ export const chapters = sqliteTable(
     id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
     itemId: text('item_id').notNull().references(() => items.id),
     title: text('title').notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    idxItemId: index('idx_item_id').on(t.itemId),
+    idxItemId: index('chapters_idx_item_id').on(t.itemId),
   }),
 )
 
-export const metadatas = sqliteTable(
-  'metadatas',
+export const tags = sqliteTable(
+  'tags',
   {
     id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
+    parentId: text('parent_id'),
     libraryId: text('library_id').notNull().references(() => libraries.id),
-    itemId: text('item_id').notNull().references(() => items.id),
+    name: text('name').notNull(),
+    type: integer('type').notNull(),
+    thumb: text('avatar'),
+    description: text('description'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    idxLibraryId: index('idx_library_id').on(t.libraryId),
-    idxItemId: index('idx_item_id').on(t.itemId),
+    parentRef: foreignKey({
+      name: 'tags_fk_parent_id',
+      columns: [t.parentId],
+      foreignColumns: [t.id],
+    }),
+    idxLibraryType: index('tags_idx_library_type').on(t.libraryId, t.type),
+    idxType: index('tags_idx_type').on(t.type),
+  }),
+)
+
+export const taggins = sqliteTable(
+  'taggings',
+  {
+    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
+    itemId: text('item_id').notNull().references(() => items.id),
+    tagId: text('tag_id').notNull().references(() => tags.id),
+    index: integer('index').notNull().default(0),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  },
+  t => ({
+    uniqIdxItemTag: unique('taggings_uniq_idx_item_tag').on(t.itemId, t.tagId),
+    idxItemId: index('taggings_idx_item_id').on(t.itemId),
+    idxTagId: index('taggings_idx_tag_id').on(t.tagId),
   }),
 )
 
 export const settings = sqliteTable(
   'settings',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
+    userId: text('user_id').primaryKey().notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
 )

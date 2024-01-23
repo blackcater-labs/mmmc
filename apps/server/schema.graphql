@@ -22,10 +22,25 @@ type Library {
   createdAt: Date!
 }
 
+interface Metadata {
+  id: ID!
+  createdAt: Date!
+}
+
+type Autrhor implements Metadata {
+  id: ID!
+  createdAt: Date!
+  name: String!
+  avatar: String
+}
+
 """Item is a book, comic or novel"""
 interface Item {
   id: ID!
   title: String!
+  description: String!
+  authors: [Author!]!
+
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
@@ -35,6 +50,7 @@ interface Item {
 type Manga implements Item {
   id: ID!
   title: String!
+  description: String!
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
@@ -44,6 +60,7 @@ type Manga implements Item {
 type Book implements Item {
   id: ID!
   title: String!
+  description: String!
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
@@ -54,6 +71,7 @@ type Book implements Item {
 type Novel implements Item {
   id: ID!
   title: String!
+  description: String!
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
