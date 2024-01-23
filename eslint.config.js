@@ -25,4 +25,10 @@ export default antfu(
       },
     },
   }),
+  {
+    files: ['apps/server/**/*.ts'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 )
