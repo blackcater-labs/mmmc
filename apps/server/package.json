@@ -25,16 +25,21 @@
   ],
   "module": "src/index.ts",
   "scripts": {
-    "dev": "bun --watch src/index.ts",
+    "dev": "DEBUG=mmmc:* bun --watch src/index.ts",
     "build": "bun build src/index.ts --target=bun --outfile=dist/index.js",
     "start": "NODE_ENV=production bun dist/index.js",
     "test": "bun test"
   },
   "dependencies": {
-    "elysia": "^0.8.9"
+    "cac": "^6.7.14",
+    "debug": "^4.3.4",
+    "deepmerge": "^4.3.1",
+    "elysia": "^0.8.9",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@types/bun": "^1.0.3",
+    "@types/debug": "^4.1.12",
     "typescript": "^5.3.3"
   }
 }
