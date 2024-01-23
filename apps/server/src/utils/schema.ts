@@ -66,12 +66,20 @@ export const chapters = sqliteTable(
   'chapters',
   {
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    parentId: integer('id', { mode: 'number' }),
     itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
-    title: text('title').notNull(),
+    name: text('title').notNull(),
+    cover: text('cover'),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    publishedAt: integer('published_at', { mode: 'timestamp' }),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
+    parentRef: foreignKey({
+      name: 'chapters_fk_parent_id',
+      columns: [t.parentId],
+      foreignColumns: [t.id],
+    }),
     idxItem: index('chapters_idx_item').on(t.itemId),
   }),
 )
