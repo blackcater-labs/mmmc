@@ -25,23 +25,31 @@
   ],
   "module": "src/index.ts",
   "scripts": {
+    "postinstall": "bun run generate",
     "dev": "DEBUG=mmmc:* bun --watch src/index.ts",
     "build": "bun build src/index.ts --target=bun --outfile=dist/index.js",
     "start": "NODE_ENV=production bun dist/index.js",
     "migrate": "bun run src/migrate.ts",
     "test": "bun test",
+    "generate": "graphql-codegen",
     "db:push": "drizzle-kit push:sqlite",
     "db:generate": "drizzle-kit generate:sqlite"
   },
   "dependencies": {
+    "@elysiajs/graphql-yoga": "^0.8.0",
     "cac": "^6.7.14",
     "debug": "^4.3.4",
     "deepmerge": "^4.3.1",
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.9",
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^5.1.1",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@types/better-sqlite3": "^7.6.8",
     "@types/bun": "^1.0.3",
     "@types/debug": "^4.1.12",

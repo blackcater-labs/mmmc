@@ -1,0 +1,3 @@
+projects:
+  server:
+    schema: ./apps/server/schema.graphql
