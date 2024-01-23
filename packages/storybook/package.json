@@ -28,6 +28,7 @@
     "build": "storybook build"
   },
   "devDependencies": {
+    "@mmmc/theme": "workspace:*",
     "@storybook/addon-a11y": "^7.6.10",
     "@storybook/addon-essentials": "^7.6.10",
     "@storybook/addon-interactions": "^7.6.10",
@@ -54,6 +55,7 @@
     "storybook-addon-pseudo-states": "^2.1.2",
     "storybook-dark-mode": "^3.0.3",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
     "vite": "4"
   }
 }

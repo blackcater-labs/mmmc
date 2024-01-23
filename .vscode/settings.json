@@ -1,5 +1,0 @@
-{
-  "vitest.include": [
-    "apps/**/*.{test,spec,e2e-test,e2e-spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"
-  ]
-}

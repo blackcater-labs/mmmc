@@ -1,4 +1,6 @@
 import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
+import { mmmc } from '@mmmc/theme'
 
 const theme: Config = {
   darkMode: ['class'],
@@ -9,7 +11,10 @@ const theme: Config = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    mmmc(),
+    animate,
+  ],
 }
 
 export default theme
