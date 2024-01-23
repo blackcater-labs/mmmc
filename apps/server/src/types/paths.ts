@@ -7,6 +7,11 @@ export interface Paths {
   contentDir: string
 
   /**
+   * Migrations directory.
+   */
+  migrationsDir: string
+
+  /**
    * Used to store program data.
    */
   dataDir: string

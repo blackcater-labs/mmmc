@@ -18,6 +18,7 @@ function genPaths(paths: Partial<Paths> = {}, regen: boolean = false): Paths {
     return _paths
 
   const cwd = paths.cwd || process.cwd()
+  const migrationsDir = ensureDir(paths.migrationsDir || `${cwd}/migrations`)
   const contentDir = ensureDir(paths.contentDir || `${cwd}/content`)
   const dataDir = ensureDir(paths.dataDir || `${cwd}/data`)
   const logsDir = ensureDir(paths.logsDir || `${dataDir}/logs`)
@@ -27,6 +28,7 @@ function genPaths(paths: Partial<Paths> = {}, regen: boolean = false): Paths {
 
   return _paths = {
     cwd,
+    migrationsDir,
     contentDir,
     dataDir,
     logsDir,

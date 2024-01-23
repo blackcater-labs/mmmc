@@ -28,18 +28,25 @@
     "dev": "DEBUG=mmmc:* bun --watch src/index.ts",
     "build": "bun build src/index.ts --target=bun --outfile=dist/index.js",
     "start": "NODE_ENV=production bun dist/index.js",
-    "test": "bun test"
+    "migrate": "bun run src/migrate.ts",
+    "test": "bun test",
+    "db:push": "drizzle-kit push:sqlite",
+    "db:generate": "drizzle-kit generate:sqlite"
   },
   "dependencies": {
     "cac": "^6.7.14",
     "debug": "^4.3.4",
     "deepmerge": "^4.3.1",
+    "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.9",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
     "@types/bun": "^1.0.3",
     "@types/debug": "^4.1.12",
+    "better-sqlite3": "^9.3.0",
+    "drizzle-kit": "^0.20.13",
     "typescript": "^5.3.3"
   }
 }
