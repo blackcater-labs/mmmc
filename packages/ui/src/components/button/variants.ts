@@ -34,7 +34,7 @@ const button = tv({
       none: 'rounded-none',
     },
     isIconOnly: {
-      true: '',
+      true: 'p-0',
     },
   },
   defaultVariants: {
@@ -179,6 +179,21 @@ const button = tv({
       variant: 'ghost',
       color: 'info',
       class: 'hover:bg-info-mellow',
+    },
+    {
+      isIconOnly: true,
+      size: 'sm',
+      class: 'size-8',
+    },
+    {
+      isIconOnly: true,
+      size: 'md',
+      class: 'size-9',
+    },
+    {
+      isIconOnly: true,
+      size: 'lg',
+      class: 'size-10',
     },
   ],
 })
