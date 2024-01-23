@@ -17,9 +17,19 @@ export type Scalars = {
   Date: { input: any; output: any; }
 };
 
+export type Author = Metadata & {
+  __typename?: 'Author';
+  avatar?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+};
+
+/** PDF Books */
 export type Book = Item & {
   __typename?: 'Book';
   createdAt: Scalars['Date']['output'];
+  description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   isbn?: Maybe<Scalars['String']['output']>;
   publishedAt?: Maybe<Scalars['Date']['output']>;
@@ -27,14 +37,18 @@ export type Book = Item & {
   updatedAt?: Maybe<Scalars['Date']['output']>;
 };
 
+/** Item is a book, comic or novel */
 export type Item = {
+  authors: Array<Author>;
   createdAt: Scalars['Date']['output'];
+  description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   publishedAt?: Maybe<Scalars['Date']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['Date']['output']>;
 };
 
+/** Library for storing items */
 export type Library = {
   __typename?: 'Library';
   createdAt: Scalars['Date']['output'];
@@ -42,18 +56,27 @@ export type Library = {
   name: Scalars['String']['output'];
 };
 
+/** Mangas / Manhwas / Manhuas / Comics */
 export type Manga = Item & {
   __typename?: 'Manga';
   createdAt: Scalars['Date']['output'];
+  description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   publishedAt?: Maybe<Scalars['Date']['output']>;
   title: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['Date']['output']>;
 };
 
+export type Metadata = {
+  createdAt: Scalars['Date']['output'];
+  id: Scalars['ID']['output'];
+};
+
+/** Epub/Txt Novels */
 export type Novel = Item & {
   __typename?: 'Novel';
   createdAt: Scalars['Date']['output'];
+  description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   publishedAt?: Maybe<Scalars['Date']['output']>;
   title: Scalars['String']['output'];
@@ -62,12 +85,19 @@ export type Novel = Item & {
 
 export type Query = {
   __typename?: 'Query';
+  /** Login user info */
   currentUser: User;
+  /** Search item by id */
   item?: Maybe<Item>;
+  /** Search items */
   items: Array<Item>;
+  /** Search libraries */
   libraries: Array<Library>;
+  /** Search library by id */
   library?: Maybe<Library>;
+  /** Search user by id */
   user?: Maybe<User>;
+  /** Search users */
   users: Array<User>;
 };
 
@@ -104,12 +134,14 @@ export type QueryUsersArgs = {
   offset?: InputMaybe<Scalars['Int']['input']>;
 };
 
+/** User Information */
 export type User = {
   __typename?: 'User';
+  avatar?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['Date']['output'];
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
-  libraries: Array<Library>;
+  name: Scalars['String']['output'];
   role: UserRole;
 };
 
@@ -189,10 +221,12 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping of interface types */
 export type ResolversInterfaceTypes<RefType extends Record<string, unknown>> = {
   Item: ( Book ) | ( Manga ) | ( Novel );
+  Metadata: ( Author );
 };
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Author: ResolverTypeWrapper<Author>;
   Book: ResolverTypeWrapper<Book>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Date: ResolverTypeWrapper<Scalars['Date']['output']>;
@@ -201,6 +235,7 @@ export type ResolversTypes = {
   Item: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Item']>;
   Library: ResolverTypeWrapper<Library>;
   Manga: ResolverTypeWrapper<Manga>;
+  Metadata: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Metadata']>;
   Novel: ResolverTypeWrapper<Novel>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -210,6 +245,7 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Author: Author;
   Book: Book;
   Boolean: Scalars['Boolean']['output'];
   Date: Scalars['Date']['output'];
@@ -218,14 +254,24 @@ export type ResolversParentTypes = {
   Item: ResolversInterfaceTypes<ResolversParentTypes>['Item'];
   Library: Library;
   Manga: Manga;
+  Metadata: ResolversInterfaceTypes<ResolversParentTypes>['Metadata'];
   Novel: Novel;
   Query: {};
   String: Scalars['String']['output'];
   User: User;
 };
 
+export type AuthorResolvers<ContextType = any, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = {
+  avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type BookResolvers<ContextType = any, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = {
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   isbn?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   publishedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
@@ -240,7 +286,9 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
 
 export type ItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['Item'] = ResolversParentTypes['Item']> = {
   __resolveType: TypeResolveFn<'Book' | 'Manga' | 'Novel', ParentType, ContextType>;
+  authors?: Resolver<Array<ResolversTypes['Author']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   publishedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -256,6 +304,7 @@ export type LibraryResolvers<ContextType = any, ParentType extends ResolversPare
 
 export type MangaResolvers<ContextType = any, ParentType extends ResolversParentTypes['Manga'] = ResolversParentTypes['Manga']> = {
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   publishedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -263,8 +312,15 @@ export type MangaResolvers<ContextType = any, ParentType extends ResolversParent
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type MetadataResolvers<ContextType = any, ParentType extends ResolversParentTypes['Metadata'] = ResolversParentTypes['Metadata']> = {
+  __resolveType: TypeResolveFn<'Author', ParentType, ContextType>;
+  createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+};
+
 export type NovelResolvers<ContextType = any, ParentType extends ResolversParentTypes['Novel'] = ResolversParentTypes['Novel']> = {
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   publishedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -283,20 +339,23 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  libraries?: Resolver<Array<ResolversTypes['Library']>, ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   role?: Resolver<ResolversTypes['UserRole'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
+  Author?: AuthorResolvers<ContextType>;
   Book?: BookResolvers<ContextType>;
   Date?: GraphQLScalarType;
   Item?: ItemResolvers<ContextType>;
   Library?: LibraryResolvers<ContextType>;
   Manga?: MangaResolvers<ContextType>;
+  Metadata?: MetadataResolvers<ContextType>;
   Novel?: NovelResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;

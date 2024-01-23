@@ -27,7 +27,7 @@ interface Metadata {
   createdAt: Date!
 }
 
-type Autrhor implements Metadata {
+type Author implements Metadata {
   id: ID!
   createdAt: Date!
   name: String!

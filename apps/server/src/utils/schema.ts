@@ -1,6 +1,5 @@
 // Drizzle Schema for Sqlite Database
 
-import { randomUUID } from 'node:crypto'
 import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 import { sql } from 'drizzle-orm'
 
@@ -9,7 +8,7 @@ import type { Grade } from '@/types'
 export const users = sqliteTable(
   'users',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
     email: text('email').notNull(),
     password: text('password').notNull(),
@@ -25,8 +24,8 @@ export const users = sqliteTable(
 export const libraries = sqliteTable(
   'libraries',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
-    userId: text('user_id').notNull().references(() => users.id),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    userId: integer('id', { mode: 'number' }).notNull().references(() => users.id),
     name: text('name').notNull(),
     path: text('path').notNull(),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
@@ -41,8 +40,8 @@ export const libraries = sqliteTable(
 export const items = sqliteTable(
   'items',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
-    libraryId: text('library_id').notNull().references(() => libraries.id),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    libraryId: integer('id', { mode: 'number' }).notNull().references(() => libraries.id),
     title: text('title').notNull(),
     description: text('description'),
     cover: text('cover'),
@@ -62,8 +61,8 @@ export const items = sqliteTable(
 export const chapters = sqliteTable(
   'chapters',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
-    itemId: text('item_id').notNull().references(() => items.id),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
     title: text('title').notNull(),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
@@ -76,9 +75,9 @@ export const chapters = sqliteTable(
 export const tags = sqliteTable(
   'tags',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
-    parentId: text('parent_id'),
-    libraryId: text('library_id').notNull().references(() => libraries.id),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    parentId: integer('id', { mode: 'number' }),
+    libraryId: integer('id', { mode: 'number' }).notNull().references(() => libraries.id),
     name: text('name').notNull(),
     type: integer('type').notNull(),
     thumb: text('avatar'),
@@ -100,9 +99,9 @@ export const tags = sqliteTable(
 export const taggins = sqliteTable(
   'taggings',
   {
-    id: text('id').primaryKey().notNull().$defaultFn(() => randomUUID()),
-    itemId: text('item_id').notNull().references(() => items.id),
-    tagId: text('tag_id').notNull().references(() => tags.id),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
+    tagId: integer('id', { mode: 'number' }).notNull().references(() => tags.id),
     index: integer('index').notNull().default(0),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
@@ -114,11 +113,22 @@ export const taggins = sqliteTable(
   }),
 )
 
+export const playlists = sqliteTable(
+  'playlists',
+  {
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  },
+)
+
 export const settings = sqliteTable(
   'settings',
   {
-    userId: text('user_id').primaryKey().notNull(),
+    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    userId: integer('id', { mode: 'number' }).notNull(),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
+  t => ({
+    uniqUserId: unique('settings_uniq_user_id').on(t.userId),
+  }),
 )
