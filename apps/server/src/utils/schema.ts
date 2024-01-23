@@ -13,6 +13,8 @@ export const users = sqliteTable(
     email: text('email').notNull(),
     password: text('password').notNull(),
     role: text('role', { enum: ['admin', 'user'] }).default('user'),
+    historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // global history playlist
+    favoritePlaylistId: integer('favorite_playlist_id', { mode: 'number' }).notNull(), // global favorite playlist
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
@@ -28,12 +30,14 @@ export const libraries = sqliteTable(
     userId: integer('id', { mode: 'number' }).notNull().references(() => users.id),
     name: text('name').notNull(),
     path: text('path').notNull(),
+    historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // library history playlist
+    favoritePlaylistId: integer('favorite_playlist_id', { mode: 'number' }).notNull(), // library favorite playlist
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
     uniqIdxUserName: unique('libraries_uniq_idx_user_name').on(t.userId, t.name),
-    idxUserId: index('libraries_idx_user_id').on(t.userId),
+    idxUser: index('libraries_idx_user').on(t.userId),
   }),
 )
 
@@ -54,7 +58,7 @@ export const items = sqliteTable(
     publishedAt: integer('published_at', { mode: 'timestamp' }),
   },
   t => ({
-    idxLibraryId: index('items_idx_library_id').on(t.libraryId),
+    idxLibrary: index('items_idx_library').on(t.libraryId),
   }),
 )
 
@@ -68,7 +72,7 @@ export const chapters = sqliteTable(
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    idxItemId: index('chapters_idx_item_id').on(t.itemId),
+    idxItem: index('chapters_idx_item').on(t.itemId),
   }),
 )
 
@@ -99,7 +103,6 @@ export const tags = sqliteTable(
 export const taggins = sqliteTable(
   'taggings',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
     itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
     tagId: integer('id', { mode: 'number' }).notNull().references(() => tags.id),
     index: integer('index').notNull().default(0),
@@ -108,8 +111,8 @@ export const taggins = sqliteTable(
   },
   t => ({
     uniqIdxItemTag: unique('taggings_uniq_idx_item_tag').on(t.itemId, t.tagId),
-    idxItemId: index('taggings_idx_item_id').on(t.itemId),
-    idxTagId: index('taggings_idx_tag_id').on(t.tagId),
+    idxItem: index('taggings_idx_item').on(t.itemId),
+    idxTag: index('taggings_idx_tag').on(t.tagId),
   }),
 )
 
@@ -117,7 +120,36 @@ export const playlists = sqliteTable(
   'playlists',
   {
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    userId: integer('id', { mode: 'number' }).notNull().references(() => users.id),
+    libraryId: integer('id', { mode: 'number' }).references(() => libraries.id),
+    name: text('name').notNull(),
+    type: text('type', { enum: ['history', 'favorite', 'normal'] }).notNull().default('normal'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
+  t => ({
+    idxUser: index('playlists_idx_user').on(t.userId),
+    idxLibrary: index('playlists_idx_library').on(t.libraryId),
+  }),
+)
+
+export const playlistItems = sqliteTable(
+  'playlist_items',
+  {
+    playlistId: integer('id', { mode: 'number' }).notNull().references(() => playlists.id),
+    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
+    historyBookPageNo: integer('history_book_page_no'),
+    historyNovelChapterNo: integer('history_novel_chapter_no'),
+    historyComicChapterId: integer('history_comic_chapter_id'),
+    historyComicPageNo: integer('history_comic_page_no'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+  },
+  t => ({
+    uniqIdxPlaylistItem: unique('playlist_items_uniq_idx_playlist_item').on(t.playlistId, t.itemId),
+    idxPlaylist: index('playlist_items_idx_playlist').on(t.playlistId),
+    idxItem: index('playlist_items_idx_item').on(t.itemId),
+  }),
 )
 
 export const settings = sqliteTable(
@@ -129,6 +161,6 @@ export const settings = sqliteTable(
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    uniqUserId: unique('settings_uniq_user_id').on(t.userId),
+    uniqUser: unique('settings_uniq_user').on(t.userId),
   }),
 )
