@@ -8,11 +8,12 @@ enum UserRole {
 """User Information"""
 type User {
   id: ID!
-  email: String!
   name: String!
+  email: String!
   role: UserRole!
   avatar: String
   createdAt: Date!
+  updatedAt: Date
 }
 
 """Library for storing items"""
@@ -20,18 +21,7 @@ type Library {
   id: ID!
   name: String!
   createdAt: Date!
-}
-
-interface Metadata {
-  id: ID!
-  createdAt: Date!
-}
-
-type Author implements Metadata {
-  id: ID!
-  createdAt: Date!
-  name: String!
-  avatar: String
+  updatedAt: Date
 }
 
 """Item is a book, comic or novel"""
@@ -39,11 +29,11 @@ interface Item {
   id: ID!
   title: String!
   description: String!
-  authors: [Author!]!
-
+  cover: String
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
+  chapters: [Chapter!]!
 }
 
 """Mangas / Manhwas / Manhuas / Comics"""
@@ -51,9 +41,11 @@ type Manga implements Item {
   id: ID!
   title: String!
   description: String!
+  cover: String
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
+  chapters: [Chapter!]!
 }
 
 """PDF Books"""
@@ -61,10 +53,14 @@ type Book implements Item {
   id: ID!
   title: String!
   description: String!
+  cover: String
   createdAt: Date!
   publishedAt: Date
   updatedAt: Date
+  chapters: [Chapter!]!
+
   isbn: String
+  pageCount: Int
 }
 
 """Epub/Txt Novels"""
@@ -72,8 +68,36 @@ type Novel implements Item {
   id: ID!
   title: String!
   description: String!
+  cover: String
   createdAt: Date!
   publishedAt: Date
+  updatedAt: Date
+  chapters: [Chapter!]!
+
+  wordCount: Int
+}
+
+type Chapter {
+  id: ID!
+  parentId: Int
+  name: String!
+  cover: String
+  createdAt: Date!
+  publishedAt: Date
+  updatedAt: Date
+}
+
+enum PlaylistType {
+  HISTORY
+  FAVORITE
+  NORMAL
+}
+
+type Playlist {
+  id: ID!
+  name: String!
+  type: PlaylistType!
+  createdAt: Date!
   updatedAt: Date
 }
 
@@ -90,12 +114,9 @@ type Query {
   """Search library by id"""
   library(id: ID!): Library
 
-  """Search libraries"""
-  libraries(limit: Int = 10, offset: Int = 0): [Library!]!
-
   """Search item by id"""
   item(id: ID!): Item
 
-  """Search items"""
-  items(limit: Int = 10, offset: Int = 0): [Item!]!
+  """Search playlist by id"""
+  playlist(id: ID!): Playlist
 }

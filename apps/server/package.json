@@ -36,14 +36,18 @@
     "db:generate": "drizzle-kit generate:sqlite"
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "^0.0.16",
+    "@elysiajs/cors": "^0.8.0",
     "@elysiajs/graphql-yoga": "^0.8.0",
     "cac": "^6.7.14",
     "debug": "^4.3.4",
     "deepmerge": "^4.3.1",
     "drizzle-orm": "^0.29.3",
     "elysia": "^0.8.9",
+    "elysia-rate-limit": "^2.0.1",
     "graphql": "^16.8.1",
     "graphql-yoga": "^5.1.1",
+    "pino-pretty": "^10.3.1",
     "yaml": "^2.3.4"
   },
   "devDependencies": {

@@ -3,8 +3,6 @@
 import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 import { sql } from 'drizzle-orm'
 
-import type { Grade } from '@/types'
-
 export const users = sqliteTable(
   'users',
   {
@@ -52,7 +50,6 @@ export const items = sqliteTable(
     isbn: text('isbn'), // book
     pageCount: integer('page_count'), // book
     wordCount: integer('word_count'), // novel
-    grade: text('grade', { mode: 'json' }).$type<Grade>(),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
     publishedAt: integer('published_at', { mode: 'timestamp' }),
@@ -113,7 +110,7 @@ export const taggins = sqliteTable(
   {
     itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
     tagId: integer('id', { mode: 'number' }).notNull().references(() => tags.id),
-    index: integer('index').notNull().default(0),
+    order: integer('order').notNull().default(0),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
