@@ -15,11 +15,7 @@ export async function setup(config: AppConfig) {
   app
     .use(yoga({
       typeDefs: await schema.text(),
-      resolvers: {
-        Query: {
-          hi: () => 'Hello from Elysia',
-        },
-      },
+      resolvers: {},
     }))
 
   return app

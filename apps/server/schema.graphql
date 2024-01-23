@@ -1,3 +1,83 @@
+scalar Date
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+"""User Information"""
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  role: UserRole!
+  avatar: String
+  createdAt: Date!
+}
+
+"""Library for storing items"""
+type Library {
+  id: ID!
+  name: String!
+  createdAt: Date!
+}
+
+"""Item is a book, comic or novel"""
+interface Item {
+  id: ID!
+  title: String!
+  createdAt: Date!
+  publishedAt: Date
+  updatedAt: Date
+}
+
+"""Mangas / Manhwas / Manhuas / Comics"""
+type Manga implements Item {
+  id: ID!
+  title: String!
+  createdAt: Date!
+  publishedAt: Date
+  updatedAt: Date
+}
+
+"""PDF Books"""
+type Book implements Item {
+  id: ID!
+  title: String!
+  createdAt: Date!
+  publishedAt: Date
+  updatedAt: Date
+  isbn: String
+}
+
+"""Epub/Txt Novels"""
+type Novel implements Item {
+  id: ID!
+  title: String!
+  createdAt: Date!
+  publishedAt: Date
+  updatedAt: Date
+}
+
 type Query {
-  hi: String
+  """Login user info"""
+  currentUser: User!
+
+  """Search user by id"""
+  user(id: ID!): User
+
+  """Search users"""
+  users(limit: Int = 10, offset: Int = 0): [User!]!
+
+  """Search library by id"""
+  library(id: ID!): Library
+
+  """Search libraries"""
+  libraries(limit: Int = 10, offset: Int = 0): [Library!]!
+
+  """Search item by id"""
+  item(id: ID!): Item
+
+  """Search items"""
+  items(limit: Int = 10, offset: Int = 0): [Item!]!
 }
