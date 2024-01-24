@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import type { AvatarVariantProps } from '../index'
-import { Avatar, avatar } from '../index'
+import type { AvatarVariantProps } from '..'
+import { Avatar, avatar } from '..'
 
 const meta: Meta<AvatarVariantProps> = {
   title: '基础组件/Avatar',

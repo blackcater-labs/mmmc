@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import type { SpinnerVariantProps } from '../index'
-import { Spinner, spinner } from '../index'
+import type { SpinnerVariantProps } from '..'
+import { Spinner, spinner } from '..'
 
 const meta: Meta<SpinnerVariantProps> = {
   title: '基础组件/Spinner',

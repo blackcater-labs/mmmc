@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { ActivitySquareIcon } from 'lucide-react'
 
-import type { ButtonVariantProps } from '../index'
-import { Button, button } from '../index'
+import type { ButtonVariantProps } from '..'
+import { Button, button } from '..'
 
 const meta: Meta<ButtonVariantProps> = {
   title: '基础组件/Button',
