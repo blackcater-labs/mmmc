@@ -10,7 +10,7 @@ export const users = sqliteTable(
     name: text('name').notNull(),
     email: text('email', { mode: 'text' }).notNull(),
     password: text('password').notNull(),
-    role: text('role', { enum: ['admin', 'user'] }).default('user'),
+    role: text('role', { enum: ['admin', 'user'] }).notNull().default('user'),
     historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // global history playlist
     favoritePlaylistId: integer('favorite_playlist_id', { mode: 'number' }).notNull(), // global favorite playlist
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),

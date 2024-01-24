@@ -3,16 +3,19 @@ import type { Maybe } from 'graphql-yoga'
 import { GraphQLError } from 'graphql'
 
 export enum MmmcErrorCode {
-  // Common errors
+  /** Common errors */
   UNAUTHORIZED = 'UNAUTHORIZED',
   FORBIDDEN = 'FORBIDDEN',
   NOT_FOUND = 'NOT_FOUND',
   BAD_REQUEST = 'BAD_REQUEST',
   INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR',
 
-  // Business errors
+  /** Business errors */
+  // User errors
+  USER_ALREADY_EXISTS = 'USER_ALREADY_EXISTS',
 }
 
+// Common errors
 export class MmmcError extends GraphQLError {
   constructor(message: string, code: MmmcErrorCode, extensions?: Maybe<GraphQLErrorExtensions>) {
     super(message, {
@@ -51,5 +54,12 @@ export class BadRequestMmmcError extends MmmcError {
 export class InternalServerMmmcError extends MmmcError {
   constructor(message: string, extensions?: Maybe<GraphQLErrorExtensions>) {
     super(message, MmmcErrorCode.INTERNAL_SERVER_ERROR, extensions)
+  }
+}
+
+// User errors
+export class UserAlreadyExistsMmmcError extends MmmcError {
+  constructor(message: string = 'User already exists', extensions?: Maybe<GraphQLErrorExtensions>) {
+    super(message, MmmcErrorCode.USER_ALREADY_EXISTS, extensions)
   }
 }
