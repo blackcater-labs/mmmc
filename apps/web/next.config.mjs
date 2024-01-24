@@ -12,6 +12,13 @@ const nextConfig = {
   reactStrictMode: true,
 
   transpilePackages: ['@mmmc/ui'],
+
+  rewrites: async () => [
+    {
+      source: '/graphql',
+      destination: `${process.env.SERVER_URL}/graphql`,
+    },
+  ],
 }
 
 export default withBundleAnalyzer(nextConfig)

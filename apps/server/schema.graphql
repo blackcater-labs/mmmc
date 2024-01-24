@@ -120,3 +120,11 @@ type Query {
   """Search playlist by id"""
   playlist(id: ID!): Playlist
 }
+
+type Mutation {
+  """User login"""
+  login(email: String!, password: String!): User!
+
+  """Register new user"""
+  register(name: String!, email: String!, password: String!): User!
+}

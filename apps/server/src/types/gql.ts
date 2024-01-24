@@ -77,6 +77,27 @@ export type Manga = Item & {
   updatedAt?: Maybe<Scalars['Date']['output']>;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  /** User login */
+  login: User;
+  /** Register new user */
+  register: User;
+};
+
+
+export type MutationLoginArgs = {
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
+
+export type MutationRegisterArgs = {
+  email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+};
+
 /** Epub/Txt Novels */
 export type Novel = Item & {
   __typename?: 'Novel';
@@ -249,6 +270,7 @@ export type ResolversTypes = {
   Item: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Item']>;
   Library: ResolverTypeWrapper<Library>;
   Manga: ResolverTypeWrapper<Manga>;
+  Mutation: ResolverTypeWrapper<{}>;
   Novel: ResolverTypeWrapper<Novel>;
   Playlist: ResolverTypeWrapper<Playlist>;
   PlaylistType: PlaylistType;
@@ -269,6 +291,7 @@ export type ResolversParentTypes = {
   Item: ResolversInterfaceTypes<ResolversParentTypes>['Item'];
   Library: Library;
   Manga: Manga;
+  Mutation: {};
   Novel: Novel;
   Playlist: Playlist;
   Query: {};
@@ -337,6 +360,11 @@ export type MangaResolvers<ContextType = any, ParentType extends ResolversParent
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  login?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
+  register?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'email' | 'name' | 'password'>>;
+};
+
 export type NovelResolvers<ContextType = any, ParentType extends ResolversParentTypes['Novel'] = ResolversParentTypes['Novel']> = {
   chapters?: Resolver<Array<ResolversTypes['Chapter']>, ParentType, ContextType>;
   cover?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -386,6 +414,7 @@ export type Resolvers<ContextType = any> = {
   Item?: ItemResolvers<ContextType>;
   Library?: LibraryResolvers<ContextType>;
   Manga?: MangaResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Novel?: NovelResolvers<ContextType>;
   Playlist?: PlaylistResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

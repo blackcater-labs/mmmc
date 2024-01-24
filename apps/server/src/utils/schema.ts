@@ -8,7 +8,7 @@ export const users = sqliteTable(
   {
     id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
-    email: text('email').notNull(),
+    email: text('email', { mode: 'text' }).notNull(),
     password: text('password').notNull(),
     role: text('role', { enum: ['admin', 'user'] }).default('user'),
     historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // global history playlist
@@ -17,7 +17,7 @@ export const users = sqliteTable(
     updatedAt: integer('updated_at', { mode: 'timestamp' }),
   },
   t => ({
-    uniqIdxEmail: unique('users_uniq_idx_email').on(t.id),
+    uniqIdxEmail: unique('users_uniq_idx_email').on(t.email),
   }),
 )
 
