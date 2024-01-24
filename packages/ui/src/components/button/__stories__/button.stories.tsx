@@ -1,10 +1,10 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { ActivitySquareIcon } from 'lucide-react'
 
+import type { ButtonVariantProps } from '../index'
 import { Button, button } from '../index'
 
-const meta: Meta<typeof Button> = {
+const meta: Meta<ButtonVariantProps> = {
   title: '基础组件/Button',
   component: Button,
   tags: ['autodocs'],
@@ -48,7 +48,7 @@ const defaultProps = {
   ...button.defaultVariants,
 }
 
-export const Default: StoryObj = {
+export const Preview: StoryObj = {
   args: {
     ...defaultProps,
   },

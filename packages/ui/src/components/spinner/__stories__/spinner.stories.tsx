@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import type { SpinnerVariantProps } from '../index'
 import { Spinner, spinner } from '../index'
 
-const meta: Meta<typeof Spinner> = {
+const meta: Meta<SpinnerVariantProps> = {
   title: '基础组件/Spinner',
   component: Spinner,
   tags: ['autodocs'],
@@ -28,7 +29,7 @@ const defaultProps = {
   ...spinner.defaultVariants,
 }
 
-export const Default: StoryObj = {
+export const Preview: StoryObj = {
   args: {
     ...defaultProps,
   },

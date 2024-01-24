@@ -37,6 +37,8 @@
   },
   "dependencies": {
     "@bogeychan/elysia-logger": "^0.0.16",
+    "@dicebear/collection": "^7.0.4",
+    "@dicebear/core": "^7.0.4",
     "@elysiajs/cors": "^0.8.0",
     "@elysiajs/graphql-yoga": "^0.8.0",
     "cac": "^6.7.14",
@@ -55,7 +57,7 @@
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@types/better-sqlite3": "^7.6.8",
-    "@types/bun": "^1.0.3",
+    "@types/bun": "^1.0.4",
     "@types/debug": "^4.1.12",
     "better-sqlite3": "^9.3.0",
     "drizzle-kit": "^0.20.13",
