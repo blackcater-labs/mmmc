@@ -1,4 +1,8 @@
 scalar Date
+scalar DateTime
+scalar Timestamp
+scalar JSON
+scalar JSONObject
 
 enum UserRole {
   ADMIN

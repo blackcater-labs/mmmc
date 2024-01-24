@@ -15,6 +15,10 @@ export type Scalars = {
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
   Date: { input: any; output: any; }
+  DateTime: { input: any; output: any; }
+  JSON: { input: any; output: any; }
+  JSONObject: { input: any; output: any; }
+  Timestamp: { input: any; output: any; }
 };
 
 /** PDF Books */
@@ -265,9 +269,12 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Chapter: ResolverTypeWrapper<Chapter>;
   Date: ResolverTypeWrapper<Scalars['Date']['output']>;
+  DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Item: ResolverTypeWrapper<ResolversInterfaceTypes<ResolversTypes>['Item']>;
+  JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
+  JSONObject: ResolverTypeWrapper<Scalars['JSONObject']['output']>;
   Library: ResolverTypeWrapper<Library>;
   Manga: ResolverTypeWrapper<Manga>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -276,6 +283,7 @@ export type ResolversTypes = {
   PlaylistType: PlaylistType;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  Timestamp: ResolverTypeWrapper<Scalars['Timestamp']['output']>;
   User: ResolverTypeWrapper<User>;
   UserRole: UserRole;
 };
@@ -286,9 +294,12 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean']['output'];
   Chapter: Chapter;
   Date: Scalars['Date']['output'];
+  DateTime: Scalars['DateTime']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
   Item: ResolversInterfaceTypes<ResolversParentTypes>['Item'];
+  JSON: Scalars['JSON']['output'];
+  JSONObject: Scalars['JSONObject']['output'];
   Library: Library;
   Manga: Manga;
   Mutation: {};
@@ -296,6 +307,7 @@ export type ResolversParentTypes = {
   Playlist: Playlist;
   Query: {};
   String: Scalars['String']['output'];
+  Timestamp: Scalars['Timestamp']['output'];
   User: User;
 };
 
@@ -328,6 +340,10 @@ export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'Date';
 }
 
+export interface DateTimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['DateTime'], any> {
+  name: 'DateTime';
+}
+
 export type ItemResolvers<ContextType = any, ParentType extends ResolversParentTypes['Item'] = ResolversParentTypes['Item']> = {
   __resolveType: TypeResolveFn<'Book' | 'Manga' | 'Novel', ParentType, ContextType>;
   chapters?: Resolver<Array<ResolversTypes['Chapter']>, ParentType, ContextType>;
@@ -339,6 +355,14 @@ export type ItemResolvers<ContextType = any, ParentType extends ResolversParentT
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   updatedAt?: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
 };
+
+export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
+  name: 'JSON';
+}
+
+export interface JsonObjectScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSONObject'], any> {
+  name: 'JSONObject';
+}
 
 export type LibraryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Library'] = ResolversParentTypes['Library']> = {
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
@@ -396,6 +420,10 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUsersArgs, 'limit' | 'offset'>>;
 };
 
+export interface TimestampScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Timestamp'], any> {
+  name: 'Timestamp';
+}
+
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   avatar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
@@ -411,13 +439,17 @@ export type Resolvers<ContextType = any> = {
   Book?: BookResolvers<ContextType>;
   Chapter?: ChapterResolvers<ContextType>;
   Date?: GraphQLScalarType;
+  DateTime?: GraphQLScalarType;
   Item?: ItemResolvers<ContextType>;
+  JSON?: GraphQLScalarType;
+  JSONObject?: GraphQLScalarType;
   Library?: LibraryResolvers<ContextType>;
   Manga?: MangaResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Novel?: NovelResolvers<ContextType>;
   Playlist?: PlaylistResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Timestamp?: GraphQLScalarType;
   User?: UserResolvers<ContextType>;
 };
 
