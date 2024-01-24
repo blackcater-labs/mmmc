@@ -31,7 +31,7 @@ export const dark: ThemeColors = {
 
   primary: {
     DEFAULT: blue[600],
-    muted: blue[250],
+    muted: blue[500],
     mellow: alpha(blue[600], 0.2),
     subtle: alpha(blue[600], 0.1),
     surface: alpha(blue[600], 0.05),
@@ -39,7 +39,7 @@ export const dark: ThemeColors = {
   },
   secondary: {
     DEFAULT: grape[600],
-    muted: grape[250],
+    muted: grape[500],
     mellow: alpha(grape[600], 0.2),
     subtle: alpha(grape[600], 0.1),
     surface: alpha(grape[600], 0.05),
@@ -47,7 +47,7 @@ export const dark: ThemeColors = {
   },
   tertiary: {
     DEFAULT: gray[900],
-    muted: gray[250],
+    muted: gray[700],
     mellow: alpha(gray[900], 0.2),
     subtle: alpha(gray[900], 0.1),
     surface: alpha(gray[900], 0.05),
@@ -62,7 +62,7 @@ export const dark: ThemeColors = {
   },
   success: {
     DEFAULT: green[600],
-    muted: green[250],
+    muted: green[500],
     mellow: alpha(green[600], 0.2),
     subtle: alpha(green[600], 0.1),
     surface: alpha(green[600], 0.05),
@@ -70,7 +70,7 @@ export const dark: ThemeColors = {
   },
   danger: {
     DEFAULT: red[600],
-    muted: red[250],
+    muted: red[500],
     mellow: alpha(red[600], 0.2),
     subtle: alpha(red[600], 0.1),
     surface: alpha(red[600], 0.05),
@@ -78,7 +78,7 @@ export const dark: ThemeColors = {
   },
   warning: {
     DEFAULT: orange[600],
-    muted: orange[250],
+    muted: orange[500],
     mellow: alpha(orange[600], 0.2),
     subtle: alpha(orange[600], 0.1),
     surface: alpha(orange[600], 0.05),
@@ -86,7 +86,7 @@ export const dark: ThemeColors = {
   },
   info: {
     DEFAULT: blue[600],
-    muted: blue[300],
+    muted: blue[500],
     mellow: alpha(blue[600], 0.2),
     subtle: alpha(blue[600], 0.1),
     surface: alpha(blue[600], 0.05),

@@ -31,7 +31,7 @@ export const light: ThemeColors = {
 
   primary: {
     DEFAULT: blue[600],
-    muted: blue[250],
+    muted: blue[500],
     mellow: blue[200],
     subtle: blue[100],
     surface: blue[50],
@@ -39,7 +39,7 @@ export const light: ThemeColors = {
   },
   secondary: {
     DEFAULT: grape[600],
-    muted: grape[250],
+    muted: grape[500],
     mellow: grape[200],
     subtle: grape[100],
     surface: grape[50],
@@ -47,7 +47,7 @@ export const light: ThemeColors = {
   },
   tertiary: {
     DEFAULT: gray[900],
-    muted: gray[250],
+    muted: gray[700],
     mellow: gray[200],
     subtle: gray[100],
     surface: gray[50],
@@ -62,7 +62,7 @@ export const light: ThemeColors = {
   },
   success: {
     DEFAULT: green[600],
-    muted: green[250],
+    muted: green[500],
     mellow: green[200],
     subtle: green[100],
     surface: green[50],
@@ -70,7 +70,7 @@ export const light: ThemeColors = {
   },
   danger: {
     DEFAULT: red[600],
-    muted: red[250],
+    muted: red[500],
     mellow: red[200],
     subtle: red[100],
     surface: red[50],
@@ -78,7 +78,7 @@ export const light: ThemeColors = {
   },
   warning: {
     DEFAULT: orange[600],
-    muted: orange[250],
+    muted: orange[500],
     mellow: orange[200],
     subtle: orange[100],
     surface: orange[50],
@@ -86,7 +86,7 @@ export const light: ThemeColors = {
   },
   info: {
     DEFAULT: blue[600],
-    muted: blue[300],
+    muted: blue[500],
     mellow: blue[200],
     subtle: blue[100],
     surface: blue[50],
