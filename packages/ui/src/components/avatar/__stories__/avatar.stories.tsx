@@ -4,7 +4,7 @@ import type { AvatarVariantProps } from '..'
 import { Avatar, avatar } from '..'
 
 const meta: Meta<AvatarVariantProps> = {
-  title: '基础组件/Avatar',
+  title: '组件/展示/Avatar',
   component: Avatar,
   tags: ['autodocs'],
   argTypes: {

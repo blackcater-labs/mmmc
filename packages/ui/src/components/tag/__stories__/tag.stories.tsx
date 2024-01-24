@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Badge, badge } from '..'
+import { Tag, tag } from '..'
 
 const meta: Meta = {
-  title: '基础组件/Badge',
-  component: Badge,
+  title: '组件/展示/Tag',
+  component: Tag,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -24,8 +24,8 @@ const meta: Meta = {
 export default meta
 
 const defaultProps = {
-  children: 'Badge',
-  ...badge.defaultVariants,
+  children: 'Tag',
+  ...tag.defaultVariants,
 }
 
 export const Preview: StoryObj = {
@@ -37,14 +37,14 @@ export const Preview: StoryObj = {
 export const Colors: StoryObj = {
   render: () => (
     <div className="flex flex-row items-center space-x-2">
-      <Badge color="default">Default</Badge>
-      <Badge color="primary">Primary</Badge>
-      <Badge color="secondary">Secondary</Badge>
-      <Badge color="tertiary">Tertiary</Badge>
-      <Badge color="danger">Danger</Badge>
-      <Badge color="success">Success</Badge>
-      <Badge color="warning">Warning</Badge>
-      <Badge color="info">Info</Badge>
+      <Tag color="default">Default</Tag>
+      <Tag color="primary">Primary</Tag>
+      <Tag color="secondary">Secondary</Tag>
+      <Tag color="tertiary">Tertiary</Tag>
+      <Tag color="danger">Danger</Tag>
+      <Tag color="success">Success</Tag>
+      <Tag color="warning">Warning</Tag>
+      <Tag color="info">Info</Tag>
     </div>
   ),
 }
@@ -52,9 +52,9 @@ export const Colors: StoryObj = {
 export const Variants: StoryObj = {
   render: () => (
     <div className="flex flex-row items-center space-x-2">
-      <Badge variant="solid" color="primary">Solid</Badge>
-      <Badge variant="soft" color="primary">Soft</Badge>
-      <Badge variant="outline" color="primary">Outline</Badge>
+      <Tag variant="solid" color="primary">Solid</Tag>
+      <Tag variant="soft" color="primary">Soft</Tag>
+      <Tag variant="outline" color="primary">Outline</Tag>
     </div>
   ),
 }

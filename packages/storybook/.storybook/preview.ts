@@ -48,6 +48,9 @@ const preview: Preview = {
       storySort: {
         order: [
           'Getting Started',
+          '组件',
+          ['展示', '交互', '表单', '其他'],
+          '片段',
         ],
       },
     },

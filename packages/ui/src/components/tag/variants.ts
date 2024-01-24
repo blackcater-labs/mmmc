@@ -2,7 +2,7 @@ import type { VariantProps } from 'tailwind-variants'
 
 import { tv } from '../../utils'
 
-const badge = tv({
+const tag = tv({
   base: 'focus:ring-primary inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2',
   variants: {
     variant: {
@@ -105,7 +105,7 @@ const badge = tv({
   ],
 })
 
-type BadgeVariantProps = VariantProps<typeof badge>
+type TagVariantProps = VariantProps<typeof tag>
 
-export { badge }
-export type { BadgeVariantProps }
+export { tag }
+export type { TagVariantProps }

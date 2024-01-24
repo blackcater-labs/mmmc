@@ -4,7 +4,7 @@ import { AlertTriangleIcon } from 'lucide-react'
 import { Alert, alert } from '..'
 
 const meta: Meta = {
-  title: '基础组件/Alert',
+  title: '组件/展示/Alert',
   component: Alert,
   tags: ['autodocs'],
   argTypes: {

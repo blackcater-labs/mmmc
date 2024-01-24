@@ -4,7 +4,7 @@ import type { SpinnerVariantProps } from '..'
 import { Spinner, spinner } from '..'
 
 const meta: Meta<SpinnerVariantProps> = {
-  title: '基础组件/Spinner',
+  title: '组件/展示/Spinner',
   component: Spinner,
   tags: ['autodocs'],
   argTypes: {

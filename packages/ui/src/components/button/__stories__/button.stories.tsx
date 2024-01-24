@@ -5,7 +5,7 @@ import type { ButtonVariantProps } from '..'
 import { Button, button } from '..'
 
 const meta: Meta<ButtonVariantProps> = {
-  title: '基础组件/Button',
+  title: '组件/展示/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
