@@ -39,6 +39,18 @@ const darkTheme: ThemeVars = {
   ...themes.dark,
   ...commonTheme,
   // brandImage: '/dark-logo.svg',
+
+  appBg: commonColors.neutral[950],
+  appBorderColor: commonColors.neutral[900],
+  appBorderRadius: 8,
+  appPreviewBg: commonColors.neutral[950],
+  appContentBg: commonColors.neutral[950],
+
+  textColor: commonColors.gray[100],
+  textMutedColor: commonColors.gray[400],
+
+  barBg: commonColors.neutral[900],
+  barTextColor: commonColors.gray[400],
 }
 
 const preview: Preview = {

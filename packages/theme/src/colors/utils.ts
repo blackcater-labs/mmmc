@@ -1,10 +1,14 @@
 import { readableColorIsBlack } from 'color2k'
+import Color from 'color'
 
-import { root } from './common/root'
 import { gray } from './common/gray'
 
 export function readableColor(color: string): string {
   if (readableColorIsBlack(color))
     return gray[900]
-  return root.white
+  return gray[50]
+}
+
+export function alpha(color: string, alpha: number): string {
+  return Color(color).alpha(alpha).hsl().string()
 }

@@ -31,9 +31,6 @@ export const light: ThemeColors = {
 
   primary: {
     DEFAULT: blue[600],
-    hover: blue[800],
-    selected: blue[800],
-    active: blue[900],
     muted: blue[250],
     mellow: blue[200],
     subtle: blue[100],
@@ -42,9 +39,6 @@ export const light: ThemeColors = {
   },
   secondary: {
     DEFAULT: grape[600],
-    hover: grape[800],
-    selected: grape[800],
-    active: grape[900],
     muted: grape[250],
     mellow: grape[200],
     subtle: grape[100],
@@ -53,9 +47,6 @@ export const light: ThemeColors = {
   },
   tertiary: {
     DEFAULT: gray[900],
-    hover: gray[800],
-    selected: gray[800],
-    active: gray[900],
     muted: gray[250],
     mellow: gray[200],
     subtle: gray[100],
@@ -65,18 +56,12 @@ export const light: ThemeColors = {
 
   default: {
     DEFAULT: gray[150],
-    hover: gray[200],
-    selected: gray[200],
-    active: gray[300],
     subtle: gray[100],
     surface: gray[50],
     foreground: readableColor(gray[150]),
   },
   success: {
     DEFAULT: green[600],
-    hover: green[800],
-    selected: green[800],
-    active: green[900],
     muted: green[250],
     mellow: green[200],
     subtle: green[100],
@@ -85,9 +70,6 @@ export const light: ThemeColors = {
   },
   danger: {
     DEFAULT: red[600],
-    hover: red[800],
-    selected: red[800],
-    active: red[900],
     muted: red[250],
     mellow: red[200],
     subtle: red[100],
@@ -96,9 +78,6 @@ export const light: ThemeColors = {
   },
   warning: {
     DEFAULT: orange[600],
-    hover: orange[800],
-    selected: orange[800],
-    active: orange[900],
     muted: orange[250],
     mellow: orange[200],
     subtle: orange[100],
@@ -107,9 +86,6 @@ export const light: ThemeColors = {
   },
   info: {
     DEFAULT: blue[600],
-    hover: blue[800],
-    selected: blue[800],
-    active: blue[900],
     muted: blue[300],
     mellow: blue[200],
     subtle: blue[100],

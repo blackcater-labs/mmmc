@@ -21,44 +21,44 @@ export interface ThemeColors {
   /**
    * Brand color
    */
-  primary: ColorScale
+  primary: LevelColorScale
 
   /**
    * Secondary color
    */
-  secondary: ColorScale
+  secondary: LevelColorScale
 
   /**
    * Normal gray color
    */
-  tertiary: ColorScale
+  tertiary: LevelColorScale
 
   // Status colors
 
   /**
    * Plain gray color
    */
-  default: ColorScale
+  default: LevelColorScale
 
   /**
    * Normal green color
    */
-  success: ColorScale
+  success: LevelColorScale
 
   /**
    * Normal red color
    */
-  danger: ColorScale
+  danger: LevelColorScale
 
   /**
    * Normal orange or yellow color
    */
-  warning: ColorScale
+  warning: LevelColorScale
 
   /**
    * Normal blue color
    */
-  info: ColorScale
+  info: LevelColorScale
 }
 
 export interface ColorScale extends InteractiveColorScale, LevelColorScale {}
