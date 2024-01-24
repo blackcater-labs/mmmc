@@ -140,3 +140,30 @@ export const IconOnly: StoryObj = {
     </div>
   ),
 }
+
+export const As: StoryObj = {
+  render: () => (
+    <div className="flex flex-row items-center space-x-2">
+      <Button variant="link" as="a" href="https://www.baidu.com" target="_blank">
+        Baidu
+      </Button>
+    </div>
+  ),
+}
+
+export const Disabled: StoryObj = {
+  args: {
+    ...defaultProps,
+    disabled: true,
+  },
+}
+
+export const Loading: StoryObj = {
+  render: () => (
+    <div className="flex flex-row items-center space-x-2">
+      <Button loading color="primary" size="sm">Loading</Button>
+      <Button loading color="primary">Loading</Button>
+      <Button loading color="primary" size="lg">Loading</Button>
+    </div>
+  ),
+}

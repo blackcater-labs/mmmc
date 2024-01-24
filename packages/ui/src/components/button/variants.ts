@@ -3,7 +3,7 @@ import type { VariantProps } from 'tailwind-variants'
 import { tv } from '../../utils'
 
 const button = tv({
-  base: 'focus-visible:ring-primary inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 active:scale-95 disabled:pointer-events-none disabled:opacity-50',
+  base: 'focus-visible:ring-primary group relative z-0 inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 active:scale-95 disabled:pointer-events-none disabled:opacity-50',
   variants: {
     variant: {
       solid: '',
@@ -22,9 +22,9 @@ const button = tv({
       info: 'text-info',
     },
     size: {
-      sm: 'h-8 rounded-md px-3 text-xs',
-      md: 'h-9 px-4 py-2',
-      lg: 'h-10 rounded-md px-8',
+      sm: 'h-8 gap-1 px-3 text-xs',
+      md: 'h-9 gap-2 px-4 py-2',
+      lg: 'h-10 gap-3 px-5',
     },
     radius: {
       sm: 'rounded-md',
