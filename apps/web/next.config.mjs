@@ -10,6 +10,8 @@ const nextConfig = {
   experimental: {},
 
   reactStrictMode: true,
+
+  transpilePackages: ['@mmmc/ui'],
 }
 
 export default withBundleAnalyzer(nextConfig)

@@ -21,6 +21,8 @@
   "keywords": [
     "react"
   ],
+  "main": "src/index.ts",
+  "module": "src/index.ts",
   "scripts": {},
   "dependencies": {
     "@douyinfe/semi-illustrations": "^2.51.3",
