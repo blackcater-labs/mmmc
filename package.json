@@ -20,7 +20,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "turbo dev --parallel",
+    "dev": "FORCE_COLOR=1 turbo dev --parallel",
     "build": "turbo build",
     "test": "turbo test",
     "taze": "taze minor -r",

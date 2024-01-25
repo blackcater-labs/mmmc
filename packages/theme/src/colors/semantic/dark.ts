@@ -11,9 +11,9 @@ import type { ThemeColors } from '../types'
 export const dark: ThemeColors = {
   background: {
     DEFAULT: neutral[950],
-    muted: neutral[600],
-    mellow: neutral[700],
-    subtle: neutral[800],
+    muted: neutral[700],
+    mellow: neutral[750],
+    subtle: neutral[850],
     surface: neutral[900],
   },
   foreground: {
@@ -55,10 +55,8 @@ export const dark: ThemeColors = {
   },
 
   default: {
-    DEFAULT: neutral[900],
-    subtle: neutral[900],
-    surface: neutral[950],
-    foreground: readableColor(neutral[900]),
+    DEFAULT: neutral[800],
+    foreground: readableColor(neutral[800]),
   },
   success: {
     DEFAULT: green[600],
