@@ -25,7 +25,35 @@
 
 ## ✨ Features
 
+- [x] **🌈 Beautiful UI**.
+- [x] **📱 Responsive design**.
+- [x] **🌏 Internationalization**.
+- [x] **🧑‍💻 TypeScript**.
+- [x] **🗄️ Self-hosted**.
+
 ## 👋 Getting Started
+
+This project is a monorepo:
+
+- `apps/server`: server application for Mmmc, based on [Bun](https://bun.sh/).
+- `apps/web`: web application for Mmmc, based on [Next.js](https://nextjs.org/).
+- `packages/storybook`: Storybook for developing UI components, based on [Storybook](https://storybook.js.org/).
+- `packages/theme`: Tailwind CSS theme for Mmmc, based on [Tailwind CSS](https://tailwindcss.com/).
+- `packages/ui`: UI components for Mmmc, based on [radix-ui](https://radix-ui.com/).
+
+> [!IMPORTANT]
+> Project's package manager is [Bun](https://bun.sh/), so you need to install it first.
+
+```bash
+bun install # install dependencies
+bun dev     # start local development
+```
+
+After that, you can visit `http://localhost:3000` to view the web application. The server application is running on `http://localhost:4000`.
+
+You can visit graphql playground on `http://localhost:3000/api/graphql` or `http://localhost:4000/api/graphql`.
+
+***For more information, please read package's README file.***
 
 ## 🤝 Contribution
 

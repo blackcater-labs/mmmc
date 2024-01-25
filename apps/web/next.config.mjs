@@ -15,8 +15,8 @@ const nextConfig = {
 
   rewrites: async () => [
     {
-      source: '/graphql',
-      destination: `${process.env.SERVER_URL}/graphql`,
+      source: '/api/graphql',
+      destination: `${process.env.SERVER_URL}/api/graphql`,
     },
   ],
 }

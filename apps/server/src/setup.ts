@@ -28,6 +28,9 @@ export async function setup(config: AppConfig) {
     // FIXME?: 10 requests per second, per IP. Maybe too much?
     .use(rateLimit({ duration: 1000, max: 10 }))
     .use(yoga({
+      path: '/api/graphql',
+      graphqlEndpoint: '/api/graphql',
+
       typeDefs: await schema.text(),
 
       context: async ({ request }) => {
