@@ -1,24 +1,37 @@
+import debug from 'debug'
 import { eq } from 'drizzle-orm'
 
 import type { DB } from '@/utils/db'
 import type { CreateUserInput, UserModel } from '@/models/user'
 import type { Optional } from '@/types/utils'
 import { users } from '@/utils/schema'
-import { UserRole } from '@/types'
+import { convertToUserRole } from '@/models/user'
 
 async function getUserByEmail(db: DB, email: string): Promise<Optional<UserModel>> {
   const rows = await db.select().from(users).where(eq(users.email, email))
   const row = rows[0]
+
+  debug('mmmc:svc:user:getUserByEmail')('rows', rows)
+
   if (!row)
     return null
+
   return {
     ...row,
-    role: row.role === 'admin' ? UserRole.Admin : UserRole.User,
+    role: convertToUserRole(row.role),
   }
 }
 
-async function createUser(_db: DB, _input: CreateUserInput) {
-  // TODO: create history and favorite playlist
+async function createUser(db: DB, input: CreateUserInput): Promise<UserModel> {
+  const rows = await db.insert(users).values(input).returning()
+  const row = rows[0]
+
+  debug('mmmc:svc:user:createUser')('rows', rows)
+
+  return {
+    ...row,
+    role: convertToUserRole(row.role),
+  }
 }
 
 export const userService = {

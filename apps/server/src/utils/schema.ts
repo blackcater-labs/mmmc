@@ -6,15 +6,15 @@ import { sql } from 'drizzle-orm'
 export const users = sqliteTable(
   'users',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
+    id: integer('id').primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
-    email: text('email', { mode: 'text' }).notNull(),
+    email: text('email').notNull(),
     password: text('password').notNull(),
-    role: text('role', { enum: ['admin', 'user'] }).notNull().default('user'),
-    historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // global history playlist
-    favoritePlaylistId: integer('favorite_playlist_id', { mode: 'number' }).notNull(), // global favorite playlist
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    role: text('role', { enum: ['Admin', 'User'] }).default('User'),
+    historyPlaylistId: integer('history_playlist_id'), // global history playlist, lazy create
+    favoritePlaylistId: integer('favorite_playlist_id'), // global favorite playlist, lazy create
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxEmail: unique('users_uniq_idx_email').on(t.email),
@@ -24,14 +24,14 @@ export const users = sqliteTable(
 export const libraries = sqliteTable(
   'libraries',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    userId: integer('id', { mode: 'number' }).notNull().references(() => users.id),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    userId: integer('user_id').notNull().references(() => users.id),
     name: text('name').notNull(),
     path: text('path').notNull(),
-    historyPlaylistId: integer('history_playlist_id', { mode: 'number' }).notNull(), // library history playlist
-    favoritePlaylistId: integer('favorite_playlist_id', { mode: 'number' }).notNull(), // library favorite playlist
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    historyPlaylistId: integer('history_playlist_id'), // library history playlist, lazy create
+    favoritePlaylistId: integer('favorite_playlist_id'), // library favorite playlist, lazy create
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxUserName: unique('libraries_uniq_idx_user_name').on(t.userId, t.name),
@@ -42,17 +42,17 @@ export const libraries = sqliteTable(
 export const items = sqliteTable(
   'items',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    libraryId: integer('id', { mode: 'number' }).notNull().references(() => libraries.id),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    libraryId: integer('library_id').notNull().references(() => libraries.id),
     title: text('title').notNull(),
     description: text('description'),
     cover: text('cover'),
     isbn: text('isbn'), // book
     pageCount: integer('page_count'), // book
     wordCount: integer('word_count'), // novel
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
     publishedAt: integer('published_at', { mode: 'timestamp' }),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     idxLibrary: index('items_idx_library').on(t.libraryId),
@@ -62,14 +62,14 @@ export const items = sqliteTable(
 export const chapters = sqliteTable(
   'chapters',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    parentId: integer('id', { mode: 'number' }),
-    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    parentId: integer('parent_id'),
+    itemId: integer('item_id').notNull().references(() => items.id),
     name: text('title').notNull(),
     cover: text('cover'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
     publishedAt: integer('published_at', { mode: 'timestamp' }),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     parentRef: foreignKey({
@@ -84,15 +84,15 @@ export const chapters = sqliteTable(
 export const tags = sqliteTable(
   'tags',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    parentId: integer('id', { mode: 'number' }),
-    libraryId: integer('id', { mode: 'number' }).notNull().references(() => libraries.id),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    parentId: integer('parent_id'),
+    libraryId: integer('library_id').notNull().references(() => libraries.id),
     name: text('name').notNull(),
     type: integer('type').notNull(),
     thumb: text('avatar'),
     description: text('description'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     parentRef: foreignKey({
@@ -108,11 +108,11 @@ export const tags = sqliteTable(
 export const taggins = sqliteTable(
   'taggings',
   {
-    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
-    tagId: integer('id', { mode: 'number' }).notNull().references(() => tags.id),
-    order: integer('order').notNull().default(0),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    itemId: integer('item_id').notNull().references(() => items.id),
+    tagId: integer('tag_id').notNull().references(() => tags.id),
+    order: integer('order').default(0),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxItemTag: unique('taggings_uniq_idx_item_tag').on(t.itemId, t.tagId),
@@ -124,13 +124,13 @@ export const taggins = sqliteTable(
 export const playlists = sqliteTable(
   'playlists',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    userId: integer('id', { mode: 'number' }).notNull().references(() => users.id),
-    libraryId: integer('id', { mode: 'number' }).references(() => libraries.id),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    userId: integer('user_id').notNull().references(() => users.id),
+    libraryId: integer('library_id').references(() => libraries.id),
     name: text('name').notNull(),
-    type: text('type', { enum: ['history', 'favorite', 'normal'] }).notNull().default('normal'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    type: text('type', { enum: ['History', 'Favorite', 'Normal'] }).default('Normal'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     idxUser: index('playlists_idx_user').on(t.userId),
@@ -141,14 +141,14 @@ export const playlists = sqliteTable(
 export const playlistItems = sqliteTable(
   'playlist_items',
   {
-    playlistId: integer('id', { mode: 'number' }).notNull().references(() => playlists.id),
-    itemId: integer('id', { mode: 'number' }).notNull().references(() => items.id),
+    playlistId: integer('playlist_id').notNull().references(() => playlists.id),
+    itemId: integer('item_id').notNull().references(() => items.id),
     historyBookPageNo: integer('history_book_page_no'),
     historyNovelChapterNo: integer('history_novel_chapter_no'),
     historyComicChapterId: integer('history_comic_chapter_id'),
     historyComicPageNo: integer('history_comic_page_no'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxPlaylistItem: unique('playlist_items_uniq_idx_playlist_item').on(t.playlistId, t.itemId),
@@ -160,10 +160,10 @@ export const playlistItems = sqliteTable(
 export const settings = sqliteTable(
   'settings',
   {
-    id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
-    userId: integer('id', { mode: 'number' }).notNull(),
-    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }),
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    userId: integer('user_id').notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqUser: unique('settings_uniq_user').on(t.userId),

@@ -25,6 +25,12 @@ export default antfu(
       },
     },
   }),
+  ...compat.config({
+    extends: [
+      'plugin:drizzle/recommended',
+    ],
+    plugins: ['drizzle'],
+  }),
   {
     files: ['apps/server/**/*.ts'],
     rules: {

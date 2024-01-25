@@ -5,8 +5,8 @@ scalar JSON
 scalar JSONObject
 
 enum UserRole {
-  ADMIN
-  USER
+  Admin
+  User
 }
 
 """User Information"""
@@ -16,16 +16,16 @@ type User {
   email: String!
   role: UserRole!
   avatar: String
-  createdAt: Date!
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
 }
 
 """Library for storing items"""
 type Library {
   id: ID!
   name: String!
-  createdAt: Date!
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
 }
 
 """Item is a book, comic or novel"""
@@ -34,9 +34,9 @@ interface Item {
   title: String!
   description: String!
   cover: String
-  createdAt: Date!
   publishedAt: Date
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
   chapters: [Chapter!]!
 }
 
@@ -46,9 +46,9 @@ type Manga implements Item {
   title: String!
   description: String!
   cover: String
-  createdAt: Date!
   publishedAt: Date
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
   chapters: [Chapter!]!
 }
 
@@ -58,9 +58,9 @@ type Book implements Item {
   title: String!
   description: String!
   cover: String
-  createdAt: Date!
   publishedAt: Date
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
   chapters: [Chapter!]!
 
   isbn: String
@@ -73,9 +73,9 @@ type Novel implements Item {
   title: String!
   description: String!
   cover: String
-  createdAt: Date!
   publishedAt: Date
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
   chapters: [Chapter!]!
 
   wordCount: Int
@@ -86,23 +86,23 @@ type Chapter {
   parentId: Int
   name: String!
   cover: String
-  createdAt: Date!
   publishedAt: Date
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
 }
 
 enum PlaylistType {
-  HISTORY
-  FAVORITE
-  NORMAL
+  History
+  Favorite
+  Normal
 }
 
 type Playlist {
   id: ID!
   name: String!
   type: PlaylistType!
-  createdAt: Date!
-  updatedAt: Date
+  createdAt: DateTime!
+  updatedAt: DateTime
 }
 
 type Query {
