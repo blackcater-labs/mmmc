@@ -10,11 +10,11 @@ export const users = sqliteTable(
     name: text('name').notNull(),
     email: text('email').notNull(),
     password: text('password').notNull(),
-    role: text('role', { enum: ['Admin', 'User'] }).default('User'),
+    role: text('role', { enum: ['Admin', 'User'] }).notNull().default('User'),
     historyPlaylistId: integer('history_playlist_id'), // global history playlist, lazy create
     favoritePlaylistId: integer('favorite_playlist_id'), // global favorite playlist, lazy create
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxEmail: unique('users_uniq_idx_email').on(t.email),
@@ -30,8 +30,8 @@ export const libraries = sqliteTable(
     path: text('path').notNull(),
     historyPlaylistId: integer('history_playlist_id'), // library history playlist, lazy create
     favoritePlaylistId: integer('favorite_playlist_id'), // library favorite playlist, lazy create
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxUserName: unique('libraries_uniq_idx_user_name').on(t.userId, t.name),
@@ -51,8 +51,8 @@ export const items = sqliteTable(
     pageCount: integer('page_count'), // book
     wordCount: integer('word_count'), // novel
     publishedAt: integer('published_at', { mode: 'timestamp' }),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     idxLibrary: index('items_idx_library').on(t.libraryId),
@@ -68,8 +68,8 @@ export const chapters = sqliteTable(
     name: text('title').notNull(),
     cover: text('cover'),
     publishedAt: integer('published_at', { mode: 'timestamp' }),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     parentRef: foreignKey({
@@ -91,8 +91,8 @@ export const tags = sqliteTable(
     type: integer('type').notNull(),
     thumb: text('avatar'),
     description: text('description'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     parentRef: foreignKey({
@@ -110,9 +110,9 @@ export const taggins = sqliteTable(
   {
     itemId: integer('item_id').notNull().references(() => items.id),
     tagId: integer('tag_id').notNull().references(() => tags.id),
-    order: integer('order').default(0),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    order: integer('order').notNull().default(0),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxItemTag: unique('taggings_uniq_idx_item_tag').on(t.itemId, t.tagId),
@@ -128,9 +128,9 @@ export const playlists = sqliteTable(
     userId: integer('user_id').notNull().references(() => users.id),
     libraryId: integer('library_id').references(() => libraries.id),
     name: text('name').notNull(),
-    type: text('type', { enum: ['History', 'Favorite', 'Normal'] }).default('Normal'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    type: text('type', { enum: ['History', 'Favorite', 'Normal'] }).notNull().default('Normal'),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     idxUser: index('playlists_idx_user').on(t.userId),
@@ -147,8 +147,8 @@ export const playlistItems = sqliteTable(
     historyNovelChapterNo: integer('history_novel_chapter_no'),
     historyComicChapterId: integer('history_comic_chapter_id'),
     historyComicPageNo: integer('history_comic_page_no'),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqIdxPlaylistItem: unique('playlist_items_uniq_idx_playlist_item').on(t.playlistId, t.itemId),
@@ -162,8 +162,8 @@ export const settings = sqliteTable(
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
     userId: integer('user_id').notNull(),
-    createdAt: integer('created_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
-    updatedAt: integer('updated_at', { mode: 'timestamp' }).default(sql`(strftime('%s', 'now'))`),
+    createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
+    updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },
   t => ({
     uniqUser: unique('settings_uniq_user').on(t.userId),

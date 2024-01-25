@@ -4,8 +4,8 @@ import type { RegisterInput } from './dto/register-input.dto'
 import type { LoginInput } from './dto/login-input.dto'
 import type { Ctx, User } from '@/types'
 import { userService } from '@/services/user'
-import { InternalServerMmmcError, UserAlreadyExistsMmmcError } from '@/utils/error'
-import { hashPassword } from '@/utils/string'
+import { AuthPasswordNotMatchMmmcError, UserAlreadyExistsMmmcError, UserNotExistsMmmcError } from '@/utils/error'
+import { comparePassword, hashPassword } from '@/utils/string'
 
 export async function register(ctx: Ctx, input: RegisterInput): Promise<User> {
   const existingUser = await userService.getUserByEmail(ctx.db, input.email)
@@ -23,6 +23,17 @@ export async function register(ctx: Ctx, input: RegisterInput): Promise<User> {
   return user
 }
 
-export async function login(_ctx: Ctx, _input: LoginInput): Promise<User> {
-  throw new InternalServerMmmcError('Not implemented')
+export async function login(ctx: Ctx, input: LoginInput): Promise<User> {
+  const existingUser = await userService.getUserByEmail(ctx.db, input.email)
+  if (!existingUser)
+    throw new UserNotExistsMmmcError()
+
+  // verify password
+  const passwordMatch = await comparePassword(input.password, existingUser.password)
+  if (!passwordMatch)
+    throw new AuthPasswordNotMatchMmmcError()
+
+  debug('mmmc:ctrl:auth:login')('user logged in', existingUser)
+
+  return existingUser
 }

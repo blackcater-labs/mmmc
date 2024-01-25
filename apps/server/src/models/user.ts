@@ -11,7 +11,7 @@ export interface UserModel {
   historyPlaylistId: Optional<number>
   favoritePlaylistId: Optional<number>
   createdAt: Date
-  updatedAt: Optional<Date>
+  updatedAt: Date
 }
 
 export type CreateUserInput = PartialExcept<

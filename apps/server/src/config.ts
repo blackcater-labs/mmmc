@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import cac from 'cac'
 import yaml from 'yaml'
 import deepmerge from 'deepmerge'
+import { z } from 'zod'
 
 import { updatePaths } from '@/utils/paths'
 import type { AppConfig, ArgOptions, EnvOptions, MmmcOptions } from '@/types'
@@ -12,7 +13,7 @@ const program = cac('server')
 
 program
   .option('-p, --port <port>', 'Port to listen on')
-  .option('--timeZone <timeZone>', 'Timezone to use')
+  .option('-t, --tz, --time-zone <timeZone>', 'Timezone to use')
   .option('-c, --config <config>', 'Path to config file')
   .help()
 
@@ -30,9 +31,24 @@ function parseArgs(): ArgOptions {
 }
 
 function parseEnvs(): EnvOptions {
-  return {
-    port: Bun.env.PORT ? Number(Bun.env.PORT) : undefined,
-    timeZone: Bun.env.TIME_ZONE,
+  const schema = z.object({
+    PORT: z.string().optional(),
+    TIME_ZONE: z.string().optional(),
+    JWT_SECRET: z.string(),
+  })
+
+  try {
+    const data = schema.parse(Bun.env)
+
+    return {
+      port: data.PORT ? Number(data.PORT) : undefined,
+      timeZone: data.TIME_ZONE,
+      jwtSecret: data.JWT_SECRET,
+    }
+  }
+  catch (err) {
+    console.error(err)
+    process.exit(1)
   }
 }
 
@@ -76,5 +92,9 @@ export function load(): AppConfig {
       contentDir: serverConfig.contentDir,
       dataDir: serverConfig.dataDir,
     }),
+    jwt: {
+      secret: envs.jwtSecret,
+      experiesIn: '30d',
+    },
   }
 }

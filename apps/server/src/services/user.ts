@@ -7,6 +7,21 @@ import type { Optional } from '@/types/utils'
 import { users } from '@/utils/schema'
 import { convertToUserRole } from '@/models/user'
 
+async function getUserById(db: DB, id: string | number): Promise<Optional<UserModel>> {
+  const rows = await db.select().from(users).where(eq(users.id, Number(id)))
+  const row = rows[0]
+
+  debug('mmmc:svc:user:getUserById')('rows', rows)
+
+  if (!row)
+    return null
+
+  return {
+    ...row,
+    role: convertToUserRole(row.role),
+  }
+}
+
 async function getUserByEmail(db: DB, email: string): Promise<Optional<UserModel>> {
   const rows = await db.select().from(users).where(eq(users.email, email))
   const row = rows[0]
@@ -35,6 +50,7 @@ async function createUser(db: DB, input: CreateUserInput): Promise<UserModel> {
 }
 
 export const userService = {
+  getUserById,
   getUserByEmail,
   createUser,
 }

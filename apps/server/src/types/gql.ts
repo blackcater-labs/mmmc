@@ -68,6 +68,13 @@ export type Library = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+export type LoginResponse = {
+  __typename?: 'LoginResponse';
+  /** JWT access token */
+  access_token: Scalars['String']['output'];
+  user: User;
+};
+
 /** Mangas / Manhwas / Manhuas / Comics */
 export type Manga = Item & {
   __typename?: 'Manga';
@@ -84,7 +91,7 @@ export type Manga = Item & {
 export type Mutation = {
   __typename?: 'Mutation';
   /** User login */
-  login: User;
+  login: LoginResponse;
   /** Register new user */
   register: User;
 };
@@ -133,12 +140,12 @@ export enum PlaylistType {
 
 export type Query = {
   __typename?: 'Query';
-  /** Login user info */
-  currentUser: User;
   /** Search item by id */
   item?: Maybe<Item>;
   /** Search library by id */
   library?: Maybe<Library>;
+  /** Login user info */
+  me: User;
   /** Search playlist by id */
   playlist?: Maybe<Playlist>;
   /** Search user by id */
@@ -276,6 +283,7 @@ export type ResolversTypes = {
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   JSONObject: ResolverTypeWrapper<Scalars['JSONObject']['output']>;
   Library: ResolverTypeWrapper<Library>;
+  LoginResponse: ResolverTypeWrapper<LoginResponse>;
   Manga: ResolverTypeWrapper<Manga>;
   Mutation: ResolverTypeWrapper<{}>;
   Novel: ResolverTypeWrapper<Novel>;
@@ -301,6 +309,7 @@ export type ResolversParentTypes = {
   JSON: Scalars['JSON']['output'];
   JSONObject: Scalars['JSONObject']['output'];
   Library: Library;
+  LoginResponse: LoginResponse;
   Manga: Manga;
   Mutation: {};
   Novel: Novel;
@@ -372,6 +381,12 @@ export type LibraryResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type LoginResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['LoginResponse'] = ResolversParentTypes['LoginResponse']> = {
+  access_token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MangaResolvers<ContextType = any, ParentType extends ResolversParentTypes['Manga'] = ResolversParentTypes['Manga']> = {
   chapters?: Resolver<Array<ResolversTypes['Chapter']>, ParentType, ContextType>;
   cover?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -385,7 +400,7 @@ export type MangaResolvers<ContextType = any, ParentType extends ResolversParent
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  login?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
+  login?: Resolver<ResolversTypes['LoginResponse'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
   register?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'email' | 'name' | 'password'>>;
 };
 
@@ -412,9 +427,9 @@ export type PlaylistResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  currentUser?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   item?: Resolver<Maybe<ResolversTypes['Item']>, ParentType, ContextType, RequireFields<QueryItemArgs, 'id'>>;
   library?: Resolver<Maybe<ResolversTypes['Library']>, ParentType, ContextType, RequireFields<QueryLibraryArgs, 'id'>>;
+  me?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
   playlist?: Resolver<Maybe<ResolversTypes['Playlist']>, ParentType, ContextType, RequireFields<QueryPlaylistArgs, 'id'>>;
   user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserArgs, 'id'>>;
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUsersArgs, 'limit' | 'offset'>>;
@@ -444,6 +459,7 @@ export type Resolvers<ContextType = any> = {
   JSON?: GraphQLScalarType;
   JSONObject?: GraphQLScalarType;
   Library?: LibraryResolvers<ContextType>;
+  LoginResponse?: LoginResponseResolvers<ContextType>;
   Manga?: MangaResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Novel?: NovelResolvers<ContextType>;

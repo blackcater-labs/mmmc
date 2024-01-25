@@ -107,7 +107,7 @@ type Playlist {
 
 type Query {
   """Login user info"""
-  currentUser: User!
+  me: User!
 
   """Search user by id"""
   user(id: ID!): User
@@ -125,9 +125,16 @@ type Query {
   playlist(id: ID!): Playlist
 }
 
+type LoginResponse {
+  user: User!
+
+  """JWT access token"""
+  access_token: String!
+}
+
 type Mutation {
   """User login"""
-  login(email: String!, password: String!): User!
+  login(email: String!, password: String!): LoginResponse!
 
   """Register new user"""
   register(name: String!, email: String!, password: String!): User!
