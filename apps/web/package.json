@@ -37,7 +37,7 @@
     "@urql/core": "^4.2.3",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
-    "lucide-react": "^0.314.0",
+    "lucide-react": "^0.315.0",
     "next": "^14.1.0",
     "next-auth": "5.0.0-beta.5",
     "next-themes": "^0.2.1",
@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.7",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.17",
