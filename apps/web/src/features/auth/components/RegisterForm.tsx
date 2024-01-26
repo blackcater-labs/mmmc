@@ -4,17 +4,17 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Controller, useForm } from 'react-hook-form'
-import { Button, Checkbox, Input } from '@nextui-org/react'
+import { Button, Input } from '@nextui-org/react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import type { LoginSchema } from '../schemas/login.schema'
-import { loginSchema } from '../schemas/login.schema'
+import type { RegisterSchema } from '../schemas/register.schema'
+import { registerSchema } from '../schemas/register.schema'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 
-function LoginForm() {
-  const { control, handleSubmit } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
+function RegisterForm() {
+  const { control, handleSubmit } = useForm<RegisterSchema>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {},
   })
 
@@ -31,6 +31,19 @@ function LoginForm() {
       <div className="mt-8">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
+            <Controller
+              name="name"
+              control={control}
+              render={({ field, fieldState: { invalid, error } }) => (
+                <Input
+                  label="Username"
+                  required
+                  isInvalid={invalid}
+                  errorMessage={error?.message}
+                  {...field}
+                />
+              )}
+            />
             <Controller
               name="email"
               control={control}
@@ -59,29 +72,29 @@ function LoginForm() {
                 />
               )}
             />
-          </div>
-          <div className="mt-6 flex flex-row items-center justify-between">
             <Controller
-              name="rememberMe"
+              name="confirmPassword"
               control={control}
-              render={({ field: { value, onChange, ...rest } }) => (
-                <Checkbox
-                  size="sm"
-                  isSelected={value}
-                  onValueChange={onChange}
-                  {...rest}
-                >
-                  Remember me?
-                </Checkbox>
+              render={({ field, fieldState: { invalid, error } }) => (
+                <Input
+                  label="Confirm Password"
+                  type="password"
+                  required
+                  isInvalid={invalid}
+                  errorMessage={error?.message}
+                  {...field}
+                />
               )}
             />
-            <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/register">Register Now!</Link>
           </div>
-          <Button className="mt-4 w-full" type="submit" color="primary">Login</Button>
+          <div className="mt-6 flex flex-row items-center justify-end">
+            <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/login">Login Now!</Link>
+          </div>
+          <Button className="mt-4 w-full" type="submit" color="primary">Register</Button>
         </form>
       </div>
     </div>
   )
 }
 
-export { LoginForm }
+export { RegisterForm }

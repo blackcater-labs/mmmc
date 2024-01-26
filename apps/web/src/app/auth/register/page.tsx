@@ -1,9 +1,9 @@
-import { Layout } from '@/features/auth'
+import { Layout, RegisterForm } from '@/features/auth'
 
 export default function RegisterPage() {
   return (
     <Layout>
-      Register Form
+      <RegisterForm />
     </Layout>
   )
 }
