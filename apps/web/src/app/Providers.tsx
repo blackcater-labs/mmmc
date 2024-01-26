@@ -1,31 +1,21 @@
 'use client'
 
+import { NextUIProvider } from '@nextui-org/react'
 import { ThemeProvider } from 'next-themes'
-import { Client, Provider as UrqlProvider, cacheExchange, fetchExchange } from 'urql'
-
-const client = new Client({
-  url: process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT!,
-  exchanges: [cacheExchange, fetchExchange],
-  // fetchOptions: () => {
-  //   const token = getAccessToken()
-  //   return {
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //     },
-  //   }
-  // }
-})
+import { useRouter } from 'next/navigation'
 
 export interface ProvidersProps {
   children: React.ReactNode
 }
 
 export function Providers({ children }: ProvidersProps) {
+  const router = useRouter()
+
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <UrqlProvider value={client}>
+    <NextUIProvider locale="en-US" navigate={router.push}>
+      <ThemeProvider attribute="class" defaultTheme="dark">
         {children}
-      </UrqlProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </NextUIProvider>
   )
 }

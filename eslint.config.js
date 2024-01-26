@@ -41,6 +41,7 @@ export default antfu(
     files: ['apps/web/**/*.{ts,tsx}'],
     rules: {
       'node/prefer-global/process': 'off',
+      'react-refresh/only-export-components': 'off',
     },
   },
 )

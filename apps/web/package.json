@@ -29,9 +29,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@douyinfe/semi-illustrations": "^2.51.3",
     "@hookform/resolvers": "^3.3.4",
     "@mmmc/theme": "workspace:*",
     "@nextui-org/react": "^2.2.9",
+    "@react-aria/i18n": "^3.10.0",
+    "@urql/core": "^4.2.3",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
     "lucide-react": "^0.314.0",
@@ -42,7 +45,6 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.3",
     "tailwind-merge": "^2.2.1",
-    "urql": "^4.0.6",
     "valtio": "^1.13.0",
     "zod": "^3.22.4"
   },

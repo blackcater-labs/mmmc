@@ -1,16 +1,28 @@
 import NextAuth from 'next-auth'
-import Credentials from 'next-auth/providers/credentials'
+
+import authConfig from '@/auth.config'
 
 export const {
   handlers: { GET, POST },
   auth,
+  signIn,
+  signOut,
+  unstable_update,
 } = NextAuth({
-  providers: [
-    Credentials({
-      async authorize(credentials, request) {
-        // TODO: Get user from backend
-        return {}
-      },
-    }),
-  ],
+  pages: {
+    signIn: '/auth/login',
+    error: '/auth/error',
+  },
+  session: { strategy: 'jwt' },
+  callbacks: {
+    async session({ token, session }) {
+      console.log('session:', token, session)
+      return session
+    },
+    async jwt({ token }) {
+      console.log('jwt:', token)
+      return token
+    },
+  },
+  ...authConfig,
 })
