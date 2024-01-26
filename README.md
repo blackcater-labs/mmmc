@@ -38,8 +38,7 @@ This project is a monorepo:
 - `apps/server`: server application for Mmmc, based on [Bun](https://bun.sh/).
 - `apps/web`: web application for Mmmc, based on [Next.js](https://nextjs.org/).
 - `packages/storybook`: Storybook for developing UI components, based on [Storybook](https://storybook.js.org/).
-- `packages/theme`: Tailwind CSS theme for Mmmc, based on [Tailwind CSS](https://tailwindcss.com/).
-- `packages/ui`: UI components for Mmmc, based on [radix-ui](https://radix-ui.com/).
+- `packages/theme`: Tailwind CSS theme for Mmmc, based on [nextui](https://nextui.org/).
 
 > [!IMPORTANT]
 > Project's package manager is [Bun](https://bun.sh/), so you need to install it first.

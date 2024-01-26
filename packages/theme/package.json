@@ -41,27 +41,12 @@
     "build": "tsup",
     "clean": "rimraf dist"
   },
-  "peerDependencies": {
-    "tailwindcss": ">=3"
-  },
   "dependencies": {
-    "color": "^4.2.3",
-    "color2k": "^2.0.3",
-    "deepmerge": "^4.3.1",
-    "flat": "^6.0.1",
-    "lodash.foreach": "^4.5.0",
-    "lodash.get": "^4.4.2",
-    "lodash.omit": "^4.5.0"
+    "@nextui-org/theme": "^2.1.17",
+    "deepmerge": "^4.3.1"
   },
   "devDependencies": {
-    "@types/color": "^3.0.6",
-    "@types/flat": "^5.0.5",
-    "@types/lodash.foreach": "^4.5.9",
-    "@types/lodash.get": "^4.4.9",
-    "@types/lodash.omit": "^4.5.9",
     "rimraf": "^5.0.5",
-    "tailwindcss": "^3.4.1",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "tsup": "^8.0.1"
   }
 }

@@ -1,4 +1,4 @@
-import { Button } from '@mmmc/ui'
+import { Button } from '@nextui-org/react'
 
 export default function Home() {
   return (

@@ -1,8 +1,7 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
-import { tv } from 'tailwind-variants'
 
-export { tv }
+export { tv } from '@mmmc/theme'
 
 export function tm(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))

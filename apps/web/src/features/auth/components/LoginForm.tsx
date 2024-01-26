@@ -3,8 +3,9 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import Image from 'next/image'
-import { Button, Input, tm } from '@mmmc/ui'
+import { Button, Input } from '@nextui-org/react'
 
+import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 
 function LoginForm() {

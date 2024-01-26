@@ -7,7 +7,7 @@ export interface DocumentHeaderProps {
 
 export function DocumentHeader({ title, description }: DocumentHeaderProps) {
   return (
-    <div className="bg-background-mellow space-y-2 rounded-xl px-6 py-10">
+    <div className="bg-content3 space-y-2 rounded-xl px-6 py-10">
       <div className="text-foreground !text-3xl font-bold">{title}</div>
       {description && <div className="text-foreground-muted !text-lg">{description}</div>}
     </div>

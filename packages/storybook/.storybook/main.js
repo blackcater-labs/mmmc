@@ -6,8 +6,8 @@ const config = {
   stories: [
     '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../../ui/src/**/*.mdx',
-    '../../ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../../../apps/web/src/**/*.mdx',
+    '../../../apps/web/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   staticDirs: ['../public'],
   addons: [

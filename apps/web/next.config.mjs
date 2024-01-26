@@ -11,8 +11,6 @@ const nextConfig = {
 
   reactStrictMode: true,
 
-  transpilePackages: ['@mmmc/ui'],
-
   rewrites: async () => [
     {
       source: '/api/graphql',
