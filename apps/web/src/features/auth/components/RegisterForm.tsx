@@ -10,6 +10,8 @@ import { Button, Input } from '@nextui-org/react'
 
 import type { RegisterSchema } from '../schemas/register.schema'
 import { registerSchema } from '../schemas/register.schema'
+import { ThemeSwitcher } from './ThemeSwitcher'
+import { LangSwitcher } from './LangSwitcher'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 import { registerAction } from '@/actions/auth/register'
@@ -116,6 +118,10 @@ function RegisterForm() {
           >
             Register
           </Button>
+          <div className="mt-4 flex flex-row items-center justify-between">
+            <ThemeSwitcher />
+            <LangSwitcher />
+          </div>
         </form>
       </div>
     </div>

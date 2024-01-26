@@ -10,6 +10,8 @@ import { Button, Checkbox, Input } from '@nextui-org/react'
 
 import type { LoginSchema } from '../schemas/login.schema'
 import { loginSchema } from '../schemas/login.schema'
+import { ThemeSwitcher } from './ThemeSwitcher'
+import { LangSwitcher } from './LangSwitcher'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 import { DEFAULT_REDIRECT_URL } from '@/routes'
@@ -99,6 +101,10 @@ function LoginForm() {
           >
             Login
           </Button>
+          <div className="mt-4 flex flex-row items-center justify-between">
+            <ThemeSwitcher />
+            <LangSwitcher />
+          </div>
         </form>
       </div>
     </div>
