@@ -7,19 +7,19 @@ extensions:
         plugins:
           - typescript
           - typescript-resolvers
-        config:
-          scalars:
-            ID:
-              # ID is a number in the database nowerdays. Maybe number is not secure enough?
-              input: number
-              output: number
+        # config:
+        #   scalars:
+        #     ID:
+        #       # ID is a number in the database nowerdays. Maybe number is not secure enough?
+        #       input: number
+        #       output: number
       ./apps/web/src/types/gql.ts:
         plugins:
           - typescript
           - typescript-operations
-        config:
-          scalars:
-            ID:
-              # ID is a number in the database nowerdays. Maybe number is not secure enough?
-              input: number
-              output: number
+        # config:
+        #   scalars:
+        #     ID:
+        #       # ID is a number in the database nowerdays. Maybe number is not secure enough?
+        #       input: number
+        #       output: number

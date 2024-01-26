@@ -3,7 +3,7 @@ import { sign, verify } from 'jsonwebtoken'
 import { AuthUnknowErrorMmmcError } from './error'
 
 export interface JWTPayload {
-  id: number
+  id: string
   role: string
 }
 

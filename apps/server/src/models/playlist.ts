@@ -1,4 +1,5 @@
-import { type Optional, type PartialExcept, PlaylistType } from '@/types'
+import type { Optional, PartialExcept } from '@/types'
+import { PlaylistType } from '@/types/gql'
 import { InternalServerMmmcError } from '@/utils/error'
 
 export interface PlaylistModel {

@@ -2,7 +2,8 @@ import debug from 'debug'
 
 import type { RegisterInput } from './dto/register-input.dto'
 import type { LoginInput } from './dto/login-input.dto'
-import type { Ctx, User } from '@/types'
+import type { Ctx } from '@/types'
+import type { User } from '@/types/gql'
 import { userService } from '@/services/user'
 import { AuthPasswordNotMatchMmmcError, UserAlreadyExistsMmmcError, UserNotExistsMmmcError } from '@/utils/error'
 import { comparePassword, hashPassword } from '@/utils/string'
@@ -20,7 +21,7 @@ export async function register(ctx: Ctx, input: RegisterInput): Promise<User> {
 
   debug('mmmc:ctrl:auth:register')('user created', user)
 
-  return user
+  return { ...user, id: `${user.id}` }
 }
 
 export async function login(ctx: Ctx, input: LoginInput): Promise<User> {
@@ -35,5 +36,5 @@ export async function login(ctx: Ctx, input: LoginInput): Promise<User> {
 
   debug('mmmc:ctrl:auth:login')('user logged in', existingUser)
 
-  return existingUser
+  return { ...existingUser, id: `${existingUser.id}` }
 }

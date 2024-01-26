@@ -7,7 +7,7 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: number; output: number; }
+  ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
@@ -201,7 +201,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginResponse', access_token: string, user: { __typename?: 'User', id: number, name: string, email: string, role: UserRole, avatar?: string | null } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginResponse', access_token: string, user: { __typename?: 'User', id: string, name: string, email: string, role: UserRole, avatar?: string | null } } };
 
 export type RegisterMutationVariables = Exact<{
   name: Scalars['String']['input'];
@@ -210,6 +210,6 @@ export type RegisterMutationVariables = Exact<{
 }>;
 
 
-export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'User', id: number, name: string, email: string, role: UserRole, avatar?: string | null } };
+export type RegisterMutation = { __typename?: 'Mutation', register: { __typename?: 'User', id: string, name: string, email: string, role: UserRole, avatar?: string | null } };
 
-export type UserBasicFragment = { __typename?: 'User', id: number, name: string, email: string, role: UserRole, avatar?: string | null };
+export type UserBasicFragment = { __typename?: 'User', id: string, name: string, email: string, role: UserRole, avatar?: string | null };

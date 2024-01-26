@@ -1,5 +1,5 @@
 import type { Optional, PartialExcept } from '@/types'
-import { UserRole } from '@/types'
+import { UserRole } from '@/types/gql'
 import { InternalServerMmmcError } from '@/utils/error'
 
 export interface UserModel {
