@@ -1,25 +1,43 @@
 'use client'
 
-import React from 'react'
+import React, { useTransition } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { toast } from 'sonner'
 import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input } from '@nextui-org/react'
 
-import { zodResolver } from '@hookform/resolvers/zod'
 import type { RegisterSchema } from '../schemas/register.schema'
 import { registerSchema } from '../schemas/register.schema'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
+import { registerAction } from '@/actions/auth/register'
 
 function RegisterForm() {
+  const [isPending, startTransition] = useTransition()
   const { control, handleSubmit } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
     defaultValues: {},
+    disabled: isPending,
   })
 
-  const onSubmit = (values) => {
-    console.log('values:', values)
+  const onSubmit = (values: RegisterSchema) => {
+    if (values.password !== values.confirmPassword) {
+      toast.error('Password is not consistent')
+      return
+    }
+
+    startTransition(() => {
+      toast.promise(registerAction(values), {
+        loading: 'Registering...',
+        success: 'Register Success!',
+        error(err) {
+          return err.message
+        },
+        position: 'top-center',
+      })
+    })
   }
 
   return (
@@ -90,7 +108,14 @@ function RegisterForm() {
           <div className="mt-6 flex flex-row items-center justify-end">
             <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/login">Login Now!</Link>
           </div>
-          <Button className="mt-4 w-full" type="submit" color="primary">Register</Button>
+          <Button
+            className="mt-4 w-full"
+            type="submit"
+            color="primary"
+            disabled={isPending}
+          >
+            Register
+          </Button>
         </form>
       </div>
     </div>

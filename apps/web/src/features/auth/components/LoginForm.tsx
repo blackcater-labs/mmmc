@@ -1,38 +1,39 @@
 'use client'
 
-import React from 'react'
+import React, { useTransition } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Checkbox, Input } from '@nextui-org/react'
-import { signIn } from 'next-auth/react'
 
 import type { LoginSchema } from '../schemas/login.schema'
 import { loginSchema } from '../schemas/login.schema'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 import { DEFAULT_REDIRECT_URL } from '@/routes'
+import { loginAction } from '@/actions/auth'
 
 function LoginForm() {
+  const [isPending, startTransition] = useTransition()
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {},
+    disabled: isPending,
   })
   const searchParams = useSearchParams()
 
   const onSubmit = (values: LoginSchema) => {
     const callbackUrl = searchParams.get('callbackUrl') || DEFAULT_REDIRECT_URL
 
-    signIn(
-      'credentials',
-      {
+    startTransition(() => {
+      loginAction({
         email: values.email,
         password: values.password,
         callbackUrl,
-      },
-    )
+      })
+    })
   }
 
   return (
@@ -90,7 +91,14 @@ function LoginForm() {
             />
             <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/register">Register Now!</Link>
           </div>
-          <Button className="mt-4 w-full" type="submit" color="primary">Login</Button>
+          <Button
+            className="mt-4 w-full"
+            type="submit"
+            color="primary"
+            disabled={isPending}
+          >
+            Login
+          </Button>
         </form>
       </div>
     </div>

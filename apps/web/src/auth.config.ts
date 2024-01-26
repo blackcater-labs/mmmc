@@ -1,26 +1,15 @@
 import type { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import { z } from 'zod'
 
 import { login } from '@/api/auth/login'
-
-const loginSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-})
 
 export default {
   providers: [
     Credentials({
       async authorize(credentials) {
-        const validateFields = loginSchema.safeParse(credentials)
+        const { data, error } = await login(credentials as any)
 
-        if (!validateFields.success)
-          return null
-
-        const { data, error } = await login(validateFields.data)
-
-        if (error && !data)
+        if (error)
           return null
 
         return {
