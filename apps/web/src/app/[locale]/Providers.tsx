@@ -5,20 +5,24 @@ import { ThemeProvider } from 'next-themes'
 import { useRouter } from 'next/navigation'
 
 import { Toaster } from '@/components/toaster'
+import { I18nProviderClient } from '@/locales/client'
 
 export interface ProvidersProps {
+  params: { locale: string }
   children: React.ReactNode
 }
 
-export function Providers({ children }: ProvidersProps) {
+export function Providers({ params: { locale }, children }: ProvidersProps) {
   const router = useRouter()
 
   return (
-    <NextUIProvider locale="en-US" navigate={router.push}>
+    <I18nProviderClient locale={locale}>
       <ThemeProvider attribute="class" defaultTheme="dark">
-        {children}
-        <Toaster />
+        <NextUIProvider locale={locale} navigate={router.push}>
+          {children}
+          <Toaster />
+        </NextUIProvider>
       </ThemeProvider>
-    </NextUIProvider>
+    </I18nProviderClient>
   )
 }

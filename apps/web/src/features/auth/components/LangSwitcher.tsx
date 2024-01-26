@@ -1,7 +1,24 @@
+'use client'
+
+import type { Selection } from '@nextui-org/react'
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react'
 import { GlobeIcon } from 'lucide-react'
 
+import { useCallback } from 'react'
+import { useChangeLocale, useCurrentLocale } from '@/locales/client'
+
 export function LangSwitcher() {
+  const changeLocale = useChangeLocale()
+  const currentLocale = useCurrentLocale()
+
+  const onSelectionChange = useCallback((keys: Selection) => {
+    if (keys === 'all')
+      return
+    if (keys.size === 0)
+      return
+    changeLocale(keys.values().next().value)
+  }, [changeLocale])
+
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
@@ -9,9 +26,13 @@ export function LangSwitcher() {
           <GlobeIcon />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu>
-        <DropdownItem>🇨🇳 简体中文</DropdownItem>
-        <DropdownItem>🇺🇸 English</DropdownItem>
+      <DropdownMenu
+        selectionMode="single"
+        selectedKeys={[currentLocale]}
+        onSelectionChange={onSelectionChange}
+      >
+        <DropdownItem key="zh-CN">🇨🇳 简体中文</DropdownItem>
+        <DropdownItem key="en-US">🇺🇸 English</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   )

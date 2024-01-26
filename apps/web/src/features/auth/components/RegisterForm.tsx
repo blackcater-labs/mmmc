@@ -15,8 +15,10 @@ import { LangSwitcher } from './LangSwitcher'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
 import { registerAction } from '@/actions/auth/register'
+import { useScopedI18n } from '@/locales/client'
 
 function RegisterForm() {
+  const t = useScopedI18n('auth.register')
   const [isPending, startTransition] = useTransition()
   const { control, handleSubmit } = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
@@ -45,7 +47,7 @@ function RegisterForm() {
   return (
     <div className="w-full max-w-[450px] overflow-auto p-6">
       <h3 className="flex flex-row items-center justify-center">
-        <Image className="mr-4" src="/logo.png" width={40} height={40} alt="mmmc" />
+        <Image className="bg-default mr-4 rounded-full" src="/logo.png" width={40} height={40} alt="mmmc" />
         <span className={tm(exoFont.className, 'text-3xl font-bold')}>Mmmc</span>
       </h3>
       <div className="mt-8">
@@ -56,7 +58,7 @@ function RegisterForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Username"
+                  label={t('username')}
                   required
                   isInvalid={invalid}
                   errorMessage={error?.message}
@@ -69,7 +71,7 @@ function RegisterForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Email"
+                  label={t('email')}
                   type="email"
                   required
                   isInvalid={invalid}
@@ -83,7 +85,7 @@ function RegisterForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Password"
+                  label={t('password')}
                   type="password"
                   required
                   isInvalid={invalid}
@@ -97,7 +99,7 @@ function RegisterForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Confirm Password"
+                  label={t('confirmPassword')}
                   type="password"
                   required
                   isInvalid={invalid}
@@ -108,7 +110,12 @@ function RegisterForm() {
             />
           </div>
           <div className="mt-6 flex flex-row items-center justify-end">
-            <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/login">Login Now!</Link>
+            <Link
+              className="text-primary text-sm underline hover:opacity-80"
+              href="/auth/login"
+            >
+              {t('loginNow')}
+            </Link>
           </div>
           <Button
             className="mt-4 w-full"
@@ -116,7 +123,7 @@ function RegisterForm() {
             color="primary"
             disabled={isPending}
           >
-            Register
+            {t('registerBtn')}
           </Button>
           <div className="mt-4 flex flex-row items-center justify-between">
             <ThemeSwitcher />

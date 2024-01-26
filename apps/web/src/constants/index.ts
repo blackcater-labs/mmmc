@@ -1,4 +1,10 @@
 /**
+ * -----------------------------------------------
+ * auth.js related
+ * -----------------------------------------------
+ */
+
+/**
  * Pages do not need to be authenticated
  */
 export const PUBLIC_ROUTES: string[] = []
@@ -23,3 +29,19 @@ export const AUTH_API_PREFIXS: string[] = [
  * Default redirect URL after login
  */
 export const DEFAULT_REDIRECT_URL: string = '/'
+
+/**
+ * -----------------------------------------------
+ * i18n related
+ * -----------------------------------------------
+ */
+
+/**
+ * Supported locales
+ */
+export const SUPPORTED_LOCALES: string[] = ['en-US', 'zh-CN']
+
+/**
+ * Default locale
+ */
+export const DEFAULT_LOCALE: string = 'en-US'

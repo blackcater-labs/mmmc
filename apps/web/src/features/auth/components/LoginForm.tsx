@@ -14,10 +14,12 @@ import { ThemeSwitcher } from './ThemeSwitcher'
 import { LangSwitcher } from './LangSwitcher'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
-import { DEFAULT_REDIRECT_URL } from '@/routes'
+import { DEFAULT_REDIRECT_URL } from '@/constants'
 import { loginAction } from '@/actions/auth'
+import { useScopedI18n } from '@/locales/client'
 
 function LoginForm() {
+  const t = useScopedI18n('auth.login')
   const [isPending, startTransition] = useTransition()
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -41,7 +43,7 @@ function LoginForm() {
   return (
     <div className="w-full max-w-[450px] overflow-auto p-6">
       <h3 className="flex flex-row items-center justify-center">
-        <Image className="mr-4" src="/logo.png" width={40} height={40} alt="mmmc" />
+        <Image className="bg-default mr-4 rounded-full" src="/logo.png" width={40} height={40} alt="mmmc" />
         <span className={tm(exoFont.className, 'text-3xl font-bold')}>Mmmc</span>
       </h3>
       <div className="mt-8">
@@ -52,7 +54,7 @@ function LoginForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Email"
+                  label={t('email')}
                   type="email"
                   required
                   isInvalid={invalid}
@@ -66,7 +68,7 @@ function LoginForm() {
               control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label="Password"
+                  label={t('password')}
                   type="password"
                   required
                   isInvalid={invalid}
@@ -87,11 +89,16 @@ function LoginForm() {
                   onValueChange={onChange}
                   {...rest}
                 >
-                  Remember me?
+                  {t('rememberMe')}
                 </Checkbox>
               )}
             />
-            <Link className="text-primary text-sm underline hover:opacity-80" href="/auth/register">Register Now!</Link>
+            <Link
+              className="text-primary text-sm underline hover:opacity-80"
+              href="/auth/register"
+            >
+              {t('registerNow')}
+            </Link>
           </div>
           <Button
             className="mt-4 w-full"
@@ -99,7 +106,7 @@ function LoginForm() {
             color="primary"
             disabled={isPending}
           >
-            Login
+            {t('loginBtn')}
           </Button>
           <div className="mt-4 flex flex-row items-center justify-between">
             <ThemeSwitcher />
