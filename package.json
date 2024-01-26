@@ -23,12 +23,17 @@
     "dev": "FORCE_COLOR=1 turbo dev --parallel",
     "build": "turbo build",
     "test": "turbo test",
+    "generate": "graphql-codegen",
     "taze": "taze minor -r",
     "taze:major": "taze major -r"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.3",
     "@eslint/eslintrc": "^3.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@types/eslint__eslintrc": "^2.1.1",
     "eslint": "^8.56.0",
     "eslint-plugin-drizzle": "^0.2.3",

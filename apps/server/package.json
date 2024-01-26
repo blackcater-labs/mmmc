@@ -25,12 +25,11 @@
   ],
   "module": "src/index.ts",
   "scripts": {
-    "dev": "bun run generate && DEBUG=mmmc:* bun --watch src/index.ts",
-    "build": "bun run generate && bun build src/index.ts --target=bun --outfile=dist/index.js",
+    "dev": "DEBUG=mmmc:* bun --watch src/index.ts",
+    "build": "bun build src/index.ts --target=bun --outfile=dist/index.js",
     "start": "NODE_ENV=production bun dist/index.js",
     "migrate": "bun run src/migrate.ts",
     "test": "bun test",
-    "generate": "graphql-codegen",
     "db:push": "drizzle-kit push:sqlite",
     "db:generate": "drizzle-kit generate:sqlite"
   },
@@ -56,9 +55,6 @@
     "yaml": "^2.3.4"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.0",
-    "@graphql-codegen/typescript": "^4.0.1",
-    "@graphql-codegen/typescript-resolvers": "^4.0.1",
     "@types/bcrypt": "^5.0.2",
     "@types/better-sqlite3": "^7.6.9",
     "@types/bun": "^1.0.4",

@@ -3,23 +3,36 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
-import { Button, Checkbox, Input } from '@nextui-org/react'
-
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, Checkbox, Input } from '@nextui-org/react'
+import { signIn } from 'next-auth/react'
+
 import type { LoginSchema } from '../schemas/login.schema'
 import { loginSchema } from '../schemas/login.schema'
 import { tm } from '@/utils/tailwind'
 import { exoFont } from '@/utils/font'
+import { DEFAULT_REDIRECT_URL } from '@/routes'
 
 function LoginForm() {
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {},
   })
+  const searchParams = useSearchParams()
 
-  const onSubmit = (values) => {
-    console.log('values:', values)
+  const onSubmit = (values: LoginSchema) => {
+    const callbackUrl = searchParams.get('callbackUrl') || DEFAULT_REDIRECT_URL
+
+    signIn(
+      'credentials',
+      {
+        email: values.email,
+        password: values.password,
+        callbackUrl,
+      },
+    )
   }
 
   return (
