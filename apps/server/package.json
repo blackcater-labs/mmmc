@@ -28,7 +28,6 @@
     "dev": "DEBUG=mmmc:* bun --watch src/index.ts",
     "build": "bun build src/index.ts --target=bun --outfile=dist/index.js",
     "start": "NODE_ENV=production bun dist/index.js",
-    "migrate": "bun run src/migrate.ts",
     "test": "bun test",
     "db:push": "drizzle-kit push:sqlite",
     "db:generate": "drizzle-kit generate:sqlite"
