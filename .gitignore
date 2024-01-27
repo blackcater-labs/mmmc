@@ -29,3 +29,7 @@ coverage/
 
 # turbo
 .turbo/
+
+# mmmc
+/data
+/content

@@ -6,7 +6,7 @@ export default defineConfig({
   driver: 'better-sqlite',
   out: './migrations',
   dbCredentials: {
-    url: process.env.DATABASE_URL || './data/db/mmmc.db',
+    url: '../../data/db/mmmc.db', // Local file path
   },
   verbose: true,
   strict: true,

@@ -8,6 +8,11 @@ export interface ArgOptions {
   timeZone?: string
   // -c, --config
   config?: string
+
+  // --content-dir
+  contentDir?: string
+  // --data-dir
+  dataDir?: string
 }
 
 export interface EnvOptions {
@@ -18,13 +23,16 @@ export interface EnvOptions {
 
   // JWT_SECRET
   jwtSecret: string
+
+  // CONTENT_DIR
+  contentDir?: string
+  // DATA_DIR
+  dataDir?: string
 }
 
 interface ServerConfig {
   port: number
   timeZone: string
-  contentDir: string
-  dataDir: string
 }
 
 interface JWTConfig {
@@ -37,7 +45,7 @@ export interface MmmcOptions {
 }
 
 export interface AppConfig {
-  server: Omit<ServerConfig, 'contentDir' | 'dataDir'>
+  server: ServerConfig
   paths: Paths
   jwt: JWTConfig
 }

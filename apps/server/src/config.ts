@@ -3,10 +3,10 @@ import path from 'node:path'
 import fs from 'node:fs'
 import cac from 'cac'
 import yaml from 'yaml'
-import deepmerge from 'deepmerge'
 import { z } from 'zod'
+import debug from 'debug'
 
-import { updatePaths } from '@/utils/paths'
+import { getMmmcDir, updatePaths } from '@/utils/paths'
 import type { AppConfig, ArgOptions, EnvOptions, MmmcOptions } from '@/types'
 
 const program = cac('server')
@@ -15,6 +15,8 @@ program
   .option('-p, --port <port>', 'Port to listen on')
   .option('-t, --tz, --time-zone <timeZone>', 'Timezone to use')
   .option('-c, --config <config>', 'Path to config file')
+  .option('--content-dir <contentDir>', 'Path to content directory')
+  .option('--data-dir <dataDir>', 'Path to data directory')
   .help()
 
 const { options: args } = program.parse(Bun.argv)
@@ -27,6 +29,8 @@ function parseArgs(): ArgOptions {
     port: args.port,
     timeZone: args.timeZone,
     config: args.config,
+    contentDir: args.contentDir,
+    dataDir: args.dataDir,
   }
 }
 
@@ -35,6 +39,8 @@ function parseEnvs(): EnvOptions {
     PORT: z.string().optional(),
     TIME_ZONE: z.string().optional(),
     JWT_SECRET: z.string(),
+    CONTENT_DIR: z.string().optional(),
+    DATA_DIR: z.string().optional(),
   })
 
   try {
@@ -44,6 +50,8 @@ function parseEnvs(): EnvOptions {
       port: data.PORT ? Number(data.PORT) : undefined,
       timeZone: data.TIME_ZONE,
       jwtSecret: data.JWT_SECRET,
+      contentDir: data.CONTENT_DIR,
+      dataDir: data.DATA_DIR,
     }
   }
   catch (err) {
@@ -53,7 +61,8 @@ function parseEnvs(): EnvOptions {
 }
 
 function parseConfigFile(file?: string): MmmcOptions {
-  file = path.resolve(process.cwd(), file || 'config/mmmc.yaml')
+  file = path.resolve(getMmmcDir(), file || 'config/mmmc.yaml')
+  debug('mmmc:config')('Loading config file: %s', file)
   return fs.existsSync(file) ? (yaml.parse(fs.readFileSync(file, 'utf-8')) || {}) : {}
 }
 
@@ -65,32 +74,14 @@ export function load(): AppConfig {
   const envs = parseEnvs()
   const opts = parseConfigFile(args.config)
 
-  const { server: serverConfig, ...resetConfig } = deepmerge(
-    {
-      server: {
-        port: args.port || opts.server?.port || envs.port,
-        timeZone: args.timeZone || opts.server?.timeZone || envs.timeZone,
-      },
-    } satisfies MmmcOptions,
-    {
-      server: {
-        port: 4000,
-        timeZone: 'Asia/Shanghai',
-        contentDir: 'content',
-        dataDir: 'data',
-      },
-    } satisfies MmmcOptions,
-  )
-
   return _config = {
     server: {
-      port: serverConfig.port,
-      timeZone: serverConfig.timeZone,
+      port: args.port || opts.server?.port || envs.port || 4000,
+      timeZone: args.timeZone || opts.server?.timeZone || envs.timeZone || 'Asia/Shanghai',
     },
-    ...resetConfig,
     paths: updatePaths({
-      contentDir: serverConfig.contentDir,
-      dataDir: serverConfig.dataDir,
+      contentDir: args.contentDir || envs.contentDir || 'content',
+      dataDir: args.dataDir || envs.dataDir || 'data',
     }),
     jwt: {
       secret: envs.jwtSecret,
