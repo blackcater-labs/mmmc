@@ -3,14 +3,17 @@
 import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 import { sql } from 'drizzle-orm'
 
+const MAX_VAR_SIZE = 255
+
 export const users = sqliteTable(
   'users',
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
-    name: text('name').notNull(),
-    email: text('email').notNull(),
-    password: text('password').notNull(),
-    role: text('role', { enum: ['Admin', 'User'] }).notNull().default('User'),
+    name: text('name', { length: MAX_VAR_SIZE }).notNull(),
+    email: text('email', { length: MAX_VAR_SIZE }).notNull(),
+    password: text('password', { length: MAX_VAR_SIZE }).notNull(),
+    role: text('role', { enum: ['Admin', 'User'], length: MAX_VAR_SIZE }).notNull().default('User'),
+    avatar: text('avatar', { length: MAX_VAR_SIZE }),
     historyPlaylistId: integer('history_playlist_id'), // global history playlist, lazy create
     favoritePlaylistId: integer('favorite_playlist_id'), // global favorite playlist, lazy create
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
@@ -26,8 +29,8 @@ export const libraries = sqliteTable(
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
     userId: integer('user_id').notNull().references(() => users.id),
-    name: text('name').notNull(),
-    path: text('path').notNull(),
+    name: text('name', { length: MAX_VAR_SIZE }).notNull(),
+    path: text('path', { length: MAX_VAR_SIZE }).notNull(),
     historyPlaylistId: integer('history_playlist_id'), // library history playlist, lazy create
     favoritePlaylistId: integer('favorite_playlist_id'), // library favorite playlist, lazy create
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
@@ -44,10 +47,10 @@ export const items = sqliteTable(
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
     libraryId: integer('library_id').notNull().references(() => libraries.id),
-    title: text('title').notNull(),
+    title: text('title', { length: MAX_VAR_SIZE }).notNull(),
     description: text('description'),
-    cover: text('cover'),
-    isbn: text('isbn'), // book
+    cover: text('cover', { length: MAX_VAR_SIZE }),
+    isbn: text('isbn', { length: MAX_VAR_SIZE }), // book
     pageCount: integer('page_count'), // book
     wordCount: integer('word_count'), // novel
     publishedAt: integer('published_at', { mode: 'timestamp' }),
@@ -65,8 +68,8 @@ export const chapters = sqliteTable(
     id: integer('id').primaryKey({ autoIncrement: true }),
     parentId: integer('parent_id'),
     itemId: integer('item_id').notNull().references(() => items.id),
-    name: text('title').notNull(),
-    cover: text('cover'),
+    name: text('title', { length: MAX_VAR_SIZE }).notNull(),
+    cover: text('cover', { length: MAX_VAR_SIZE }),
     publishedAt: integer('published_at', { mode: 'timestamp' }),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
@@ -87,9 +90,9 @@ export const tags = sqliteTable(
     id: integer('id').primaryKey({ autoIncrement: true }),
     parentId: integer('parent_id'),
     libraryId: integer('library_id').notNull().references(() => libraries.id),
-    name: text('name').notNull(),
+    name: text('name', { length: MAX_VAR_SIZE }).notNull(),
     type: integer('type').notNull(),
-    thumb: text('avatar'),
+    thumb: text('avatar', { length: MAX_VAR_SIZE }),
     description: text('description'),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
@@ -127,8 +130,8 @@ export const playlists = sqliteTable(
     id: integer('id').primaryKey({ autoIncrement: true }),
     userId: integer('user_id').notNull().references(() => users.id),
     libraryId: integer('library_id').references(() => libraries.id),
-    name: text('name').notNull(),
-    type: text('type', { enum: ['History', 'Favorite', 'Normal'] }).notNull().default('Normal'),
+    name: text('name', { length: MAX_VAR_SIZE }).notNull(),
+    type: text('type', { enum: ['History', 'Favorite', 'Normal'], length: MAX_VAR_SIZE }).notNull().default('Normal'),
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
     updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`(strftime('%s', 'now'))`),
   },

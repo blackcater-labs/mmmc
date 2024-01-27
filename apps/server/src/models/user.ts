@@ -7,6 +7,7 @@ export interface UserModel {
   name: string
   email: string
   password: string
+  avatar: Optional<string>
   role: UserRole
   historyPlaylistId: Optional<number>
   favoritePlaylistId: Optional<number>

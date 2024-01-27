@@ -19,9 +19,11 @@ export async function register(ctx: Ctx, input: RegisterInput): Promise<User> {
     password: await hashPassword(input.password),
   })
 
-  debug('mmmc:ctrl:auth:register')('user created', user)
+  const result = { ...user, id: `${user.id}` }
 
-  return { ...user, id: `${user.id}` }
+  debug('mmmc:ctrl:auth:register')('user created', result)
+
+  return result
 }
 
 export async function login(ctx: Ctx, input: LoginInput): Promise<User> {
@@ -34,7 +36,9 @@ export async function login(ctx: Ctx, input: LoginInput): Promise<User> {
   if (!passwordMatch)
     throw new AuthPasswordNotMatchMmmcError()
 
-  debug('mmmc:ctrl:auth:login')('user logged in', existingUser)
+  const result = { ...existingUser, id: `${existingUser.id}` }
 
-  return { ...existingUser, id: `${existingUser.id}` }
+  debug('mmmc:ctrl:auth:login')('user logged in', result)
+
+  return result
 }
