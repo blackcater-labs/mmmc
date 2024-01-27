@@ -29,10 +29,11 @@ function genPaths(paths: Partial<Paths> = {}, regen: boolean = false): Paths {
   const mmmcDir = getMmmcDir()
   const contentDir = ensureDir(path.resolve(mmmcDir, paths.contentDir || 'content'))
   const dataDir = ensureDir(path.resolve(mmmcDir, paths.dataDir || 'data'))
-  const logsDir = ensureDir(path.resolve(dataDir, paths.logsDir || 'logs'))
-  const dbDir = ensureDir(path.resolve(dataDir, paths.dbDir || 'db'))
-  const cacheDir = ensureDir(path.resolve(dataDir, paths.cacheDir || 'cache'))
-  const uploadDir = ensureDir(path.resolve(dataDir, paths.uploadDir || 'upload'))
+  const logsDir = ensureDir(path.resolve(dataDir, paths.logsDir || 'Logs'))
+  const dbDir = ensureDir(path.resolve(dataDir, paths.dbDir || 'Database'))
+  const cacheDir = ensureDir(path.resolve(dataDir, paths.cacheDir || 'Cache'))
+  const usersDir = ensureDir(path.resolve(dataDir, paths.usersDir || 'Users'))
+  const itemsDir = ensureDir(path.resolve(dataDir, paths.itemsDir || 'Items'))
 
   return _paths = {
     cwd,
@@ -42,7 +43,8 @@ function genPaths(paths: Partial<Paths> = {}, regen: boolean = false): Paths {
     logsDir,
     dbDir,
     cacheDir,
-    uploadDir,
+    usersDir,
+    itemsDir,
   }
 }
 

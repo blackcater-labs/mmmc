@@ -2,14 +2,14 @@ export interface Paths {
   cwd: string
 
   /**
-   * Used to store source files.
-   */
-  contentDir: string
-
-  /**
    * Migrations directory.
    */
   migrationsDir: string
+
+  /**
+   * Used to store source files.
+   */
+  contentDir: string
 
   /**
    * Used to store program data.
@@ -34,8 +34,12 @@ export interface Paths {
   cacheDir: string
 
   /**
-   * Used to store uploaded files.
-   * Files in this directory should not be deleted.
+   * Used to store user files.
    */
-  uploadDir: string
+  usersDir: string
+
+  /**
+   * Used to store item files.
+   */
+  itemsDir: string
 }
