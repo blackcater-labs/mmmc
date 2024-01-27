@@ -4,7 +4,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <main className="absolute inset-0 flex size-full flex-col items-center justify-center">
+    <main className="flex min-h-screen flex-col items-center justify-center">
       {children}
     </main>
   )

@@ -41,7 +41,7 @@ function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-[450px] overflow-auto p-6">
+    <div className="w-full max-w-[450px] p-6">
       <h3 className="flex flex-row items-center justify-center">
         <Image className="bg-default mr-4 rounded-full" src="/logo.png" width={40} height={40} alt="mmmc" />
         <span className={tm(exoFont.className, 'text-3xl font-bold')}>Mmmc</span>
