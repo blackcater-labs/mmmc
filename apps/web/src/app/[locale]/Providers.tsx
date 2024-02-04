@@ -3,11 +3,11 @@
 import { NextUIProvider } from '@nextui-org/react'
 import { useRouter } from 'next/navigation'
 
-import { I18nProviderClient } from '@/locales/client'
+import { I18nProviderClient } from '~/locales/client'
 
 export interface ProvidersProps {
-  params: { locale: string }
   children: React.ReactNode
+  params: { locale: string }
 }
 
 export function LocaleProviders({ params: { locale }, children }: ProvidersProps) {
@@ -15,7 +15,7 @@ export function LocaleProviders({ params: { locale }, children }: ProvidersProps
 
   return (
     <I18nProviderClient locale={locale}>
-      <NextUIProvider locale={locale} navigate={router.push} className="min-h-screen">
+      <NextUIProvider className="min-h-screen" locale={locale} navigate={router.push}>
         {children}
       </NextUIProvider>
     </I18nProviderClient>

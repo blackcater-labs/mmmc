@@ -1,8 +1,9 @@
 import type { Session } from 'next-auth'
+import type { JWT } from 'next-auth/jwt'
+
 import NextAuth from 'next-auth'
 
-import type { JWT } from 'next-auth/jwt'
-import authConfig from '@/auth.config'
+import authConfig from '~/auth.config'
 
 export const {
   handlers: { GET, POST },
@@ -25,7 +26,7 @@ export const {
     },
 
     // @ts-expect-error-next-line
-    async session({ token, session }: { token: JWT, session: Session }) {
+    async session({ token, session }: { session: Session, token: JWT }) {
       if (session.user) {
         session.user.id = session.user?.id || token.id
         session.user.name = session.user?.name || token.name

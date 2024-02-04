@@ -1,23 +1,24 @@
-import type { Optional, PartialExcept } from '@/types'
-import { UserRole } from '@/types/gql'
-import { InternalServerMmmcError } from '@/utils/error'
+import type { Optional, PartialExcept } from '~/types'
+
+import { UserRole } from '~/types/gql'
+import { InternalServerMmmcError } from '~/utils/error'
 
 export interface UserModel {
+  avatar: Optional<string>
+  createdAt: Date
+  email: string
+  favoritePlaylistId: Optional<number>
+  historyPlaylistId: Optional<number>
   id: number
   name: string
-  email: string
   password: string
-  avatar: Optional<string>
   role: UserRole
-  historyPlaylistId: Optional<number>
-  favoritePlaylistId: Optional<number>
-  createdAt: Date
   updatedAt: Date
 }
 
 export type CreateUserInput = PartialExcept<
   UserModel,
-  'name' | 'email' | 'password'
+  'email' | 'name' | 'password'
 >
 
 export function convertToUserRole(role: string): UserRole {

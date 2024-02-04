@@ -1,8 +1,10 @@
 import { gql } from '@urql/core'
 
+import type { LoginMutation, LoginMutationVariables } from '~/types/gql'
+
+import { client } from '~/lib/urql'
+
 import { UserBasic } from '../user/fragement'
-import { client } from '@/lib/urql'
-import type { LoginMutation, LoginMutationVariables } from '@/types/gql'
 
 export const loginMutation = gql`
   mutation Login($email: String!, $password: String!) {

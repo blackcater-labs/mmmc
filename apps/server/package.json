@@ -44,7 +44,7 @@
     "debug": "^4.3.4",
     "deepmerge": "^4.3.1",
     "drizzle-orm": "^0.29.3",
-    "elysia": "^0.8.14",
+    "elysia": "^0.8.15",
     "elysia-rate-limit": "^2.0.1",
     "graphql": "^16.8.1",
     "graphql-scalars": "^1.22.4",
@@ -61,8 +61,8 @@
     "@types/bun": "^1.0.4",
     "@types/debug": "^4.1.12",
     "@types/jsonwebtoken": "^9.0.5",
-    "better-sqlite3": "^9.3.0",
-    "drizzle-kit": "^0.20.13",
+    "better-sqlite3": "^9.4.0",
+    "drizzle-kit": "^0.20.14",
     "typescript": "^5.3.3"
   }
 }

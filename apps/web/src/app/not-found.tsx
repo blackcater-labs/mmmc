@@ -1,9 +1,9 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import { IllustrationNotFound, IllustrationNotFoundDark } from '@douyinfe/semi-illustrations'
 import { Button } from '@nextui-org/react'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 
 export default function NotFoundPage() {
   const { resolvedTheme } = useTheme()
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
         : <IllustrationNotFoundDark fill="currentColor" />}
       <h5 className="mt-4 text-xl font-bold">Something went wrong!</h5>
       <Link href="/">
-        <Button className="mt-2" size="sm" color="primary">
+        <Button className="mt-2" color="primary" size="sm">
           Go Home
         </Button>
       </Link>

@@ -1,9 +1,9 @@
-import process from 'node:process'
-import path from 'node:path'
 import fs from 'node:fs'
 import os from 'node:os'
+import path from 'node:path'
+import process from 'node:process'
 
-import type { Paths } from '@/types'
+import type { Paths } from '~/types'
 
 export function ensureDir(dir: string): string {
   dir = path.resolve(process.cwd(), dir)

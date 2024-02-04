@@ -1,21 +1,23 @@
 'use client'
 
-import React, { useTransition } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { toast } from 'sonner'
-import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, Input } from '@nextui-org/react'
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useTransition } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+
+import { registerAction } from '~/actions/auth/register'
+import { useScopedI18n } from '~/locales/client'
+import { brandFont } from '~/utils/font'
+import { tm } from '~/utils/tailwind'
 
 import type { RegisterSchema } from '../schemas/register.schema'
+
 import { registerSchema } from '../schemas/register.schema'
-import { ThemeSwitcher } from './ThemeSwitcher'
 import { LangSwitcher } from './LangSwitcher'
-import { tm } from '@/utils/tailwind'
-import { exoFont } from '@/utils/font'
-import { registerAction } from '@/actions/auth/register'
-import { useScopedI18n } from '@/locales/client'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 function RegisterForm() {
   const t = useScopedI18n('auth.register')
@@ -47,63 +49,63 @@ function RegisterForm() {
   return (
     <div className="w-full max-w-[450px] p-6">
       <h3 className="flex flex-row items-center justify-center">
-        <Image className="bg-default mr-4 rounded-full" src="/logo.png" width={40} height={40} alt="mmmc" />
-        <span className={tm(exoFont.className, 'text-3xl font-bold')}>Mmmc</span>
+        <Image alt="mmmc" className="bg-default mr-4 rounded-full" height={40} src="/logo.png" width={40} />
+        <span className={tm(brandFont.className, 'text-3xl font-bold')}>Mmmc</span>
       </h3>
       <div className="mt-8">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Controller
-              name="name"
               control={control}
+              name="name"
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
+                  errorMessage={error?.message}
+                  isInvalid={invalid}
                   label={t('username')}
                   required
-                  isInvalid={invalid}
-                  errorMessage={error?.message}
                   {...field}
                 />
               )}
             />
             <Controller
+              control={control}
               name="email"
-              control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
+                  errorMessage={error?.message}
+                  isInvalid={invalid}
                   label={t('email')}
+                  required
                   type="email"
-                  required
-                  isInvalid={invalid}
-                  errorMessage={error?.message}
                   {...field}
                 />
               )}
             />
             <Controller
+              control={control}
               name="password"
-              control={control}
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label={t('password')}
-                  type="password"
-                  required
-                  isInvalid={invalid}
                   errorMessage={error?.message}
+                  isInvalid={invalid}
+                  label={t('password')}
+                  required
+                  type="password"
                   {...field}
                 />
               )}
             />
             <Controller
-              name="confirmPassword"
               control={control}
+              name="confirmPassword"
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label={t('confirmPassword')}
-                  type="password"
-                  required
-                  isInvalid={invalid}
                   errorMessage={error?.message}
+                  isInvalid={invalid}
+                  label={t('confirmPassword')}
+                  required
+                  type="password"
                   {...field}
                 />
               )}
@@ -119,9 +121,9 @@ function RegisterForm() {
           </div>
           <Button
             className="mt-4 w-full"
-            type="submit"
             color="primary"
             disabled={isPending}
+            type="submit"
           >
             {t('registerBtn')}
           </Button>

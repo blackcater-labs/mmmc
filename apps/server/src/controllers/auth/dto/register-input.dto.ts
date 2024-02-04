@@ -1,5 +1,5 @@
 export interface RegisterInput {
-  name: string
   email: string
+  name: string
   password: string
 }

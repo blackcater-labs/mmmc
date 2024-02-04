@@ -1,22 +1,24 @@
 'use client'
 
-import React, { useTransition } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Button, Checkbox, Input } from '@nextui-org/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
+import React, { useTransition } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input } from '@nextui-org/react'
+
+import { loginAction } from '~/actions/auth'
+import { DEFAULT_REDIRECT_URL } from '~/constants'
+import { useScopedI18n } from '~/locales/client'
+import { brandFont } from '~/utils/font'
+import { tm } from '~/utils/tailwind'
 
 import type { LoginSchema } from '../schemas/login.schema'
+
 import { loginSchema } from '../schemas/login.schema'
-import { ThemeSwitcher } from './ThemeSwitcher'
 import { LangSwitcher } from './LangSwitcher'
-import { tm } from '@/utils/tailwind'
-import { exoFont } from '@/utils/font'
-import { DEFAULT_REDIRECT_URL } from '@/constants'
-import { loginAction } from '@/actions/auth'
-import { useScopedI18n } from '@/locales/client'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 function LoginForm() {
   const t = useScopedI18n('auth.login')
@@ -43,36 +45,36 @@ function LoginForm() {
   return (
     <div className="w-full max-w-[450px] p-6">
       <h3 className="flex flex-row items-center justify-center">
-        <Image className="bg-default mr-4 rounded-full" src="/logo.png" width={40} height={40} alt="mmmc" />
-        <span className={tm(exoFont.className, 'text-3xl font-bold')}>Mmmc</span>
+        <Image alt="mmmc" className="bg-default mr-4 rounded-full" height={40} src="/logo.png" width={40} />
+        <span className={tm(brandFont.className, 'text-3xl font-bold')}>Mmmc</span>
       </h3>
       <div className="mt-8">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Controller
-              name="email"
               control={control}
+              name="email"
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label={t('email')}
-                  type="email"
-                  required
-                  isInvalid={invalid}
                   errorMessage={error?.message}
+                  isInvalid={invalid}
+                  label={t('email')}
+                  required
+                  type="email"
                   {...field}
                 />
               )}
             />
             <Controller
-              name="password"
               control={control}
+              name="password"
               render={({ field, fieldState: { invalid, error } }) => (
                 <Input
-                  label={t('password')}
-                  type="password"
-                  required
-                  isInvalid={invalid}
                   errorMessage={error?.message}
+                  isInvalid={invalid}
+                  label={t('password')}
+                  required
+                  type="password"
                   {...field}
                 />
               )}
@@ -80,13 +82,13 @@ function LoginForm() {
           </div>
           <div className="mt-6 flex flex-row items-center justify-between">
             <Controller
-              name="rememberMe"
               control={control}
+              name="rememberMe"
               render={({ field: { value, onChange, ...rest } }) => (
                 <Checkbox
-                  size="sm"
                   isSelected={value}
                   onValueChange={onChange}
+                  size="sm"
                   {...rest}
                 >
                   {t('rememberMe')}
@@ -102,9 +104,9 @@ function LoginForm() {
           </div>
           <Button
             className="mt-4 w-full"
-            type="submit"
             color="primary"
             disabled={isPending}
+            type="submit"
           >
             {t('loginBtn')}
           </Button>

@@ -1,20 +1,21 @@
-import type { Optional, PartialExcept } from '@/types'
-import { PlaylistType } from '@/types/gql'
-import { InternalServerMmmcError } from '@/utils/error'
+import type { Optional, PartialExcept } from '~/types'
+
+import { PlaylistType } from '~/types/gql'
+import { InternalServerMmmcError } from '~/utils/error'
 
 export interface PlaylistModel {
-  id: number
-  name: string
-  userId: number
-  libraryId: Optional<number>
-  type: PlaylistType
   createdAt: Date
+  id: number
+  libraryId: Optional<number>
+  name: string
+  type: PlaylistType
   updatedAt: Optional<Date>
+  userId: number
 }
 
 export type CreatePlaylistInput = PartialExcept<
   PlaylistModel,
-  'name' | 'userId' | 'type'
+  'name' | 'type' | 'userId'
 >
 
 export function convertToPlaylistType(type: string): PlaylistType {

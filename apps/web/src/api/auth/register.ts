@@ -1,8 +1,10 @@
 import { gql } from '@urql/core'
 
+import type { RegisterMutation, RegisterMutationVariables } from '~/types/gql'
+
+import { client } from '~/lib/urql'
+
 import { UserBasic } from '../user/fragement'
-import { client } from '@/lib/urql'
-import type { RegisterMutation, RegisterMutationVariables } from '@/types/gql'
 
 export const registerMutation = gql`
   mutation Register($name: String!, $email: String!, $password: String!) {

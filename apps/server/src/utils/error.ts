@@ -1,5 +1,6 @@
 import type { GraphQLErrorExtensions } from 'graphql'
 import type { Maybe } from 'graphql-yoga'
+
 import { GraphQLError } from 'graphql'
 
 export enum MmmcErrorCode {

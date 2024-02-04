@@ -1,9 +1,11 @@
-import path from 'node:path'
-import { createPinoLogger } from '@bogeychan/elysia-logger'
 import type { ElysiaLogger } from '@bogeychan/elysia-logger/types'
 
+import { createPinoLogger } from '@bogeychan/elysia-logger'
+import path from 'node:path'
+
+import { DEFAULT_LOG_FILE_NAME } from '~/constants'
+
 import { paths } from './paths'
-import { DEFAULT_LOG_FILE_NAME } from '@/constants'
 
 let _logger: ElysiaLogger
 

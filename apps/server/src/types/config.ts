@@ -2,32 +2,32 @@ import type { Paths } from './paths'
 import type { DeepPartial } from './utils'
 
 export interface ArgOptions {
-  // -p, --port
-  port?: number
-  // -t, --tz, --time-zone
-  timeZone?: string
   // -c, --config
   config?: string
-
   // --content-dir
   contentDir?: string
   // --data-dir
   dataDir?: string
+
+  // -p, --port
+  port?: number
+  // -t, --tz, --time-zone
+  timeZone?: string
 }
 
 export interface EnvOptions {
-  // PORT
-  port?: number
-  // TIME_ZONE
-  timeZone?: string
-
-  // JWT_SECRET
-  jwtSecret: string
-
   // CONTENT_DIR
   contentDir?: string
   // DATA_DIR
   dataDir?: string
+
+  // JWT_SECRET
+  jwtSecret: string
+
+  // PORT
+  port?: number
+  // TIME_ZONE
+  timeZone?: string
 }
 
 interface ServerConfig {
@@ -36,8 +36,8 @@ interface ServerConfig {
 }
 
 interface JWTConfig {
-  secret: string
   experiesIn: string
+  secret: string
 }
 
 export interface MmmcOptions {
@@ -45,7 +45,7 @@ export interface MmmcOptions {
 }
 
 export interface AppConfig {
-  server: ServerConfig
-  paths: Paths
   jwt: JWTConfig
+  paths: Paths
+  server: ServerConfig
 }

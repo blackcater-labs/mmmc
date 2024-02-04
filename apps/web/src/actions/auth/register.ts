@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 
-import { register } from '@/api/auth/register'
+import { register } from '~/api/auth/register'
 
 const registerSchema = z.object({
   name: z.string(),

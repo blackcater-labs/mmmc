@@ -1,7 +1,7 @@
 // Drizzle Schema for Sqlite Database
 
-import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 import { sql } from 'drizzle-orm'
+import { foreignKey, index, integer, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
 
 const MAX_VAR_SIZE = 255
 

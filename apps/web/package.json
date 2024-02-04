@@ -29,7 +29,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@douyinfe/semi-illustrations": "^2.51.3",
+    "@douyinfe/semi-illustrations": "^2.51.4",
     "@hookform/resolvers": "^3.3.4",
     "@mmmc/theme": "workspace:*",
     "@nextui-org/react": "^2.2.9",
@@ -37,7 +37,7 @@
     "@urql/core": "^4.2.3",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.3",
-    "lucide-react": "^0.316.0",
+    "lucide-react": "^0.321.0",
     "next": "^14.1.0",
     "next-auth": "5.0.0-beta.5",
     "next-international": "^1.2.3",
@@ -45,16 +45,16 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.3",
-    "sonner": "^1.3.1",
+    "react-hook-form": "^7.50.0",
+    "sonner": "^1.4.0",
     "tailwind-merge": "^2.2.1",
     "valtio": "^1.13.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
-    "@types/node": "^20.11.7",
-    "@types/react": "^18.2.48",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.52",
     "@types/react-dom": "^18.2.18",
     "autoprefixer": "^10.4.17",
     "debug": "^4.3.4",

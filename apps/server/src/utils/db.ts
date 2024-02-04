@@ -1,10 +1,11 @@
-import path from 'node:path'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
 import { Database } from 'bun:sqlite'
+import { drizzle } from 'drizzle-orm/bun-sqlite'
+import path from 'node:path'
+
+import { DEFAULT_DB_FILE_NAME } from '~/constants'
 
 import { paths } from './paths'
 import * as schema from './schema'
-import { DEFAULT_DB_FILE_NAME } from '@/constants'
 
 function createDB() {
   const sqlite = new Database(

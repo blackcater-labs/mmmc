@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from 'next-themes'
 
-import { Toaster } from '@/components/toaster'
+import { Toaster } from '~/components/ui/toaster'
 
 export interface ProvidersProps {
   children: React.ReactNode

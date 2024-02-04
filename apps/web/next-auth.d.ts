@@ -1,31 +1,31 @@
 import type { JWT } from 'next-auth/jwt'
 
-import type { UserRole } from '@/types/gql'
+import type { UserRole } from '~/types/gql'
 
 declare module 'next-auth' {
   interface User {
+    access_token?: null | string
+    email?: null | string
     id?: string
-    name?: string | null
-    email?: string | null
-    image?: string | null
+    image?: null | string
+    name?: null | string
     role?: UserRole | null
-    access_token?: string | null
   }
 }
 
 declare module 'next-auth/jwt' {
   interface JWT {
-    id?: string
-    image?: string | null
-    role?: UserRole | null
-    access_token?: string | null
-
-    name?: string | null
-    email?: string | null
-    picture?: string | null
-    sub?: string
-    iat?: number
+    access_token?: null | string
+    email?: null | string
     exp?: number
+    iat?: number
+
+    id?: string
+    image?: null | string
     jti?: string
+    name?: null | string
+    picture?: null | string
+    role?: UserRole | null
+    sub?: string
   }
 }

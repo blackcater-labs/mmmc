@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 
-import { signIn } from '@/auth'
+import { signIn } from '~/auth'
 
 const loginSchema = z.object({
   email: z.string().email(),

@@ -1,12 +1,14 @@
 import debug from 'debug'
 
-import type { RegisterInput } from './dto/register-input.dto'
+import type { Ctx } from '~/types'
+import type { User } from '~/types/gql'
+
+import { userService } from '~/services/user'
+import { AuthPasswordNotMatchMmmcError, UserAlreadyExistsMmmcError, UserNotExistsMmmcError } from '~/utils/error'
+import { comparePassword, hashPassword } from '~/utils/string'
+
 import type { LoginInput } from './dto/login-input.dto'
-import type { Ctx } from '@/types'
-import type { User } from '@/types/gql'
-import { userService } from '@/services/user'
-import { AuthPasswordNotMatchMmmcError, UserAlreadyExistsMmmcError, UserNotExistsMmmcError } from '@/utils/error'
-import { comparePassword, hashPassword } from '@/utils/string'
+import type { RegisterInput } from './dto/register-input.dto'
 
 export async function register(ctx: Ctx, input: RegisterInput): Promise<User> {
   const existingUser = await userService.getUserByEmail(ctx.db, input.email)

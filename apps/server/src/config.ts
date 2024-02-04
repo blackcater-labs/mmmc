@@ -1,13 +1,14 @@
-import process from 'node:process'
-import path from 'node:path'
-import fs from 'node:fs'
 import cac from 'cac'
+import debug from 'debug'
+import fs from 'node:fs'
+import path from 'node:path'
+import process from 'node:process'
 import yaml from 'yaml'
 import { z } from 'zod'
-import debug from 'debug'
 
-import { getMmmcDir, updatePaths } from '@/utils/paths'
-import type { AppConfig, ArgOptions, EnvOptions, MmmcOptions } from '@/types'
+import type { AppConfig, ArgOptions, EnvOptions, MmmcOptions } from '~/types'
+
+import { getMmmcDir, updatePaths } from '~/utils/paths'
 
 const program = cac('server')
 

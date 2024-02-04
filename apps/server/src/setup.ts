@@ -1,20 +1,21 @@
-import path from 'node:path'
-import { Elysia } from 'elysia'
-import yoga from '@elysiajs/graphql-yoga'
 import cors from '@elysiajs/cors'
-import { rateLimit } from 'elysia-rate-limit'
+import yoga from '@elysiajs/graphql-yoga'
 import debug from 'debug'
-import { GraphQLJSON, GraphQLJSONObject } from 'graphql-type-json'
+import { Elysia } from 'elysia'
+import { rateLimit } from 'elysia-rate-limit'
 import { DateResolver, DateTimeResolver, TimestampResolver } from 'graphql-scalars'
+import { GraphQLJSON, GraphQLJSONObject } from 'graphql-type-json'
+import path from 'node:path'
 
 import type { AppConfig } from './types'
 import type { Resolvers } from './types/gql'
-import { createLogger } from './utils/log'
-import { getDB } from './utils/db'
+
 import { controllers } from './controllers'
-import { signJWTToken, verifyJWTToken } from './utils/jwt'
-import { UnauthorizedMmmcError } from './utils/error'
 import { userService } from './services/user'
+import { getDB } from './utils/db'
+import { UnauthorizedMmmcError } from './utils/error'
+import { signJWTToken, verifyJWTToken } from './utils/jwt'
+import { createLogger } from './utils/log'
 
 export async function setup(config: AppConfig) {
   const logger = createLogger()

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+
 import { mmmc } from '@mmmc/theme'
 
 const config: Config = {

@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth'
 import { NextResponse } from 'next/server'
+import NextAuth from 'next-auth'
 import { createI18nMiddleware } from 'next-international/middleware'
 
-import authConfig from '@/auth.config'
+import authConfig from '~/auth.config'
 import {
   AUTH_API_PREFIXS,
   AUTH_ROUTES,
@@ -10,7 +10,7 @@ import {
   DEFAULT_REDIRECT_URL,
   PUBLIC_ROUTES,
   SUPPORTED_LOCALES,
-} from '@/constants'
+} from '~/constants'
 
 const { auth } = NextAuth(authConfig)
 const i18nMiddleware = createI18nMiddleware({

@@ -1,13 +1,14 @@
 import debug from 'debug'
 import { eq } from 'drizzle-orm'
 
-import type { DB } from '@/utils/db'
-import type { CreateUserInput, UserModel } from '@/models/user'
-import type { Optional } from '@/types/utils'
-import { users } from '@/utils/schema'
-import { convertToUserRole } from '@/models/user'
+import type { CreateUserInput, UserModel } from '~/models/user'
+import type { Optional } from '~/types/utils'
+import type { DB } from '~/utils/db'
 
-async function getUserById(db: DB, id: string | number): Promise<Optional<UserModel>> {
+import { convertToUserRole } from '~/models/user'
+import { users } from '~/utils/schema'
+
+async function getUserById(db: DB, id: number | string): Promise<Optional<UserModel>> {
   const rows = await db.select().from(users).where(eq(users.id, Number(id)))
   const row = rows[0]
 
