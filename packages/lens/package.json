@@ -23,13 +23,13 @@
   ],
   "exports": {
     ".": {
-      "default": "./src/client.ts"
+      "default": "./src/index.ts"
     },
     "./server": {
       "default": "./src/server.ts"
     }
   },
-  "main": "./src/client.ts",
+  "main": "./src/index.ts",
   "files": [
     "src"
   ],

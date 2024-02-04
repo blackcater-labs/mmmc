@@ -10,9 +10,8 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "cache": true
     },
-    "test": {
+    "test:unit": {
       "inputs": ["src/**", "test/**"],
-      "dependsOn": ["build"],
       "outputs": ["coverage/**", "coverage-report/**"],
       "cache": true
     },
