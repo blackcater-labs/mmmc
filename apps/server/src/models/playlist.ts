@@ -1,6 +1,7 @@
+import { PlaylistType } from '@mmmc/lens/server'
+
 import type { Optional, PartialExcept } from '~/types'
 
-import { PlaylistType } from '~/types/gql'
 import { InternalServerMmmcError } from '~/utils/error'
 
 export interface PlaylistModel {

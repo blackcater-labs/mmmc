@@ -1,21 +1,12 @@
-import { gql } from '@urql/core'
+import type { RegisterMutation, RegisterMutationVariables } from '@mmmc/lens'
 
-import type { RegisterMutation, RegisterMutationVariables } from '~/types/gql'
+import { graphql } from '@mmmc/lens'
 
 import { client } from '~/lib/urql'
 
-import { UserBasic } from '../user/fragement'
-
-export const registerMutation = gql`
-  mutation Register($name: String!, $email: String!, $password: String!) {
-    register(name: $name, email: $email, password: $password) {
-      ...UserBasic
-    }
-  }
-
-  ${UserBasic}
-`
-
 export async function register(input: RegisterMutationVariables) {
-  return await client.mutation<RegisterMutation>(registerMutation, input).toPromise()
+  return await client.mutation<RegisterMutation>(
+    graphql('mutation Register($name: String!, $email: String!, $password: String!) {\n  register(name: $name, email: $email, password: $password) {\n    ...UserBasic\n  }\n}'),
+    input,
+  ).toPromise()
 }

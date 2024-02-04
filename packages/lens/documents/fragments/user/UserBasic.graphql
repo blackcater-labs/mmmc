@@ -1,0 +1,7 @@
+fragment UserBasic on User {
+  id
+  name
+  email
+  role
+  avatar
+}

@@ -1,7 +1,8 @@
+import type { User } from '@mmmc/lens/server'
+
 import debug from 'debug'
 
 import type { Ctx } from '~/types'
-import type { User } from '~/types/gql'
 
 import { userService } from '~/services/user'
 import { AuthPasswordNotMatchMmmcError, UserAlreadyExistsMmmcError, UserNotExistsMmmcError } from '~/utils/error'

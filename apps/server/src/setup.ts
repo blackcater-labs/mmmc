@@ -1,3 +1,5 @@
+import type { Resolvers } from '@mmmc/lens/server'
+
 import cors from '@elysiajs/cors'
 import yoga from '@elysiajs/graphql-yoga'
 import debug from 'debug'
@@ -8,7 +10,6 @@ import { GraphQLJSON, GraphQLJSONObject } from 'graphql-type-json'
 import path from 'node:path'
 
 import type { AppConfig } from './types'
-import type { Resolvers } from './types/gql'
 
 import { controllers } from './controllers'
 import { userService } from './services/user'

@@ -1,24 +1,12 @@
-import { gql } from '@urql/core'
+import type { LoginMutation, LoginMutationVariables } from '@mmmc/lens'
 
-import type { LoginMutation, LoginMutationVariables } from '~/types/gql'
+import { graphql } from '@mmmc/lens'
 
 import { client } from '~/lib/urql'
 
-import { UserBasic } from '../user/fragement'
-
-export const loginMutation = gql`
-  mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      user {
-        ...UserBasic
-      }
-      access_token
-    }
-  }
-
-  ${UserBasic}
-`
-
 export async function login(input: LoginMutationVariables) {
-  return await client.mutation<LoginMutation>(loginMutation, input).toPromise()
+  return await client.mutation<LoginMutation>(
+    graphql('mutation Login($email: String!, $password: String!) {\n  login(email: $email, password: $password) {\n    user {\n      ...UserBasic\n    }\n    access_token\n  }\n}'),
+    input,
+  ).toPromise()
 }

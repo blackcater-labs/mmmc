@@ -1,6 +1,5 @@
+import type { UserRole } from '@mmmc/lens/server'
 import type { JWT } from 'next-auth/jwt'
-
-import type { UserRole } from '~/types/gql'
 
 declare module 'next-auth' {
   interface User {

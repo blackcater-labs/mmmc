@@ -1,7 +1,7 @@
 'use client'
 
 import { Button, Skeleton } from '@nextui-org/react'
-import { MoonIcon, SunIcon } from 'lucide-react'
+import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useTheme } from 'next-themes'
 import React from 'react'
 
@@ -16,7 +16,7 @@ export function ThemeSwitcher() {
 
   return (
     <Button isIconOnly onPress={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')} size="sm">
-      {resolvedTheme === 'light' ? <SunIcon /> : <MoonIcon />}
+      {resolvedTheme === 'light' ? <IconSun /> : <IconMoon />}
     </Button>
   )
 }

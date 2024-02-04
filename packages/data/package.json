@@ -1,0 +1,6 @@
+{
+  "name": "@mmmc/data",
+  "private": true,
+  "main": "src/index.ts",
+  "dependencies": {}
+}

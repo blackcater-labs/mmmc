@@ -38,6 +38,8 @@
     "@dicebear/core": "^7.0.4",
     "@elysiajs/cors": "^0.8.0",
     "@elysiajs/graphql-yoga": "^0.8.0",
+    "@mmmc/data": "workspace:*",
+    "@mmmc/lens": "workspace:*",
     "@resvg/resvg-js": "^2.6.0",
     "bcrypt": "^5.1.1",
     "cac": "^6.7.14",

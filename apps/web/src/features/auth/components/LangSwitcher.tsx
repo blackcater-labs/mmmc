@@ -3,7 +3,7 @@
 import type { Selection } from '@nextui-org/react'
 
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react'
-import { GlobeIcon } from 'lucide-react'
+import { IconWorld } from '@tabler/icons-react'
 import { useCallback } from 'react'
 
 import { useChangeLocale, useCurrentLocale } from '~/locales/client'
@@ -24,7 +24,7 @@ export function LangSwitcher() {
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
         <Button isIconOnly size="sm">
-          <GlobeIcon />
+          <IconWorld />
         </Button>
       </DropdownTrigger>
       <DropdownMenu

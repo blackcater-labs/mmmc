@@ -1,0 +1,51 @@
+{
+  "name": "@mmmc/lens",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Graphql Lens for mmmc",
+  "author": {
+    "name": "blackcater <Elon Tang>",
+    "email": "i@blackcater.dev",
+    "url": "https://www.blackcater.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/blackcater-labs/mmmc/tree/main/packages/theme#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackcater-labs/mmmc.git",
+    "directory": "packages/theme"
+  },
+  "bugs": {
+    "url": "https://github.com/blackcater-labs/mmmc/issues"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "exports": {
+    ".": {
+      "default": "./src/client.ts"
+    },
+    "./server": {
+      "default": "./src/server.ts"
+    }
+  },
+  "main": "./src/client.ts",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "dev": "graphql-codegen -c codegen.ts --watch",
+    "build": "graphql-codegen -c codegen.ts",
+    "clean": "rimraf src/gql"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-resolvers": "^4.0.1",
+    "@parcel/watcher": "^2.4.0",
+    "rimraf": "^5.0.5",
+    "tsup": "^8.0.1"
+  }
+}
