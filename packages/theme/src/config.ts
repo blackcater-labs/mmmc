@@ -1,4 +1,5 @@
 import type { MmmcPluginConfig } from './types'
+
 import { commonColors } from './colors'
 
 export const defaultConfig: MmmcPluginConfig = {

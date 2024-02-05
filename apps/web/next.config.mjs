@@ -10,13 +10,6 @@ const nextConfig = {
   experimental: {},
 
   reactStrictMode: true,
-
-  rewrites: async () => [
-    {
-      source: '/api/graphql',
-      destination: `${process.env.SERVER_URL}/api/graphql`,
-    },
-  ],
 }
 
 export default withBundleAnalyzer(nextConfig)

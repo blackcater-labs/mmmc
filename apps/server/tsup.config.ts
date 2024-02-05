@@ -4,5 +4,5 @@ export default defineConfig({
   entry: ['src/index.ts'],
   target: 'es2019',
   format: ['esm'],
-  dts: true,
+  noExternal: ['@mmmc/lens', '@mmmc/data'],
 })

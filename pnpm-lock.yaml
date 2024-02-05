@@ -167,7 +167,7 @@ importers:
         version: 5.0.5
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -180,9 +180,15 @@ importers:
       '@nextui-org/react':
         specifier: ^2.2.9
         version: 2.2.9(@types/react@18.2.53)(framer-motion@11.0.3)(react-dom@18.2.0)(react@18.2.0)(tailwind-variants@0.1.20)(tailwindcss@3.4.1)
+      '@nextui-org/theme':
+        specifier: ^2.1.17
+        version: 2.1.17(tailwindcss@3.4.1)
       '@storybook/addon-a11y':
         specifier: ^7.6.12
         version: 7.6.12
+      '@storybook/addon-docs':
+        specifier: ^7.6.12
+        version: 7.6.12(@types/react-dom@18.2.18)(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: ^7.6.12
         version: 7.6.12(@types/react-dom@18.2.18)(@types/react@18.2.53)(react-dom@18.2.0)(react@18.2.0)
@@ -288,6 +294,9 @@ importers:
       '@nextui-org/react':
         specifier: ^2.2.9
         version: 2.2.9(@types/react@18.2.53)(framer-motion@11.0.3)(react-dom@18.2.0)(react@18.2.0)(tailwind-variants@0.1.20)(tailwindcss@3.4.1)
+      '@nextui-org/theme':
+        specifier: ^2.1.17
+        version: 2.1.17(tailwindcss@3.4.1)
       '@react-aria/i18n':
         specifier: ^3.10.0
         version: 3.10.0(react@18.2.0)
@@ -395,7 +404,7 @@ importers:
         version: 5.0.5
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
 
   packages/test-utils:
     dependencies:
@@ -417,7 +426,7 @@ importers:
         version: 5.0.5
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -427,16 +436,25 @@ importers:
       '@nextui-org/theme':
         specifier: ^2.1.17
         version: 2.1.17(tailwindcss@3.4.1)
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.0
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
+      tailwind-merge:
+        specifier: ^2.2.1
+        version: 2.2.1
+      tailwindcss:
+        specifier: ^3.4.1
+        version: 3.4.1
     devDependencies:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
 
   packages/ui:
     dependencies:
@@ -473,7 +491,7 @@ importers:
         version: 5.0.5
       tsup:
         specifier: ^8.0.1
-        version: 8.0.1(typescript@5.3.3)
+        version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
         version: 1.2.2
@@ -16900,7 +16918,7 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /tsup@8.0.1(typescript@5.3.3):
+  /tsup@8.0.1(postcss@8.4.33)(typescript@5.3.3):
     resolution: {integrity: sha512-hvW7gUSG96j53ZTSlT4j/KL0q1Q2l6TqGBFc6/mu/L46IoNWqLLUzLRLP1R8Q7xrJTmkDxxDoojV5uCVs1sVOg==}
     engines: {node: '>=18'}
     hasBin: true
@@ -16927,6 +16945,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
+      postcss: 8.4.33
       postcss-load-config: 4.0.2(postcss@8.4.33)
       resolve-from: 5.0.0
       rollup: 4.9.6

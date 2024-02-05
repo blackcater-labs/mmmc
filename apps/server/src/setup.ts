@@ -15,6 +15,7 @@ import type { AppConfig } from './types'
 
 import { DEFAULT_LOG_FILE_NAME } from './constants'
 import { controllers } from './controllers'
+import { MmmcAPI } from './routes/api'
 import { userService } from './services/user'
 import { getDB } from './utils/db'
 import { UnauthorizedMmmcError } from './utils/error'
@@ -36,6 +37,11 @@ export async function setup(config: AppConfig) {
     origin: (_origin, cb) => cb(null, true),
   })
   await app.register(RateLimit, { max: 100, timeWindow: '1 minute' })
+  await app.register(MmmcAPI, { prefix: '/api' })
+
+  app.get('/', async (_, reply) => {
+    reply.send('Fastify server is running!')
+  })
 
   await setupGraphQL(app, config)
 
@@ -129,6 +135,8 @@ async function setupGraphQL(app: FastifyInstance, config: AppConfig) {
       } satisfies Resolvers,
     }),
   })
+
+  app.log.info('GraphQL endpoint: %s', yoga.graphqlEndpoint)
 
   app.route({
     url: yoga.graphqlEndpoint,

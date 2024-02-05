@@ -30,7 +30,9 @@
   "devDependencies": {
     "@mmmc/theme": "workspace:*",
     "@nextui-org/react": "^2.2.9",
+    "@nextui-org/theme": "^2.1.17",
     "@storybook/addon-a11y": "^7.6.12",
+    "@storybook/addon-docs": "^7.6.12",
     "@storybook/addon-essentials": "^7.6.12",
     "@storybook/addon-interactions": "^7.6.12",
     "@storybook/addon-links": "^7.6.12",

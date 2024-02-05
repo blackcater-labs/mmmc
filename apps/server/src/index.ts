@@ -7,7 +7,7 @@ async function bootstrap() {
   const config = load()
   const app = await setup(config)
 
-  debug('mmmc:bootstrap')('Mmmc Config: %o', config)
+  debug('mmmc:bootstrap')('Load config: %o', config)
 
   try {
     await app.listen({ port: config.server.port })
