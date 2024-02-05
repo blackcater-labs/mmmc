@@ -15,7 +15,7 @@ export function ensureDir(dir: string): string {
 let _paths: Paths | null = null
 
 export function getMmmcDir() {
-  if (Bun.env.NODE_ENV === 'production')
+  if (process.env.NODE_ENV === 'production')
     return path.resolve(os.homedir(), '.mmmc')
   return path.resolve(process.cwd(), '../..')
 }

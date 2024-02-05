@@ -1,5 +1,6 @@
 import cac from 'cac'
 import debug from 'debug'
+import 'dotenv/config'
 import fs from 'node:fs'
 import path from 'node:path'
 import process from 'node:process'
@@ -20,7 +21,7 @@ program
   .option('--data-dir <dataDir>', 'Path to data directory')
   .help()
 
-const { options: args } = program.parse(Bun.argv)
+const { options: args } = program.parse(process.argv.slice(2))
 
 if (args.help)
   process.exit(0)
@@ -45,7 +46,7 @@ function parseEnvs(): EnvOptions {
   })
 
   try {
-    const data = schema.parse(Bun.env)
+    const data = schema.parse(process.env)
 
     return {
       port: data.PORT ? Number(data.PORT) : undefined,

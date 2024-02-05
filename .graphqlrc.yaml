@@ -1,0 +1,2 @@
+schema: ./apps/server/schema.graphql
+documents: './packages/lens/documents/**/*.graphql'

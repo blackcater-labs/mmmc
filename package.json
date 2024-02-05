@@ -14,10 +14,6 @@
     "react",
     "nextjs"
   ],
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "main": "index.js",
   "scripts": {
     "dev": "FORCE_COLOR=1 turbo dev --parallel",

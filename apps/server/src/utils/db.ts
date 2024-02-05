@@ -1,5 +1,5 @@
-import { Database } from 'bun:sqlite'
-import { drizzle } from 'drizzle-orm/bun-sqlite'
+import Database from 'better-sqlite3'
+import { drizzle } from 'drizzle-orm/better-sqlite3'
 import path from 'node:path'
 
 import { DEFAULT_DB_FILE_NAME } from '~/constants'
@@ -10,7 +10,7 @@ import * as schema from './schema'
 function createDB() {
   const sqlite = new Database(
     path.resolve(paths().dbDir, DEFAULT_DB_FILE_NAME),
-    { create: true, readwrite: true },
+    { readonly: false, fileMustExist: false },
   )
 
   return drizzle(sqlite, { schema })

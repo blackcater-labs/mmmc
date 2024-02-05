@@ -1,5 +1,5 @@
 # ------------------ Builder -------------------
-FROM imbios/bun-node:latest as Builder
+FROM node:lts-alpine as Builder
 
 ARG NODE_ENV=production
 
@@ -8,17 +8,17 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /app
 COPY . .
 
-RUN bun i
+RUN pnpm i --frozen-lockfile
 
 
 # ------------------ Runner --------------------
-FROM imbios/bun-node:latest as Runner
+FROM node:lts-alpine as Runner
 
 WORKDIR /app
 
 # next.js server
 EXPOSE 3000
-# bun server
+# fastify server
 EXPOSE 4000
 
 

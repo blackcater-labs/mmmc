@@ -1,4 +1,4 @@
-import { migrate } from 'drizzle-orm/bun-sqlite/migrator'
+import { migrate } from 'drizzle-orm/better-sqlite3/migrator'
 
 import { load } from './config'
 import { getDB } from './utils/db'

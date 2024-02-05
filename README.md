@@ -35,17 +35,17 @@
 
 This project is a monorepo:
 
-- `apps/server`: server application for Mmmc, based on [Bun](https://bun.sh/).
+- `apps/server`: server application for Mmmc, based on [Fastify](https://www.fastify.io/).
 - `apps/web`: web application for Mmmc, based on [Next.js](https://nextjs.org/).
 - `packages/storybook`: Storybook for developing UI components, based on [Storybook](https://storybook.js.org/).
 - `packages/theme`: Tailwind CSS theme for Mmmc, based on [nextui](https://nextui.org/).
 
 > [!IMPORTANT]
-> Project's package manager is [Bun](https://bun.sh/), so you need to install it first.
+> Project's package manager is [pnpm](https://pnpm.io/), so you need to install it first.
 
 ```bash
-bun install # install dependencies
-bun dev     # start local development
+pnpm install # install dependencies
+pnpm dev     # start local development
 ```
 
 After that, you can visit `http://localhost:3000` to view the web application. The server application is running on `http://localhost:4000`.
