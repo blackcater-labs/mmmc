@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Skeleton } from '@nextui-org/react'
+import { ActionIcon, Skeleton } from '@mantine/core'
 import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useTheme } from 'next-themes'
 import React from 'react'
@@ -12,11 +12,14 @@ export function ThemeSwitcher() {
   React.useEffect(() => setMounted(true), [])
 
   if (!mounted)
-    return <Skeleton className="rounded-small size-8" />
+    return <Skeleton height={28} width={28} />
 
   return (
-    <Button isIconOnly onPress={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')} size="sm">
+    <ActionIcon
+      onClick={() => setTheme(resolvedTheme === 'light' ? 'dark' : 'light')}
+      variant="subtle"
+    >
       {resolvedTheme === 'light' ? <IconSun /> : <IconMoon />}
-    </Button>
+    </ActionIcon>
   )
 }

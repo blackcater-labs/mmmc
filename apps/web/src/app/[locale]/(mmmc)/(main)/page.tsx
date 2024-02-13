@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '@nextui-org/react'
+import { Button } from '@mantine/core'
 import { signOut, useSession } from 'next-auth/react'
 
 import { useCurrentLocale } from '~/locales/client'
@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-row gap-4">
-      <Button onPress={() => signOut()}>Sign Out</Button>
+      <Button onClick={() => signOut()}>Sign Out</Button>
       <Button color="primary">{locale}</Button>
       <p>{JSON.stringify(data || {}, null, 2)}</p>
     </div>

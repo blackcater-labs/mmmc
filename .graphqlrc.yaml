@@ -1,2 +1,11 @@
 schema: ./apps/server/schema.graphql
 documents: './packages/lens/documents/**/*.graphql'
+extensions:
+  codegen:
+    generates:
+      ./packages/lens/src/gql/client/:
+        preset: client
+      ./packages/lens/src/gql/server/index.ts:
+        plugins:
+          - typescript
+          - typescript-resolvers

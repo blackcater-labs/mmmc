@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Input } from '@nextui-org/react'
+import { Anchor, Button, Text, TextInput } from '@mantine/core'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useTransition } from 'react'
@@ -58,10 +58,9 @@ function RegisterForm() {
             <Controller
               control={control}
               name="name"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('username')}
                   required
                   {...field}
@@ -71,10 +70,9 @@ function RegisterForm() {
             <Controller
               control={control}
               name="email"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('email')}
                   required
                   type="email"
@@ -85,10 +83,9 @@ function RegisterForm() {
             <Controller
               control={control}
               name="password"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('password')}
                   required
                   type="password"
@@ -99,10 +96,9 @@ function RegisterForm() {
             <Controller
               control={control}
               name="confirmPassword"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('confirmPassword')}
                   required
                   type="password"
@@ -112,17 +108,18 @@ function RegisterForm() {
             />
           </div>
           <div className="mt-6 flex flex-row items-center justify-end">
-            <Link
-              className="text-primary text-sm underline hover:opacity-80"
-              href="/auth/login"
+            <Anchor
+              component={Link}
+              href="/auth/register"
+              underline="always"
             >
-              {t('loginNow')}
-            </Link>
+              <Text size="sm">{t('loginNow')}</Text>
+            </Anchor>
           </div>
           <Button
-            className="mt-4 w-full"
-            color="primary"
+            className="mt-4"
             disabled={isPending}
+            fullWidth
             type="submit"
           >
             {t('registerBtn')}

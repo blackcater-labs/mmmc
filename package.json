@@ -14,17 +14,27 @@
     "react",
     "nextjs"
   ],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "FORCE_COLOR=1 turbo dev --parallel",
     "build": "turbo build",
     "test": "turbo test",
+    "generate": "graphql-codegen",
     "taze": "taze minor -r",
-    "taze:major": "taze major -r"
+    "taze:major": "taze major -r --ignore-paths temp"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
-    "@eslint/eslintrc": "^3.0.0",
+    "@eslint/eslintrc": "^3.0.1",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.2",
+    "@graphql-codegen/typescript": "^4.0.4",
+    "@graphql-codegen/typescript-operations": "^4.1.2",
+    "@graphql-codegen/typescript-resolvers": "^4.0.4",
     "@types/eslint__eslintrc": "^2.1.1",
     "eslint": "^8.56.0",
     "eslint-plugin-drizzle": "^0.2.3",
@@ -33,10 +43,10 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "eslint-plugin-tailwindcss": "^3.14.1",
+    "eslint-plugin-tailwindcss": "^3.14.2",
     "prettier": "^3.2.5",
-    "taze": "^0.13.2",
-    "turbo": "^1.12.2",
+    "taze": "^0.13.3",
+    "turbo": "^1.12.3",
     "typescript": "^5.3.3"
   }
 }

@@ -1,19 +1,24 @@
 import type { Config } from 'tailwindcss'
 
-import { mmmc } from '@mmmc/theme'
-
 const config: Config = {
-  darkMode: ['class'],
+  corePlugins: {
+    preflight: false,
+  },
+  darkMode: ['class', '[data-mantine-color-scheme="dark"]'],
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: {
+      xs: '576px',
+      sm: '768px',
+      md: '992px',
+      lg: '1200px',
+      xl: '1408px',
+    },
     extend: {},
   },
-  plugins: [
-    mmmc(),
-  ],
+  plugins: [],
 }
 
 export default config

@@ -1,7 +1,7 @@
 'use client'
 
 import { IllustrationFailure, IllustrationFailureDark } from '@douyinfe/semi-illustrations'
-import { Button } from '@nextui-org/react'
+import { Button } from '@mantine/core'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
         : <IllustrationFailureDark fill="currentColor" />}
       <h5 className="mt-4 text-xl font-bold">Something went wrong!</h5>
       <Link href="/">
-        <Button className="mt-2" color="primary" size="sm">
+        <Button className="mt-2" size="sm">
           Go Home
         </Button>
       </Link>

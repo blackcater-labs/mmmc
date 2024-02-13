@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Checkbox, Input } from '@nextui-org/react'
+import { Anchor, Button, Checkbox, Text, TextInput } from '@mantine/core'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
@@ -54,10 +54,9 @@ function LoginForm() {
             <Controller
               control={control}
               name="email"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('email')}
                   required
                   type="email"
@@ -68,10 +67,9 @@ function LoginForm() {
             <Controller
               control={control}
               name="password"
-              render={({ field, fieldState: { invalid, error } }) => (
-                <Input
-                  errorMessage={error?.message}
-                  isInvalid={invalid}
+              render={({ field, fieldState: { error } }) => (
+                <TextInput
+                  error={error?.message}
                   label={t('password')}
                   required
                   type="password"
@@ -86,26 +84,26 @@ function LoginForm() {
               name="rememberMe"
               render={({ field: { value, onChange, ...rest } }) => (
                 <Checkbox
-                  isSelected={value}
-                  onValueChange={onChange}
+                  checked={value}
+                  label={t('rememberMe')}
+                  onChange={onChange}
                   size="sm"
                   {...rest}
-                >
-                  {t('rememberMe')}
-                </Checkbox>
+                />
               )}
             />
-            <Link
-              className="text-primary text-sm underline hover:opacity-80"
+            <Anchor
+              component={Link}
               href="/auth/register"
+              underline="always"
             >
-              {t('registerNow')}
-            </Link>
+              <Text size="sm">{t('registerNow')}</Text>
+            </Anchor>
           </div>
           <Button
-            className="mt-4 w-full"
-            color="primary"
+            className="mt-4"
             disabled={isPending}
+            fullWidth
             type="submit"
           >
             {t('loginBtn')}

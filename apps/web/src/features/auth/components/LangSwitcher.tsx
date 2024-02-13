@@ -1,40 +1,34 @@
 'use client'
 
-import type { Selection } from '@nextui-org/react'
-
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react'
+import { ActionIcon, Menu } from '@mantine/core'
 import { IconWorld } from '@tabler/icons-react'
-import { useCallback } from 'react'
 
-import { useChangeLocale, useCurrentLocale } from '~/locales/client'
+import { useChangeLocale } from '~/locales/client'
 
 export function LangSwitcher() {
   const changeLocale = useChangeLocale()
-  const currentLocale = useCurrentLocale()
-
-  const onSelectionChange = useCallback((keys: Selection) => {
-    if (keys === 'all')
-      return
-    if (keys.size === 0)
-      return
-    changeLocale(keys.values().next().value)
-  }, [changeLocale])
 
   return (
-    <Dropdown placement="bottom-end">
-      <DropdownTrigger>
-        <Button isIconOnly size="sm">
+    <Menu position="bottom-end">
+      <Menu.Target>
+        <ActionIcon variant="subtle">
           <IconWorld />
-        </Button>
-      </DropdownTrigger>
-      <DropdownMenu
-        onSelectionChange={onSelectionChange}
-        selectedKeys={[currentLocale]}
-        selectionMode="single"
-      >
-        <DropdownItem key="zh-CN">🇨🇳 简体中文</DropdownItem>
-        <DropdownItem key="en-US">🇺🇸 English</DropdownItem>
-      </DropdownMenu>
-    </Dropdown>
+        </ActionIcon>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <Menu.Item
+          key="zh-CN"
+          onClick={() => changeLocale('zh-CN')}
+        >
+          🇨🇳 简体中文
+        </Menu.Item>
+        <Menu.Item
+          key="en-US"
+          onClick={() => changeLocale('en-US')}
+        >
+          🇺🇸 English
+        </Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
   )
 }
