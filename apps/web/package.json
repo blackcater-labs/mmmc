@@ -31,11 +31,11 @@
   "dependencies": {
     "@douyinfe/semi-illustrations": "^2.52.0",
     "@hookform/resolvers": "^3.3.4",
-    "@mantine/core": "^7.5.2",
-    "@mantine/hooks": "^7.5.2",
+    "@mantine/core": "^7.5.3",
+    "@mantine/hooks": "^7.5.3",
     "@mmmc/data": "workspace:*",
     "@mmmc/lens": "workspace:*",
-    "@react-aria/i18n": "^3.10.1",
+    "@react-aria/i18n": "^3.10.2",
     "@tabler/icons-react": "^2.47.0",
     "@urql/core": "^4.2.3",
     "clsx": "^2.1.0",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^14.1.0",
-    "@types/node": "^20.11.18",
+    "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "autoprefixer": "^10.4.17",
